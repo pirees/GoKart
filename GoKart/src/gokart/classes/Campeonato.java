@@ -13,10 +13,12 @@ public class Campeonato implements EntityBase {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int Id;
-	private String Nome;
-	private int pontos;
-	
+	private int id;
+	private String nomeCampeonato;
+	private int nrMaxPiloto;
+	private int nrBatCampeonato;
+	private int qntPilotoCampeonato;
+	private int potuacaoMV;
 	@ManyToOne
 	private Piloto pil;
 	
@@ -27,27 +29,51 @@ public class Campeonato implements EntityBase {
 	private Bateria bat;
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public String getNome() {
-		return Nome;
+	public String getNomeCampeonato() {
+		return nomeCampeonato;
 	}
 
-	public void setNome(String nome) {
-		Nome = nome;
+	public void setNomeCampeonato(String nomeCampeonato) {
+		this.nomeCampeonato = nomeCampeonato;
 	}
 
-	public int getPontos() {
-		return pontos;
+	public int getNrMaxPiloto() {
+		return nrMaxPiloto;
 	}
 
-	public void setPontos(int pontos) {
-		this.pontos = pontos;
+	public void setNrMaxPiloto(int nrMaxPiloto) {
+		this.nrMaxPiloto = nrMaxPiloto;
+	}
+
+	public int getNrBatCampeonato() {
+		return nrBatCampeonato;
+	}
+
+	public void setNrBatCampeonato(int nrBatCampeonato) {
+		this.nrBatCampeonato = nrBatCampeonato;
+	}
+
+	public int getQntPilotoCampeonato() {
+		return qntPilotoCampeonato;
+	}
+
+	public void setQntPilotoCampeonato(int qntPilotoCampeonato) {
+		this.qntPilotoCampeonato = qntPilotoCampeonato;
+	}
+
+	public int getPotuacaoMV() {
+		return potuacaoMV;
+	}
+
+	public void setPotuacaoMV(int potuacaoMV) {
+		this.potuacaoMV = potuacaoMV;
 	}
 
 	public Piloto getPil() {
@@ -74,16 +100,6 @@ public class Campeonato implements EntityBase {
 		this.bat = bat;
 	}
 
-	public Campeonato(int id, String nome, int pontos, Piloto pil, Kartodromo kart, Bateria bat) {
-		super();
-		Id = id;
-		Nome = nome;
-		this.pontos = pontos;
-		this.pil = pil;
-		this.kart = kart;
-		this.bat = bat;
-	}
-
 	public Campeonato() {
 		super();
 	}
@@ -92,12 +108,15 @@ public class Campeonato implements EntityBase {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Id;
-		result = prime * result + ((Nome == null) ? 0 : Nome.hashCode());
 		result = prime * result + ((bat == null) ? 0 : bat.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((kart == null) ? 0 : kart.hashCode());
+		result = prime * result + ((nomeCampeonato == null) ? 0 : nomeCampeonato.hashCode());
+		result = prime * result + nrBatCampeonato;
+		result = prime * result + nrMaxPiloto;
 		result = prime * result + ((pil == null) ? 0 : pil.hashCode());
-		result = prime * result + pontos;
+		result = prime * result + potuacaoMV;
+		result = prime * result + qntPilotoCampeonato;
 		return result;
 	}
 
@@ -110,37 +129,46 @@ public class Campeonato implements EntityBase {
 		if (getClass() != obj.getClass())
 			return false;
 		Campeonato other = (Campeonato) obj;
-		if (Id != other.Id)
-			return false;
-		if (Nome == null) {
-			if (other.Nome != null)
-				return false;
-		} else if (!Nome.equals(other.Nome))
-			return false;
 		if (bat == null) {
 			if (other.bat != null)
 				return false;
 		} else if (!bat.equals(other.bat))
+			return false;
+		if (id != other.id)
 			return false;
 		if (kart == null) {
 			if (other.kart != null)
 				return false;
 		} else if (!kart.equals(other.kart))
 			return false;
+		if (nomeCampeonato == null) {
+			if (other.nomeCampeonato != null)
+				return false;
+		} else if (!nomeCampeonato.equals(other.nomeCampeonato))
+			return false;
+		if (nrBatCampeonato != other.nrBatCampeonato)
+			return false;
+		if (nrMaxPiloto != other.nrMaxPiloto)
+			return false;
 		if (pil == null) {
 			if (other.pil != null)
 				return false;
 		} else if (!pil.equals(other.pil))
 			return false;
-		if (pontos != other.pontos)
+		if (potuacaoMV != other.potuacaoMV)
+			return false;
+		if (qntPilotoCampeonato != other.qntPilotoCampeonato)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Campeonato [Id=" + Id + ", Nome=" + Nome + ", pontos=" + pontos + ", pil=" + pil + ", kart=" + kart
-				+ ", bat=" + bat + "]";
+		return "Campeonato [id=" + id + ", nomeCampeonato=" + nomeCampeonato + ", nrMaxPiloto=" + nrMaxPiloto
+				+ ", nrBatCampeonato=" + nrBatCampeonato + ", qntPilotoCampeonato=" + qntPilotoCampeonato
+				+ ", potuacaoMV=" + potuacaoMV + ", pil=" + pil + ", kart=" + kart + ", bat=" + bat + "]";
 	}
-
+	
+	
+		
 }
