@@ -35,6 +35,10 @@ public class Estado implements EntityBase {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public Estado() {
+		super();		
+	}
 
 	public Estado(int id, String nome) {
 		super();
