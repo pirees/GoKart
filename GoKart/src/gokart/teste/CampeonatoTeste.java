@@ -28,7 +28,7 @@ public class CampeonatoTeste {
 		piloto.setNome("Leonardo");
 		piloto.setCidade("Araucária");
 		piloto.setEndereco("Archelau");
-		piloto.setEst(est);
+		piloto.setUf(est);
 		
 		GenericDao<Piloto> pilotoBo = new GenericDao<Piloto>();
 		try {

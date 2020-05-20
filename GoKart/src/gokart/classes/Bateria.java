@@ -2,8 +2,11 @@ package gokart.classes;
 
 
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,67 +20,95 @@ public class Bateria implements EntityBase{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int Id;
-	private Date Data;
+	private int id;
+	
+	@Column
+	private LocalDate data;
+	
+	@Column
+	private String nome;
+	
+	@Column
+	private int nrMaxPiloto;
+	
+	@Column
+	private Time horaBateria;	
 	
 	@ManyToOne
-	private Piloto pil;
+	private Piloto piloto;
 	
 	@ManyToOne
-	private Kartodromo kart;
+	private Kartodromo kartodromo;	
+	
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public Date getData() {
-		return Data;
+	public LocalDate getData() {
+		return data;
 	}
 
-	public void setData(Date data) {
-		Data = data;
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 
-	public Piloto getPil() {
-		return pil;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public int getNrMaxPiloto() {
+		return nrMaxPiloto;
 	}
 
-	public void setPil(Piloto pil) {
-		this.pil = pil;
+	public void setNrMaxPiloto(int nrMaxPiloto) {
+		this.nrMaxPiloto = nrMaxPiloto;
 	}
 
-	public Kartodromo getKart() {
-		return kart;
+	public Time getHoraBateria() {
+		return horaBateria;
 	}
 
-	public void setKart(Kartodromo kart) {
-		this.kart = kart;
+	public void setHoraBateria(Time horaBateria) {
+		this.horaBateria = horaBateria;
 	}
 
-	public Bateria(int id, Date data, Piloto pil, Kartodromo kart) {
-		super();
-		Id = id;
-		Data = data;
-		this.pil = pil;
-		this.kart = kart;
+	public Piloto getPiloto() {
+		return piloto;
 	}
 
-	public Bateria() {
-		super();
+	public void setPiloto(Piloto piloto) {
+		this.piloto = piloto;
 	}
+
+	public Kartodromo getKartodromo() {
+		return kartodromo;
+	}
+
+	public void setKartodromo(Kartodromo kartodromo) {
+		this.kartodromo = kartodromo;
+	}	
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Data == null) ? 0 : Data.hashCode());
-		result = prime * result + Id;
-		result = prime * result + ((kart == null) ? 0 : kart.hashCode());
-		result = prime * result + ((pil == null) ? 0 : pil.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
+		result = prime * result + ((horaBateria == null) ? 0 : horaBateria.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((kartodromo == null) ? 0 : kartodromo.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + nrMaxPiloto;
+		result = prime * result + ((piloto == null) ? 0 : piloto.hashCode());
 		return result;
 	}
 
@@ -90,29 +121,46 @@ public class Bateria implements EntityBase{
 		if (getClass() != obj.getClass())
 			return false;
 		Bateria other = (Bateria) obj;
-		if (Data == null) {
-			if (other.Data != null)
+		if (data == null) {
+			if (other.data != null)
 				return false;
-		} else if (!Data.equals(other.Data))
+		} else if (!data.equals(other.data))
 			return false;
-		if (Id != other.Id)
-			return false;
-		if (kart == null) {
-			if (other.kart != null)
+		if (horaBateria == null) {
+			if (other.horaBateria != null)
 				return false;
-		} else if (!kart.equals(other.kart))
+		} else if (!horaBateria.equals(other.horaBateria))
 			return false;
-		if (pil == null) {
-			if (other.pil != null)
+		if (id != other.id)
+			return false;
+		if (kartodromo == null) {
+			if (other.kartodromo != null)
 				return false;
-		} else if (!pil.equals(other.pil))
+		} else if (!kartodromo.equals(other.kartodromo))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (nrMaxPiloto != other.nrMaxPiloto)
+			return false;
+		if (piloto == null) {
+			if (other.piloto != null)
+				return false;
+		} else if (!piloto.equals(other.piloto))
 			return false;
 		return true;
-	}
-
+	}	
+	
 	@Override
 	public String toString() {
-		return "Bateria [Id=" + Id + ", Data=" + Data + ", pil=" + pil + ", kart=" + kart + "]";
-	}	
+		return "Bateria [id=" + id + ", data=" + data + ", nome=" + nome + ", nrMaxPiloto=" + nrMaxPiloto
+				+ ", horaBateria=" + horaBateria + ", piloto=" + piloto + ", kartodromo=" + kartodromo + "]";
+	}
 
+	public Bateria() {
+		super();
+	}
+	
 }

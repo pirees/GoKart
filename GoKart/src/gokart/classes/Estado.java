@@ -1,5 +1,6 @@
 package gokart.classes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,39 +14,44 @@ public class Estado implements EntityBase {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	
+	@Column
+	private String nome;
 	
-	private String Nome;
-	
+
 	public int getId() {
-		return Id;
+		return id;
 	}
+
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
+
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
+
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
+
 	public Estado(int id, String nome) {
 		super();
-		Id = id;
-		Nome = nome;
+		this.id = id;
+		this.nome = nome;
 	}
-	public Estado() {
-		super();
-	}
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Id;
-		result = prime * result + ((Nome == null) ? 0 : Nome.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,17 +61,24 @@ public class Estado implements EntityBase {
 		if (getClass() != obj.getClass())
 			return false;
 		Estado other = (Estado) obj;
-		if (Id != other.Id)
+		if (id != other.id)
 			return false;
-		if (Nome == null) {
-			if (other.Nome != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!Nome.equals(other.Nome))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}
+	
+
 	@Override
 	public String toString() {
-		return "Estado [Id=" + Id + ", Nome=" + Nome + "]";
+		return "Estado [id=" + id + ", nome=" + nome + "]";
 	}
+	
+	
+	
+	
+	
 }
