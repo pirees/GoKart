@@ -26,7 +26,7 @@ public class Kartodromo implements EntityBase {
 	private String senha;
 	private String repetirSenha;
 	private Time horaAtendimento;
-	private String teste;
+	
 	
 	@ManyToOne
 	private Estado est;
