@@ -19,6 +19,7 @@ public class Campeonato implements EntityBase {
 	private int nrBatCampeonato;
 	private int qntPilotoCampeonato;
 	private int potuacaoMV;
+	private String test;
 	@ManyToOne
 	private Piloto pil;
 	
