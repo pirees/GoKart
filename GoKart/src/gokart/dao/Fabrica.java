@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class Fabrica {
 
-	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Nome_Da_Unit_De_Persistencia");
+	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("unitGoKart");
 
 	// getConnection
 	public static EntityManager getEntityManager() {

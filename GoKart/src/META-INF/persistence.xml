@@ -8,21 +8,21 @@
 
 	<!-- mysql -->
 
-	<persistence-unit name="Nome_Da_Unit_De_Persistencia" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="unitGoKart" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class" />
 			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" /> -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gokart?serverTimezone=UTC" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/GoKart" />
 			<property name="hibernate.connection.username" value="root" />
-			<property name="hibernate.connection.password" value="LEONARDO" />
+			<property name="hibernate.connection.password" value="1234" />
 			<!-- <property name="hibernate.show_sql" value="true"/> -->
 			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
 			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-		</properties>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties> 
 	</persistence-unit>
 
 	<persistence-unit name="mysql-eclipselink"
@@ -31,7 +31,7 @@
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/meubanco" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/GoKart" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
 			<property name="eclipselink.ddl-generation.output-mode" value="database" />
