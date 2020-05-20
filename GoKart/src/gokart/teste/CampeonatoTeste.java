@@ -28,7 +28,7 @@ public class CampeonatoTeste {
 		piloto.setNome("Leonardo");
 		piloto.setCidade("Araucária");
 		piloto.setEndereco("Archelau");
-		piloto.setEst(est);
+		piloto.setUf(est);
 		
 		GenericDao<Piloto> pilotoBo = new GenericDao<Piloto>();
 		try {
@@ -57,8 +57,8 @@ public class CampeonatoTeste {
 		                                         //BATERIA TESTE//
 		
 		Bateria bat = new Bateria();
-		bat.setKart(kart);
-		bat.setPil(piloto);
+		bat.setKartodromo(kart);
+		bat.setPiloto(piloto);
 		bat.setData(null);
 		
 		GenericDao<Bateria> bateriaBo = new GenericDao<Bateria>();

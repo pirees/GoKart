@@ -1,5 +1,6 @@
 package gokart.classes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,24 +8,44 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
-
 @Entity
 @Table(name = "piloto")
 public class Piloto implements EntityBase {
 	
+	/*Variaveis*/	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int Id;
 	
-	private String Nome;
-	private String Endereco;
-	private String Cidade;
-	private String testeComit;
+	@Column
+	private String nome;
+	
+	@Column
+	private String endereco;
+	
+	@Column
+	private String cidade;
+	
+	@Column
+	private int idade;
+	
+	@Column
+	private String nivel;
+	
+	@Column
+	private String email;
+	
+	@Column
+	private String senha;
+	
+	@Column
+	private String reSenha;
 	
 	@ManyToOne
-	private Estado est;
-
+	private Estado uf;	
+	
+	
+	/*Get and Setters*/
 	public int getId() {
 		return Id;
 	}
@@ -34,44 +55,75 @@ public class Piloto implements EntityBase {
 	}
 
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 
 	public String getEndereco() {
-		return Endereco;
+		return endereco;
 	}
 
 	public void setEndereco(String endereco) {
-		Endereco = endereco;
+		this.endereco = endereco;
 	}
 
 	public String getCidade() {
-		return Cidade;
+		return cidade;
 	}
 
 	public void setCidade(String cidade) {
-		Cidade = cidade;
+		this.cidade = cidade;
 	}
 
-	public Estado getEst() {
-		return est;
+	public int getIdade() {
+		return idade;
 	}
 
-	public void setEst(Estado est) {
-		this.est = est;
+	public void setIdade(int idade) {
+		this.idade = idade;
 	}
 
-	public Piloto(int id, String nome, String endereco, String cidade, Estado est) {
-		super();
-		Id = id;
-		Nome = nome;
-		Endereco = endereco;
-		Cidade = cidade;
-		this.est = est;
+	public String getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getReSenha() {
+		return reSenha;
+	}
+
+	public void setReSenha(String reSenha) {
+		this.reSenha = reSenha;
+	}
+
+	public Estado getUf() {
+		return uf;
+	}
+
+	public void setUf(Estado uf) {
+		this.uf = uf;
 	}
 
 	public Piloto() {
@@ -82,11 +134,10 @@ public class Piloto implements EntityBase {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Cidade == null) ? 0 : Cidade.hashCode());
-		result = prime * result + ((Endereco == null) ? 0 : Endereco.hashCode());
+		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + Id;
-		result = prime * result + ((Nome == null) ? 0 : Nome.hashCode());
-		result = prime * result + ((est == null) ? 0 : est.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());		
 		return result;
 	}
 
@@ -99,34 +150,34 @@ public class Piloto implements EntityBase {
 		if (getClass() != obj.getClass())
 			return false;
 		Piloto other = (Piloto) obj;
-		if (Cidade == null) {
-			if (other.Cidade != null)
+		if (cidade == null) {
+			if (other.cidade != null)
 				return false;
-		} else if (!Cidade.equals(other.Cidade))
+		} else if (!cidade.equals(other.cidade))
 			return false;
-		if (Endereco == null) {
-			if (other.Endereco != null)
+		if (endereco == null) {
+			if (other.endereco != null)
 				return false;
-		} else if (!Endereco.equals(other.Endereco))
+		} else if (!endereco.equals(other.endereco))
 			return false;
 		if (Id != other.Id)
 			return false;
-		if (Nome == null) {
-			if (other.Nome != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!Nome.equals(other.Nome))
+		} else if (!nome.equals(other.nome))
 			return false;
-		if (est == null) {
-			if (other.est != null)
+		if (uf == null) {
+			if (other.uf != null)
 				return false;
-		} else if (!est.equals(other.est))
+		} else if (!uf.equals(other.uf))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Piloto [Id=" + Id + ", Nome=" + Nome + ", Endereco=" + Endereco + ", Cidade=" + Cidade + ", est=" + est
+		return "Piloto [Id=" + Id + ", Nome=" + nome + ", Endereco=" + endereco + ", Cidade=" + cidade + ", uf=" + uf
 				+ "]";
 	}
 	
