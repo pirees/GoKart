@@ -15,6 +15,7 @@ public class ClassificacaoBateria {
 	
 	private int posicao;
 	private Time melhorVolta;
+	private String teste;
 	
 	@ManyToOne	
 	private Bateria id_bateria;
