@@ -20,6 +20,7 @@ public class Piloto implements EntityBase {
 	private String Nome;
 	private String Endereco;
 	private String Cidade;
+	private String testeComit;
 	
 	@ManyToOne
 	private Estado est;
