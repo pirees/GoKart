@@ -51,7 +51,7 @@ public class TelaCadastroKartodromo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNome = new JLabel("Nomee");
+		JLabel lblNome = new JLabel("Nome");
 		lblNome.setBounds(10, 57, 36, 14);
 		contentPane.add(lblNome);
 		
