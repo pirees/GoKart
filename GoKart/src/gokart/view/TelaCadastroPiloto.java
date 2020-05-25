@@ -44,7 +44,7 @@ public class TelaCadastroPiloto extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastroPiloto() {
-		setTitle("Go Kart");
+		setTitle("GoKart - Cadastro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 307, 550);
 		contentPane = new JPanel();

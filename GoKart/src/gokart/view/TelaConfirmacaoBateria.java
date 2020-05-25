@@ -2,10 +2,12 @@ package gokart.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
 
 public class TelaConfirmacaoBateria extends JFrame {
 
@@ -35,8 +37,21 @@ public class TelaConfirmacaoBateria extends JFrame {
 		setBounds(100, 100, 307, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNovoPiloto = new JLabel("Nome Piloto");
+		lblNovoPiloto.setBounds(23, 32, 64, 14);
+		contentPane.add(lblNovoPiloto);
+		
+		JLabel lblNvelPiloto = new JLabel("N\u00EDvel Piloto");
+		lblNvelPiloto.setBounds(23, 49, 64, 14);
+		contentPane.add(lblNvelPiloto);
+		
+		JLabel lblConfirmacao = new JLabel("Confirma\u00E7\u00E3o de Reserva");
+		lblConfirmacao.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblConfirmacao.setBounds(56, 122, 176, 25);
+		contentPane.add(lblConfirmacao);
 	}
 
 }
