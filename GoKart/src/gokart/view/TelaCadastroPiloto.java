@@ -89,7 +89,7 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(lblEstado);
 		
 		JLabel lblEmail = new JLabel("E-mail");
-		lblEmail.setBounds(10, 302, 56, 14);
+		lblEmail.setBounds(10, 299, 56, 14);
 		contentPane.add(lblEmail);
 		
 		tctEmail = new JTextField();
