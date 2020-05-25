@@ -40,7 +40,7 @@ public class TelaConfirmacaoBateria extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNovoPiloto = new JLabel("Nome Piloto");
+		JLabel lblNovoPiloto = new JLabel("Nome Pilotoo");
 		lblNovoPiloto.setBounds(23, 32, 64, 14);
 		contentPane.add(lblNovoPiloto);
 		

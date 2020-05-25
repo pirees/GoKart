@@ -52,7 +52,7 @@ public class TelaCadastroPiloto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNome = new JLabel("Nome");
+		JLabel lblNome = new JLabel("Nomee");
 		lblNome.setBounds(10, 44, 36, 14);
 		contentPane.add(lblNome);
 		

@@ -61,7 +61,7 @@ public class TelaCadastroCampeonato extends JFrame {
 		btnSalvar.setBounds(10, 453, 89, 23);
 		contentPane.add(btnSalvar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cancelarr");
 		btnCancelar.setBounds(116, 453, 89, 23);
 		contentPane.add(btnCancelar);
 		
