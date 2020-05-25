@@ -51,6 +51,7 @@ public class TelaCadastroCampeonato extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
 		JLabel lblCadastro = new JLabel("Cadastro de Campeonato");
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCadastro.setBounds(54, 29, 177, 20);
