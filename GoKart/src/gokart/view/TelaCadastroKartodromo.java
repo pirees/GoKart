@@ -22,6 +22,7 @@ public class TelaCadastroKartodromo extends JFrame {
 	private JTextField tctEmail;
 	private JPasswordField txtSenha;
 	private JPasswordField txtReptSenha;
+	private JTextField txtCidade;
 
 	/**
 	 * Launch the application.
@@ -88,28 +89,28 @@ public class TelaCadastroKartodromo extends JFrame {
 		contentPane.add(lblEstado);
 		
 		JLabel lblEmail = new JLabel("E-mail");
-		lblEmail.setBounds(10, 267, 56, 14);
+		lblEmail.setBounds(10, 285, 56, 14);
 		contentPane.add(lblEmail);
 		
 		tctEmail = new JTextField();
 		tctEmail.setColumns(10);
-		tctEmail.setBounds(10, 292, 271, 20);
+		tctEmail.setBounds(10, 310, 271, 20);
 		contentPane.add(tctEmail);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(10, 323, 56, 14);
+		lblSenha.setBounds(10, 341, 56, 14);
 		contentPane.add(lblSenha);
 		
 		txtSenha = new JPasswordField();
-		txtSenha.setBounds(10, 348, 271, 20);
+		txtSenha.setBounds(10, 366, 271, 20);
 		contentPane.add(txtSenha);
 		
 		JLabel lblRepetirSenha = new JLabel("Repetir Senha");
-		lblRepetirSenha.setBounds(10, 379, 81, 14);
+		lblRepetirSenha.setBounds(10, 397, 81, 14);
 		contentPane.add(lblRepetirSenha);
 		
 		txtReptSenha = new JPasswordField();
-		txtReptSenha.setBounds(10, 404, 271, 20);
+		txtReptSenha.setBounds(10, 422, 271, 20);
 		contentPane.add(txtReptSenha);
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -121,7 +122,16 @@ public class TelaCadastroKartodromo extends JFrame {
 		contentPane.add(btnCancelar);
 		
 		JComboBox comboEstado = new JComboBox();
-		comboEstado.setBounds(10, 236, 56, 22);
+		comboEstado.setBounds(58, 207, 56, 22);
 		contentPane.add(comboEstado);
+		
+		txtCidade = new JTextField();
+		txtCidade.setColumns(10);
+		txtCidade.setBounds(10, 265, 271, 20);
+		contentPane.add(txtCidade);
+		
+		JLabel lblCidade = new JLabel("Cidade");
+		lblCidade.setBounds(10, 240, 56, 14);
+		contentPane.add(lblCidade);
 	}
 }
