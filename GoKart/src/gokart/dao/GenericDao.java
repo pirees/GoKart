@@ -21,7 +21,7 @@ public class GenericDao <T extends EntityBase> {
 		catch(Exception e){
 			throw new Exception("Erro Gravando \n"+e.getMessage());
 		}
-		return "Deu certo";
+		return "salvo com sucesso.";
 	}
 	
 	public String remove(Class<T> classe, int id) throws Exception{

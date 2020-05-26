@@ -5,10 +5,13 @@ import gokart.dao.GenericDao;
 
 public class PilotoBo {
 	
-	public String Salvar(Piloto piloto) 
-			throws Exception {
+	public String Salvar(Piloto piloto) throws Exception {
+		
 		validarDadosGrupo(piloto);
+		
+		
 		GenericDao<Piloto> tcDao = new GenericDao<Piloto>();
+		
 		try {
 			return tcDao.saveOrUpdate(piloto);
 		} catch (Exception e) {
@@ -29,7 +32,7 @@ public class PilotoBo {
 		
 	private void validarDadosGrupo(Piloto piloto) throws Exception {
 		if (piloto.getId() < 0) {
-			throw new Exception("Id da composicao não pode ser negativo!");
+			throw new Exception("Id do Piloto não pode ser negativo!");
 		}
 	}
 

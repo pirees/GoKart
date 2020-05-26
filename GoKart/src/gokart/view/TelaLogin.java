@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import gokart.classes.Piloto;
+import gokart.dao.PilotoDao;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -13,33 +17,20 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class TelaInicial extends JFrame {
+public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JPasswordField txtSenha;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInicial frame = new TelaInicial();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public TelaInicial() {
+	
+	public TelaLogin() {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
@@ -67,18 +58,52 @@ public class TelaInicial extends JFrame {
 		contentPane.add(txtSenha);
 		
 		JButton btLogin = new JButton("Entrar");
+		
 		btLogin.setBounds(276, 432, 89, 23);
 		contentPane.add(btLogin);
 		
 		JLabel lblCadastrar = new JLabel("N\u00E3o tem conta? Efetue o cadastro...");
+		
 		lblCadastrar.setForeground(Color.BLUE);
 		lblCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblCadastrar.setBounds(10, 436, 185, 14);
 		contentPane.add(lblCadastrar);
 		
 		JLabel imgLogo = new JLabel("");
-		imgLogo.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/logo_pequena.png")));
+		imgLogo.setIcon(new ImageIcon(TelaLogin.class.getResource("/img/logo_pequena.png")));
 		imgLogo.setBounds(22, 11, 326, 278);
 		contentPane.add(imgLogo);
+		
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		
+		/*Eventos*/
+		
+		/*Label para cadastro*/
+		lblCadastrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				TelaCadastroPiloto tcp = new TelaCadastroPiloto();
+				dispose();
+				
+			}
+		});
+		
+		btLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				Piloto pi = new Piloto();				
+				
+				PilotoDao pDao = new PilotoDao();				
+				pi = pDao.ValidaLogin(txtUsername.getText(), txtSenha.getText());		
+				
+				
+				
+			}
+		});
+		
 	}
 }

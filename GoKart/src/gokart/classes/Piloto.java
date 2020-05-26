@@ -21,13 +21,16 @@ public class Piloto implements EntityBase {
 	private String nome;
 	
 	@Column
+	private int idade;
+	
+	@Column
 	private String endereco;
 	
 	@Column
 	private String cidade;
 	
-	@Column
-	private int idade;
+	@ManyToOne
+	private Estado uf;	
 	
 	@Column
 	private String nivel;
@@ -39,11 +42,8 @@ public class Piloto implements EntityBase {
 	private String senha;
 	
 	@Column
-	private String reSenha;
-	
-	@ManyToOne
-	private Estado uf;	
-	
+	private String reSenha;	
+
 	
 	/*Get and Setters*/
 	public int getId() {
