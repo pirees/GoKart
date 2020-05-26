@@ -14,7 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import gokart.bo.PilotoBo;
+import gokart.classes.Estado;
+import gokart.classes.Nivel;
 import gokart.classes.Piloto;
+import gokart.dao.EstadoDao;
+import gokart.dao.NivelDao;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,6 +34,8 @@ public class TelaCadastroPiloto extends JFrame {
 	private JPasswordField txtReptSenha;
 	private JTextField txtCPF;
 	private JTextField txtCidade;
+	private JComboBox cbEstado;
+	private JComboBox cbNivelPiloto;
 
 	public TelaCadastroPiloto() {
 		setTitle("GoKart - Cadastro");
@@ -94,7 +100,7 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(txtSenha);
 
 		JLabel lblRepetirSenha = new JLabel("Repetir Senha:");
-		lblRepetirSenha.setBounds(10, 552, 81, 14);
+		lblRepetirSenha.setBounds(10, 552, 113, 14);
 		contentPane.add(lblRepetirSenha);
 
 		txtReptSenha = new JPasswordField();
@@ -110,7 +116,7 @@ public class TelaCadastroPiloto extends JFrame {
 		btnCancelar.setBounds(109, 645, 89, 23);
 		contentPane.add(btnCancelar);
 
-		JComboBox cbEstado = new JComboBox();
+		cbEstado = new JComboBox();
 		cbEstado.setBounds(10, 349, 81, 22);
 		contentPane.add(cbEstado);
 
@@ -127,14 +133,14 @@ public class TelaCadastroPiloto extends JFrame {
 		lblNvel.setBounds(10, 382, 56, 14);
 		contentPane.add(lblNvel);
 
-		JComboBox cbNivelPiloto = new JComboBox();
-		cbNivelPiloto.setBounds(10, 407, 81, 22);
+		cbNivelPiloto = new JComboBox();
+		cbNivelPiloto.setBounds(10, 407, 125, 22);
 		contentPane.add(cbNivelPiloto);
-		
+
 		JLabel lblCidade = new JLabel("Cidade:");
 		lblCidade.setBounds(10, 266, 46, 14);
 		contentPane.add(lblCidade);
-		
+
 		txtCidade = new JTextField();
 		txtCidade.setBounds(10, 291, 271, 20);
 		contentPane.add(txtCidade);
@@ -142,6 +148,9 @@ public class TelaCadastroPiloto extends JFrame {
 
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+		/*Carrega dados nas ComboBox*/		
+		LoadCb();
 
 		/* Eventos */
 
@@ -150,17 +159,16 @@ public class TelaCadastroPiloto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Piloto piloto = new Piloto();
-				
+
 				piloto.setNome(txtNome.getText());
 				piloto.setEndereco(txtEndereco.getText());
 				piloto.setCidade(txtCidade.getText());
-				/*piloto.setIdade(txtIdade.getText());*/
-				piloto.setNivel("Teste");
+				piloto.setIdade(Integer.parseInt(txtIdade.getText()));
+				piloto.setNivel((Nivel) cbNivelPiloto.getSelectedItem());
 				piloto.setEmail(txtEmail.getText());
 				piloto.setSenha(txtSenha.getText());
-				piloto.setUf(null);
+				piloto.setUf((Estado) cbEstado.getSelectedItem());
 
-			
 				PilotoBo pBo = new PilotoBo();
 
 				try {
@@ -178,12 +186,30 @@ public class TelaCadastroPiloto extends JFrame {
 		/* Botão Cancelar */
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				TelaLogin tl = new TelaLogin();
 				dispose();
-
 			}
 		});
 
 	}
+	
+	
+	public void LoadCb() {		
+		EstadoDao eDao = new EstadoDao();
+		
+		for(Estado e: eDao.LoadEstado()) {
+			cbEstado.addItem(e);			
+		}	
+		
+		
+		NivelDao nDao = new NivelDao();
+		
+		for(Nivel n: nDao.LoadNivel()) {
+			cbNivelPiloto.addItem(n);		
+		}		
+		
+	}
+	
+	
 }
