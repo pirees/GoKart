@@ -70,7 +70,7 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(txtIdade);
 
 		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
-		lblEndereo.setBounds(10, 210, 56, 14);
+		lblEndereo.setBounds(10, 210, 89, 14);
 		contentPane.add(lblEndereo);
 
 		txtEndereco = new JTextField();
@@ -100,11 +100,11 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(txtSenha);
 
 		JLabel lblRepetirSenha = new JLabel("Repetir Senha:");
-<<<<<<< HEAD
+
 		lblRepetirSenha.setBounds(10, 552, 89, 14);
-=======
+
 		lblRepetirSenha.setBounds(10, 552, 113, 14);
->>>>>>> branch 'master' of https://github.com/pirees/GoKart.git
+
 		contentPane.add(lblRepetirSenha);
 
 		txtReptSenha = new JPasswordField();
