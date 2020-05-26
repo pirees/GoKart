@@ -94,7 +94,7 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(txtSenha);
 
 		JLabel lblRepetirSenha = new JLabel("Repetir Senha:");
-		lblRepetirSenha.setBounds(10, 552, 81, 14);
+		lblRepetirSenha.setBounds(10, 552, 89, 14);
 		contentPane.add(lblRepetirSenha);
 
 		txtReptSenha = new JPasswordField();
@@ -106,9 +106,9 @@ public class TelaCadastroPiloto extends JFrame {
 		btnSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btnSalvar);
 
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(109, 645, 89, 23);
-		contentPane.add(btnCancelar);
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setBounds(109, 645, 89, 23);
+		contentPane.add(btnVoltar);
 
 		JComboBox cbEstado = new JComboBox();
 		cbEstado.setBounds(10, 349, 81, 22);
@@ -175,8 +175,8 @@ public class TelaCadastroPiloto extends JFrame {
 			}
 		});
 
-		/* Botão Cancelar */
-		btnCancelar.addActionListener(new ActionListener() {
+		/* Botão Voltar */
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				TelaLogin tl = new TelaLogin();
