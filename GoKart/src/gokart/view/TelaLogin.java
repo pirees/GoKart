@@ -74,12 +74,19 @@ public class TelaLogin extends JFrame {
 		imgLogo.setBounds(22, 11, 326, 278);
 		contentPane.add(imgLogo);
 		
+		JLabel lblCadastrarKartodromo = new JLabel("Gostaria de cadastrar um kart\u00F3dromo? Clique aqui");
+		
+		lblCadastrarKartodromo.setForeground(Color.BLUE);
+		lblCadastrarKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCadastrarKartodromo.setBounds(10, 490, 230, 14);
+		contentPane.add(lblCadastrarKartodromo);
+		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
 		/*Eventos*/
 		
-		/*Label para cadastro*/
+		/*Label para cadastro de piloto*/
 		lblCadastrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -87,6 +94,15 @@ public class TelaLogin extends JFrame {
 				TelaCadastroPiloto tcp = new TelaCadastroPiloto();
 				dispose();
 				
+			}
+		});
+		
+		/*Label para cadastro de kartodromo*/
+		lblCadastrarKartodromo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {				
+				TelaCadastroKartodromo tck = new TelaCadastroKartodromo();
+				dispose();				
 			}
 		});
 		
