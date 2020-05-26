@@ -78,7 +78,7 @@ public class Estado implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "Estado [id=" + id + ", nome=" + nome + "]";
+		return this.getNome();
 	}
 	
 	

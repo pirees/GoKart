@@ -32,8 +32,8 @@ public class Piloto implements EntityBase {
 	@ManyToOne
 	private Estado uf;	
 	
-	@Column
-	private String nivel;
+	@ManyToOne
+	private Nivel nivel;
 	
 	@Column
 	private String email;
@@ -86,11 +86,11 @@ public class Piloto implements EntityBase {
 		this.idade = idade;
 	}
 
-	public String getNivel() {
+	public Nivel getNivel() {
 		return nivel;
 	}
 
-	public void setNivel(String nivel) {
+	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
 	}
 
