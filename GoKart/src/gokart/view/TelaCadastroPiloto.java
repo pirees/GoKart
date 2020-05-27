@@ -102,15 +102,7 @@ public class TelaCadastroPiloto extends JFrame {
 		JLabel lblRepetirSenha = new JLabel("Repetir Senha:");
 
 		lblRepetirSenha.setBounds(10, 552, 89, 14);
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/pirees/GoKart.git
 		lblRepetirSenha.setBounds(10, 552, 113, 14);
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/pirees/GoKart.git
 		contentPane.add(lblRepetirSenha);
 
 		txtReptSenha = new JPasswordField();
