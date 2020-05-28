@@ -39,22 +39,6 @@ public class PilotoBo {
 		}
 	}
 
-	public List<Piloto> listarPiloto() throws Exception {
-		try {
-			return new PilotoDao().listarNomePiloto();
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
-	}
-
-	public List<Piloto> listarNivel() throws Exception {
-		try {
-			return new PilotoDao().listarNivelPiloto();
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
-	}
-
 	public Piloto ValidaLogin(String email, String senha) throws Exception {
 		
 		

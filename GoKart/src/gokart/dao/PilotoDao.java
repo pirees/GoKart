@@ -31,22 +31,4 @@ public class PilotoDao {
 		return null;		
 	}
 	
-	public List<Piloto> listarNomePiloto() throws Exception{		
-		EntityManager em = Fabrica.getEntityManager();
-	
-		// select (campos)
-		Query q = em.createQuery("select nome from Piloto");
-		
-		
-		return q.getResultList();		
-	} 
-	
-	public List<Piloto> listarNivelPiloto() throws Exception{		
-		EntityManager em = Fabrica.getEntityManager();
-	
-		// select (campos)
-		Query q = em.createQuery("SELECT nivel.nivel from piloto inner join nivel on piloto.nivel_id = nivel.id");
-				
-		return q.getResultList();		
-	} 
 }
