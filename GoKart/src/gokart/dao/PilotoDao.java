@@ -10,7 +10,7 @@ public class PilotoDao {
 	
 	private static EntityManager em = Fabrica.getEntityManager();
 	
-	public Piloto ValidaLogin(String email, String senha){	
+	public Piloto ValidaLogin(String email, String senha)throws Exception{	
 		
 		List<Piloto> lista;
 		
@@ -21,10 +21,11 @@ public class PilotoDao {
 		q.setParameter("email", email);
 		q.setParameter("senha", senha);		
 		
-		lista = q.getResultList();
-				
-		for (Piloto pi : lista) {			
-			System.out.println(pi.getNome());			
+		lista = q.getResultList();	
+		
+		/*Caso exista um piloto, entra no bloco do FOR e retorna, caso contrario retorna null*/				
+		for (Piloto pi : lista) {				
+			return pi;					
 		}
 				
 		return null;		

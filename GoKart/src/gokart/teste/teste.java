@@ -7,11 +7,8 @@ import gokart.view.TelaLogin;
 
 public class teste {
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		TelaLogin tl = new TelaLogin();
-		
-
 	}
 
 }

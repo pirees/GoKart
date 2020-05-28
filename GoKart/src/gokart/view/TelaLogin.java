@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import gokart.bo.PilotoBo;
 import gokart.classes.Piloto;
 import gokart.dao.PilotoDao;
 
@@ -32,7 +33,7 @@ public class TelaLogin extends JFrame {
 
 	
 	public TelaLogin() {
-		setTitle("Login");
+		setTitle("Login - GOKART");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 	
@@ -107,23 +108,23 @@ public class TelaLogin extends JFrame {
 			}
 		});
 		
-		btLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+		btLogin.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				
 				Piloto pi = new Piloto();								
-				PilotoDao pDao = new PilotoDao();	
+				PilotoBo pBo = new PilotoBo();	
 				
-				pi = pDao.ValidaLogin(txtUsername.getText(), txtSenha.getText());
-				TelaMenu tm;
-				try {
-					tm = new TelaMenu(pi);
-					tm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					tm.setResizable(true);
-					tm.setVisible(true);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+				try {					
+					pi = pBo.ValidaLogin(txtUsername.getText(), txtSenha.getText());
+					
+					TelaMenu tm = new TelaMenu(pi);
+					dispose();			
+					
+					
+				} catch (Exception e2) {					
+					JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO LOGIN", JOptionPane.ERROR_MESSAGE);
+					e2.printStackTrace();
+				}				
 								
 			}
 		});

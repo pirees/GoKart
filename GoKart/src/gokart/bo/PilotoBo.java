@@ -2,28 +2,28 @@ package gokart.bo;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import gokart.classes.Piloto;
 import gokart.dao.GenericDao;
 import gokart.dao.PilotoDao;
 
 public class PilotoBo {
-	
+
 	public String Salvar(Piloto piloto) throws Exception {
-		
+
 		validarDadosGrupo(piloto);
-		
-		
+
 		GenericDao<Piloto> tcDao = new GenericDao<Piloto>();
-		
+
 		try {
 			return tcDao.saveOrUpdate(piloto);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
-	
-	public String deletar(Piloto piloto) 
-			throws Exception {
+
+	public String deletar(Piloto piloto) throws Exception {
 		validarDadosGrupo(piloto);
 		GenericDao<Piloto> tcDao = new GenericDao<Piloto>();
 		try {
@@ -32,28 +32,51 @@ public class PilotoBo {
 			throw new Exception(e.getMessage());
 		}
 	}
-		
+
 	private void validarDadosGrupo(Piloto piloto) throws Exception {
 		if (piloto.getId() < 0) {
 			throw new Exception("Id do Piloto não pode ser negativo!");
 		}
 	}
-	
-	public List<Piloto> listarPiloto() 
-			throws Exception {
+
+	public List<Piloto> listarPiloto() throws Exception {
 		try {
 			return new PilotoDao().listarNomePiloto();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
-	}	
-	public List<Piloto> listarNivel() 
-			throws Exception {
+	}
+
+	public List<Piloto> listarNivel() throws Exception {
 		try {
 			return new PilotoDao().listarNivelPiloto();
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
-	
+
+	public Piloto ValidaLogin(String email, String senha) throws Exception {
+		
+		
+		if(email.isBlank()) {			
+			throw new Exception("Por favor informar um EMAIL válido!");
+		}
+		
+		if(senha.isBlank()) {
+			throw new Exception("Por favor informar uma SENHA válida!");			
+		}		
+		
+
+		Piloto rPiloto;		
+
+		PilotoDao pDao = new PilotoDao();
+		rPiloto = pDao.ValidaLogin(email, senha);
+		
+		if(rPiloto == null) {
+			throw new Exception("Usuário ou Senha incorreto(s).");			
+		}
+		
+		return rPiloto;	
+	}
+
 }

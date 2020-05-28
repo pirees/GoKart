@@ -23,6 +23,7 @@ public class TelaMenu extends JFrame {
 	
 	
 	public TelaMenu(Piloto piloto) throws Exception {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
@@ -66,6 +67,10 @@ public class TelaMenu extends JFrame {
 		table = new JTable();
 		table.setBounds(22, 205, 325, 302);
 		contentPane.add(table);
+		
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		
 	}
 
 		
