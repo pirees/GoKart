@@ -20,6 +20,7 @@ public class TelaMenu extends JFrame {
 	private JTextField txtData;
 	private JTable table;
 	private JLabel lblNomePiloto;
+	private JLabel lblNivelPiloto;
 	
 	
 	public TelaMenu(Piloto piloto) throws Exception {
@@ -41,10 +42,10 @@ public class TelaMenu extends JFrame {
 		lblNomePiloto.setText(piloto.getNome());
 		
 		
-		JLabel lblNivelPiloto = new JLabel("");
+		lblNivelPiloto = new JLabel("");
 		lblNivelPiloto.setBounds(22, 63, 107, 29);
 		contentPane.add(lblNivelPiloto);
-		//lblNivelPiloto.setText(String.valueOf(pb.listarNivel()));
+		lblNivelPiloto.setText(piloto.getNivel().toString());
 		
 		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo");
 		lblKartodromo.setBounds(22, 136, 77, 14);
