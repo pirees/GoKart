@@ -12,6 +12,7 @@ import gokart.dao.PilotoDao;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -107,17 +108,23 @@ public class TelaLogin extends JFrame {
 		});
 		
 		btLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
+				Piloto pi = new Piloto();								
+				PilotoDao pDao = new PilotoDao();	
 				
+				pi = pDao.ValidaLogin(txtUsername.getText(), txtSenha.getText());
+				TelaMenu tm;
+				try {
+					tm = new TelaMenu();
+					tm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					tm.setResizable(true);
+					tm.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
-				
-				Piloto pi = new Piloto();				
-				
-				PilotoDao pDao = new PilotoDao();				
-				pi = pDao.ValidaLogin(txtUsername.getText(), txtSenha.getText());		
-				
-				
-				
+								
 			}
 		});
 		

@@ -14,7 +14,6 @@ public class NivelDao {
 	public List<Nivel> LoadNivel(){				
 		Query q = em.createQuery("SELECT n from Nivel n");		
 		return q.getResultList();				
-	}
-	
+	}	
 
 }

@@ -163,7 +163,7 @@ public class Piloto implements EntityBase {
 		if (Id != other.Id)
 			return false;
 		if (nome == null) {
-			if (other.nome != null)
+			if (other.nome != null)		
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
@@ -177,8 +177,7 @@ public class Piloto implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "Piloto [Id=" + Id + ", Nome=" + nome + ", Endereco=" + endereco + ", Cidade=" + cidade + ", uf=" + uf
-				+ "]";
+		return getNome();
 	}
 	
 	

@@ -1,7 +1,10 @@
 package gokart.bo;
 
+import java.util.List;
+
 import gokart.classes.Piloto;
 import gokart.dao.GenericDao;
+import gokart.dao.PilotoDao;
 
 public class PilotoBo {
 	
@@ -35,5 +38,22 @@ public class PilotoBo {
 			throw new Exception("Id do Piloto não pode ser negativo!");
 		}
 	}
-
+	
+	public List<Piloto> listarPiloto() 
+			throws Exception {
+		try {
+			return new PilotoDao().listarNomePiloto();
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}	
+	public List<Piloto> listarNivel() 
+			throws Exception {
+		try {
+			return new PilotoDao().listarNivelPiloto();
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
 }
