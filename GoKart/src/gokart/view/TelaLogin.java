@@ -115,7 +115,7 @@ public class TelaLogin extends JFrame {
 				pi = pDao.ValidaLogin(txtUsername.getText(), txtSenha.getText());
 				TelaMenu tm;
 				try {
-					tm = new TelaMenu();
+					tm = new TelaMenu(pi);
 					tm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					tm.setResizable(true);
 					tm.setVisible(true);

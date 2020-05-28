@@ -22,7 +22,7 @@ public class TelaMenu extends JFrame {
 	private JLabel lblNomePiloto;
 	
 	
-	public TelaMenu() throws Exception {
+	public TelaMenu(Piloto piloto) throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
@@ -37,7 +37,7 @@ public class TelaMenu extends JFrame {
 	    lblNomePiloto = new JLabel("");
 		lblNomePiloto.setBounds(22, 23, 123, 29);
 		contentPane.add(lblNomePiloto);
-		ListarNomePiloto();
+		lblNomePiloto.setText(piloto.getNome());
 		
 		
 		JLabel lblNivelPiloto = new JLabel("");
@@ -67,14 +67,7 @@ public class TelaMenu extends JFrame {
 		table.setBounds(22, 205, 325, 302);
 		contentPane.add(table);
 	}
-	public void ListarNomePiloto() {
+
 		
-		PilotoBo pb = new PilotoBo();
-		try {		
-			lblNomePiloto.setText(String.valueOf(pb.listarPiloto()));		
-		} catch (Exception e) {
-		System.out.println(e.getMessage());
-		}
-		
-	}
+	
 }
