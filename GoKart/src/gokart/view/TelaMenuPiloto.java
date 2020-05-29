@@ -70,6 +70,10 @@ public class TelaMenuPiloto extends JFrame {
 		table.setBounds(22, 205, 325, 302);
 		contentPane.add(table);
 		
+		JButton btnConvite = new JButton("Convite");
+		btnConvite.setBounds(180, 86, 89, 23);
+		contentPane.add(btnConvite);
+		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
