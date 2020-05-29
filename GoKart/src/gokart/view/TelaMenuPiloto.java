@@ -12,8 +12,9 @@ import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import javax.swing.JButton;
 
-public class TelaMenu extends JFrame {
+public class TelaMenuPiloto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtKartodromo;
@@ -23,7 +24,7 @@ public class TelaMenu extends JFrame {
 	private JLabel lblNivelPiloto;
 	
 	
-	public TelaMenu(Piloto piloto) throws Exception {
+	public TelaMenuPiloto(Piloto piloto) throws Exception {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
@@ -43,7 +44,7 @@ public class TelaMenu extends JFrame {
 		
 		
 		lblNivelPiloto = new JLabel("");
-		lblNivelPiloto.setBounds(22, 63, 107, 29);
+		lblNivelPiloto.setBounds(22, 44, 107, 29);
 		contentPane.add(lblNivelPiloto);
 		lblNivelPiloto.setText(piloto.getNivel().toString());
 		
@@ -52,7 +53,7 @@ public class TelaMenu extends JFrame {
 		contentPane.add(lblKartodromo);
 		
 		JLabel lblData = new JLabel("Data");
-		lblData.setBounds(217, 136, 77, 14);
+		lblData.setBounds(146, 136, 77, 14);
 		contentPane.add(lblData);
 		
 		txtKartodromo = new JTextField();
@@ -62,7 +63,7 @@ public class TelaMenu extends JFrame {
 		
 		txtData = new JTextField();
 		txtData.setColumns(10);
-		txtData.setBounds(217, 153, 96, 20);
+		txtData.setBounds(146, 153, 96, 20);
 		contentPane.add(txtData);
 		
 		table = new JTable();
@@ -73,7 +74,4 @@ public class TelaMenu extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 	}
-
-		
-	
 }

@@ -117,7 +117,7 @@ public class TelaLogin extends JFrame {
 				try {					
 					pi = pBo.ValidaLogin(txtUsername.getText(), txtSenha.getText());
 					
-					TelaMenu tm = new TelaMenu(pi);
+					TelaMenuPiloto tm = new TelaMenuPiloto(pi);
 					dispose();			
 					
 					
