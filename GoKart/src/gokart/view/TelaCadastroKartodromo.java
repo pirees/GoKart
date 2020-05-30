@@ -2,15 +2,17 @@ package gokart.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import gokart.bo.KartodromoBo;
+import gokart.classes.Estado;
+import gokart.classes.Kartodromo;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -23,7 +25,7 @@ public class TelaCadastroKartodromo extends JFrame {
 	private JTextField txtNome;
 	private JTextField txtCNPJ;
 	private JTextField txtEndereco;
-	private JTextField tctEmail;
+	private JTextField txtEmail;
 	private JPasswordField txtSenha;
 	private JPasswordField txtReptSenha;
 	private JTextField txtCidade;
@@ -82,10 +84,10 @@ public class TelaCadastroKartodromo extends JFrame {
 		lblEmail.setBounds(10, 424, 56, 14);
 		contentPane.add(lblEmail);
 		
-		tctEmail = new JTextField();
-		tctEmail.setColumns(10);
-		tctEmail.setBounds(10, 449, 296, 20);
-		contentPane.add(tctEmail);
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(10, 449, 296, 20);
+		contentPane.add(txtEmail);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(10, 484, 56, 14);
@@ -133,6 +135,32 @@ public class TelaCadastroKartodromo extends JFrame {
 
 				TelaLogin tl = new TelaLogin();
 				dispose();
+
+			}
+		});
+		
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Kartodromo kartodromo = new Kartodromo();
+
+				kartodromo.setNome(txtNome.getText());
+				kartodromo.setCnpj(Integer.parseInt(txtCNPJ.getText()));
+				kartodromo.setEndereco(txtEndereco.getText());
+				kartodromo.setEmail(txtEmail.getText());
+				kartodromo.setSenha(txtSenha.getText());
+				kartodromo.setEst((Estado) comboEstado.getSelectedItem());
+
+				KartodromoBo kartodromoBo = new KartodromoBo();
+
+				try {
+
+					JOptionPane.showMessageDialog(null, "Kartodromo " + kartodromoBo.Salvar(kartodromo));
+
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
+					e1.printStackTrace();
+				}
 
 			}
 		});
