@@ -1,5 +1,5 @@
 use gokart;
-Insert Into estado (id,nome) Values(1,'Amador');
-Insert Into estado (id,nome) Values(2,'Intermediário');
-Insert Into estado (id,nome) Values(3,'Profissional');
+Insert Into nivel (id,nivel) Values(1,'Amador');
+Insert Into nivel (id,nivel) Values(2,'Intermediário');
+Insert Into nivel (id,nivel) Values(3,'Profissional');
  
