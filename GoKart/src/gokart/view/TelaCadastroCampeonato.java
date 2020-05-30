@@ -14,14 +14,39 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import javax.swing.JSeparator;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.table.DefaultTableModel;
+
+import gokart.bo.CampeonatoBo;
+import gokart.bo.PilotoBo;
+import gokart.classes.Campeonato;
+import gokart.classes.Piloto;
+
+import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Cursor;
+import javax.swing.ImageIcon;
 
 public class TelaCadastroCampeonato extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTable table;
-
+	private JPanel pnPrincipal;
+	private JTextField txtNomeCampeonato;
+	private JTable tbPontuacao;
+	private JTextField txtMelhorVolta;
+	private JTextField txtEmailPilotoAdm;
+	private JComboBox cbQtCorrida;
 
 	/**
 	 * Launch the application.
@@ -30,7 +55,7 @@ public class TelaCadastroCampeonato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroCampeonato frame = new TelaCadastroCampeonato();
+					TelaCadastroCampeonato frame = new TelaCadastroCampeonato(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,73 +67,174 @@ public class TelaCadastroCampeonato extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroCampeonato() {
-		setTitle("GoKart - Cadastro");
+	public TelaCadastroCampeonato(Piloto piloto) {
+		setResizable(false);
+		setTitle("GoKart - Cadastro Campeonato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 307, 550);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		
+		setBounds(100, 100, 391, 718);
+		pnPrincipal = new JPanel();
+		pnPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(pnPrincipal);
+
 		JLabel lblCadastro = new JLabel("Cadastro de Campeonato");
+		lblCadastro.setBounds(167, 56, 187, 20);
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCadastro.setBounds(54, 29, 177, 20);
-		contentPane.add(lblCadastro);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(10, 453, 89, 23);
-		contentPane.add(btnSalvar);
+		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		btnSalvar.setBounds(10, 645, 89, 23);
+
+		JButton btnVoltar = new JButton("Voltar");
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(116, 453, 89, 23);
-		contentPane.add(btnCancelar);
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBounds(109, 645, 89, 23);
+
+		txtNomeCampeonato = new JTextField();
+		txtNomeCampeonato.setBounds(10, 193, 252, 20);
+		txtNomeCampeonato.setColumns(10);
+
+		JLabel lblNomeCampeonato = new JLabel("Nome Campeonato:");
+		lblNomeCampeonato.setBounds(10, 168, 159, 14);
+
+		JLabel lblQuantidadeDeCorrida = new JLabel("Quantidade de Corridas:");
+		lblQuantidadeDeCorrida.setBounds(10, 224, 159, 14);
+
+		cbQtCorrida = new JComboBox();
+		cbQtCorrida.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+		cbQtCorrida.setBounds(10, 249, 50, 23);
+
+		JScrollPane pnPontuacao = new JScrollPane();
+		pnPontuacao.setBounds(10, 355, 355, 189);
+
+		tbPontuacao = new JTable();
+		tbPontuacao.setToolTipText("Cadastro de pontua\u00E7\u00E3o do campeonato!");
+		tbPontuacao.setModel(new DefaultTableModel(
+				new Object[][] { { new Integer(1), new Long(25L) }, { new Integer(2), new Long(18L) },
+						{ new Integer(3), new Long(15L) }, { new Integer(4), new Long(12L) },
+						{ new Integer(5), new Long(10L) }, { new Integer(6), new Long(8L) },
+						{ new Integer(7), new Long(6L) }, { new Integer(8), new Long(4L) },
+						{ new Integer(9), new Long(2L) }, { new Integer(10), new Long(1L) }, },
+				new String[] { "Posi\u00E7\u00E3o", "Pontua\u00E7\u00E3o" }) {
+			Class[] columnTypes = new Class[] { Integer.class, Long.class };
+
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		tbPontuacao.getColumnModel().getColumn(0).setResizable(false);
+		tbPontuacao.getColumnModel().getColumn(0).setPreferredWidth(48);
+		tbPontuacao.getColumnModel().getColumn(1).setPreferredWidth(63);
+		pnPontuacao.setViewportView(tbPontuacao);
+		pnPrincipal.setLayout(null);
+		pnPrincipal.add(lblCadastro);
+		pnPrincipal.add(btnSalvar);
+		pnPrincipal.add(btnVoltar);
+		pnPrincipal.add(txtNomeCampeonato);
+		pnPrincipal.add(lblNomeCampeonato);
+		pnPrincipal.add(lblQuantidadeDeCorrida);
+		pnPrincipal.add(cbQtCorrida);
+		pnPrincipal.add(pnPontuacao);
+
+		JLabel lblPontuacao = new JLabel("Pontua\u00E7\u00E3o Classifica\u00E7\u00E3o:");
+		lblPontuacao.setBounds(10, 339, 172, 14);
+		pnPrincipal.add(lblPontuacao);
+
+		JLabel lvlMelhorVolta = new JLabel("Pontua\u00E7\u00E3o Melhor Volta:");
+		lvlMelhorVolta.setBounds(10, 568, 159, 14);
+		pnPrincipal.add(lvlMelhorVolta);
+
+		txtMelhorVolta = new JTextField();
+		txtMelhorVolta.setToolTipText("Pontua\u00E7\u00E3o extra para a melhor volta.");
+		txtMelhorVolta.setText("40");
+		txtMelhorVolta.setBounds(157, 565, 37, 20);
+		pnPrincipal.add(txtMelhorVolta);
+		txtMelhorVolta.setColumns(10);
+
+		JLabel lblEmailPiloto = new JLabel("Email Piloto Administrador:");
+		lblEmailPiloto.setBounds(10, 283, 159, 14);
+		pnPrincipal.add(lblEmailPiloto);
+
+		txtEmailPilotoAdm = new JTextField();
+		txtEmailPilotoAdm.setToolTipText("Email do piloto administrador do campeonato.");
+		txtEmailPilotoAdm.setBounds(10, 308, 252, 20);
+		pnPrincipal.add(txtEmailPilotoAdm);
+		txtEmailPilotoAdm.setColumns(10);
+
+		JLabel lblImg = new JLabel("");
+		lblImg.setIcon(new ImageIcon(TelaCadastroCampeonato.class.getResource("/img/TrofeuCampeonatoPequeno.png")));
+		lblImg.setBounds(10, 11, 121, 113);
+		pnPrincipal.add(lblImg);
+
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+
+		/* Eventos */
+
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				/*Chama metodo para salvar dados no banco*/
+				SalvaDados();
+
+			}
+		});
 		
-		textField = new JTextField();
-		textField.setBounds(21, 93, 252, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
-		JLabel lblNomeCampeonato = new JLabel("Nome Campeonato");
-		lblNomeCampeonato.setBounds(22, 73, 96, 14);
-		contentPane.add(lblNomeCampeonato);
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				 int i = 0;
+				 
+				 for(i=0; i < 10; i++) {
+					 
+					 /*Row | Column*/				
+					System.out.println("Coluna:" + i + "Linha" + i + tbPontuacao.getModel().getValueAt(i, 1));					 
+					 
+				 }
+						
+				
+				
+				
+			}
+		});
 		
-		JLabel lblQuantidadeDeCorrida = new JLabel("Quantidade de Corrida");
-		lblQuantidadeDeCorrida.setBounds(21, 124, 116, 14);
-		contentPane.add(lblQuantidadeDeCorrida);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(21, 149, 50, 23);
-		contentPane.add(comboBox);
-		
-		JLabel lblCampeonatoPblico = new JLabel("Campeonato P\u00FAblico?");
-		lblCampeonatoPblico.setBounds(21, 183, 116, 14);
-		contentPane.add(lblCampeonatoPblico);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Sim");
-		rdbtnNewRadioButton.setBounds(21, 204, 50, 23);
-		contentPane.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNo = new JRadioButton("N\u00E3o");
-		rdbtnNo.setBounds(68, 204, 50, 23);
-		contentPane.add(rdbtnNo);
-		
-		JLabel lblKartdromoResponsvel = new JLabel("Kart\u00F3dromo Respons\u00E1vel");
-		lblKartdromoResponsvel.setBounds(21, 234, 131, 14);
-		contentPane.add(lblKartdromoResponsvel);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(21, 253, 252, 20);
-		contentPane.add(textField_1);
-		
-		JLabel lblBaterias = new JLabel("Baterias");
-		lblBaterias.setBounds(21, 284, 50, 14);
-		contentPane.add(lblBaterias);
-		
-		table = new JTable();
-		table.setBounds(21, 309, 252, 116);
-		contentPane.add(table);
+
 	}
+
+	public void SalvaDados() {
+
+		/* Cria o Objeto do Campeonato */
+		Campeonato cp = new Campeonato();
+		cp.setNomeCampeonato(txtNomeCampeonato.getText());
+		cp.setNrBatCampeonato(Integer.valueOf(cbQtCorrida.getSelectedIndex()));
+		cp.setPtMelhorVolta(Integer.valueOf(txtMelhorVolta.getText()));
+
+		PilotoBo pBo = new PilotoBo();
+
+		/* Procura o piloto pelo e-mail em tela */
+		try {
+
+			cp.setPilotoAdm(pBo.ProcuraEmail(txtEmailPilotoAdm.getText()));
+
+			CampeonatoBo cpBo = new CampeonatoBo();
+
+			/* Salva o Campeonato */
+			try {
+				cpBo.Salvar(cp);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+
+		} catch (Exception e2) {			
+			JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+			e2.printStackTrace();			
+		}		
+		
+
+	}
+
 }

@@ -24,6 +24,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Cursor;
 
 public class TelaLogin extends JFrame {
 
@@ -60,6 +61,7 @@ public class TelaLogin extends JFrame {
 		contentPane.add(txtSenha);
 		
 		JButton btLogin = new JButton("Entrar");
+		btLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		btLogin.setBounds(276, 432, 89, 23);
 		contentPane.add(btLogin);
