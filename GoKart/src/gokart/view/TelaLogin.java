@@ -7,7 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import gokart.bo.KartodromoBo;
 import gokart.bo.PilotoBo;
+import gokart.classes.Kartodromo;
 import gokart.classes.Piloto;
 import gokart.dao.PilotoDao;
 
@@ -25,11 +27,19 @@ import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import java.awt.Cursor;
+
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.ButtonGroup;
+
+
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JPasswordField txtSenha;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	
 	public TelaLogin() {
@@ -60,6 +70,7 @@ public class TelaLogin extends JFrame {
 		contentPane.add(txtSenha);
 		
 		JButton btLogin = new JButton("Entrar");
+		btLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		btLogin.setBounds(276, 432, 89, 23);
 		contentPane.add(btLogin);
@@ -82,6 +93,17 @@ public class TelaLogin extends JFrame {
 		lblCadastrarKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblCadastrarKartodromo.setBounds(10, 490, 230, 14);
 		contentPane.add(lblCadastrarKartodromo);
+		
+		JRadioButton rdbtnPiloto = new JRadioButton("Piloto");
+		rdbtnPiloto.setSelected(true);
+		buttonGroup.add(rdbtnPiloto);
+		rdbtnPiloto.setBounds(67, 527, 109, 23);
+		contentPane.add(rdbtnPiloto);
+		
+		JRadioButton rdbtnKartodromo = new JRadioButton("Kartodromo");
+		buttonGroup.add(rdbtnKartodromo);
+		rdbtnKartodromo.setBounds(67, 553, 109, 23);
+		contentPane.add(rdbtnKartodromo);
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
@@ -114,20 +136,35 @@ public class TelaLogin extends JFrame {
 				Piloto pi = new Piloto();								
 				PilotoBo pBo = new PilotoBo();	
 				
-				try {					
-					pi = pBo.ValidaLogin(txtUsername.getText(), txtSenha.getText());
-					
-					TelaMenuPiloto tm = new TelaMenuPiloto(pi);
-					dispose();			
-					
-					
-				} catch (Exception e2) {					
-					JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO LOGIN", JOptionPane.ERROR_MESSAGE);
-					e2.printStackTrace();
-				}				
+				Kartodromo k = new Kartodromo();
+				KartodromoBo kBo = new KartodromoBo();
+				
+				if(rdbtnPiloto.isSelected()) {
+									
+					try {					
+						pi = pBo.ValidaLogin(txtUsername.getText(), txtSenha.getText());
+
+						TelaMenuPiloto tm = new TelaMenuPiloto(pi);
+						dispose();			
+
+					} catch (Exception e2) {					
+						JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO LOGIN", JOptionPane.ERROR_MESSAGE);
+						e2.printStackTrace();
+					}
+				}else {
+					try {					
+						k = kBo.ValidaLogin(txtUsername.getText(), txtSenha.getText());
+						
+						TelaMenuKartodromo tm = new TelaMenuKartodromo(k);
+						dispose();									
+						
+					} catch (Exception e2) {					
+						JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO LOGIN", JOptionPane.ERROR_MESSAGE);
+						e2.printStackTrace();
+					}				
+				}
 								
 			}
 		});
-		
 	}
 }

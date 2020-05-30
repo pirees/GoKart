@@ -62,5 +62,25 @@ public class PilotoBo {
 		
 		return rPiloto;	
 	}
+	
+	public Piloto ProcuraEmail(String email) throws Exception{
+		
+		if(email.isBlank()) {			
+			throw new Exception("Email do Piloto não pode ser Branco.");
+		}
+		
+		Piloto rPiloto;	
+		PilotoDao pDao = new PilotoDao();
+		rPiloto = pDao.ProcuraEmail(email);
+		
+		if(rPiloto == null) {
+			throw new Exception("Não encontrado Piloto com e-mail informado: " + email);	
+		}		
+		
+		return rPiloto;		
+	}
+	
+	
+	
 
 }
