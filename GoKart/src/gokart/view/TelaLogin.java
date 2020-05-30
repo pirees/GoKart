@@ -26,13 +26,13 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-<<<<<<< HEAD
+
 import java.awt.Cursor;
-=======
+
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
->>>>>>> branch 'master' of https://github.com/pirees/GoKart.git
+
 
 public class TelaLogin extends JFrame {
 
@@ -95,6 +95,7 @@ public class TelaLogin extends JFrame {
 		contentPane.add(lblCadastrarKartodromo);
 		
 		JRadioButton rdbtnPiloto = new JRadioButton("Piloto");
+		rdbtnPiloto.setSelected(true);
 		buttonGroup.add(rdbtnPiloto);
 		rdbtnPiloto.setBounds(67, 527, 109, 23);
 		contentPane.add(rdbtnPiloto);
