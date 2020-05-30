@@ -25,8 +25,10 @@ import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.CampeonatoBo;
 import gokart.bo.PilotoBo;
+import gokart.bo.PontuacaoCampeonatoBo;
 import gokart.classes.Campeonato;
 import gokart.classes.Piloto;
+import gokart.classes.PontuacaoCampeonato;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
@@ -86,7 +88,7 @@ public class TelaCadastroCampeonato extends JFrame {
 		btnSalvar.setBounds(10, 645, 89, 23);
 
 		JButton btnVoltar = new JButton("Voltar");
-		
+
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBounds(109, 645, 89, 23);
 
@@ -174,33 +176,21 @@ public class TelaCadastroCampeonato extends JFrame {
 
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				/*Chama metodo para salvar dados no banco*/
+
+				/* Chama metodo para salvar dados no banco */
 				SalvaDados();
 
 			}
 		});
-		
-		
+
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				 int i = 0;
-				 
-				 for(i=0; i < 10; i++) {
-					 
-					 /*Row | Column*/				
-					System.out.println("Coluna:" + i + "Linha" + i + tbPontuacao.getModel().getValueAt(i, 1));					 
-					 
-				 }
-						
-				
-				
-				
+			
+
 			}
 		});
-		
 
 	}
 
@@ -214,26 +204,32 @@ public class TelaCadastroCampeonato extends JFrame {
 
 		PilotoBo pBo = new PilotoBo();
 
-		/* Procura o piloto pelo e-mail em tela */
 		try {
 
+			/* Procura o piloto pelo e-mail em tela */
 			cp.setPilotoAdm(pBo.ProcuraEmail(txtEmailPilotoAdm.getText()));
 
+			/* Salva o Campeonato no Banco de Dados */
 			CampeonatoBo cpBo = new CampeonatoBo();
+			cpBo.Salvar(cp);
 
-			/* Salva o Campeonato */
-			try {
-				cpBo.Salvar(cp);
-			} catch (Exception e1) {
-				JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
+			/* Salva a Pontuação do Campeonato no Banco de Dados */
+			int i = 0;
+			for (i = 0; i < 10; i++) {
+
+				PontuacaoCampeonato pCp = new PontuacaoCampeonato();
+				pCp.setId_campeonato(cp);
+				pCp.setPontuacao(Integer.valueOf(tbPontuacao.getModel().getValueAt(i, 1).toString()));
+				pCp.setPosicao(i + 1);
+				
+				PontuacaoCampeonatoBo pCBo = new PontuacaoCampeonatoBo();				
+				pCBo.Salvar(pCp);
 			}
 
-		} catch (Exception e2) {			
+		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
-			e2.printStackTrace();			
-		}		
-		
+			e2.printStackTrace();
+		}
 
 	}
 

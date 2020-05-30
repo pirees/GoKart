@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PontuacaoCampeonato")
 
-public class PontuacaoCampeonato {
+public class PontuacaoCampeonato implements EntityBase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
