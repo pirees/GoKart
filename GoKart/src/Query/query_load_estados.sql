@@ -1,7 +1,7 @@
 use gokart;
 
- Insert Into estado (id,nome) Values(12,'AC');  
- Insert Into estado (id,nome) Values(27,'AL');  
+ Insert Into estado (id,nome) Values(12,'AC');
+ Insert Into estado (id,nome) Values(27,'AL');
  Insert Into estado (id,nome) Values(13,'AM');
  Insert Into estado (id,nome) Values(16,'AP');
  Insert Into estado (id,nome) Values(29,'BA');
