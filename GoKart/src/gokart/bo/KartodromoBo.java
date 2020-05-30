@@ -2,6 +2,7 @@ package gokart.bo;
 
 import gokart.classes.Kartodromo;
 import gokart.dao.GenericDao;
+import gokart.dao.KartodromoDao;
 
 public class KartodromoBo {
 	
@@ -32,4 +33,29 @@ public class KartodromoBo {
 			throw new Exception("Id da composicao não pode ser negativo!");
 		}
 	}
+	
+	public Kartodromo ValidaLogin(String email, String senha) throws Exception {
+		
+		
+		if(email.isBlank()) {			
+			throw new Exception("Por favor informar um EMAIL válido!");
+		}
+		
+		if(senha.isBlank()) {
+			throw new Exception("Por favor informar uma SENHA válida!");			
+		}		
+		
+
+		Kartodromo rKartodromo;		
+
+		KartodromoDao kDao = new KartodromoDao();
+		rKartodromo = kDao.ValidaLogin(email, senha);
+		
+		if(rKartodromo == null) {
+			throw new Exception("Usuário ou Senha incorreto(s).");			
+		}
+		
+		return rKartodromo;	
+	}
+
 }
