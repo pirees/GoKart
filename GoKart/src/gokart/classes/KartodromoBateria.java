@@ -29,7 +29,6 @@ public class KartodromoBateria implements EntityBase {
 	@ManyToOne
 	private Kartodromo kartodromo;
 	
-	"hahahaha"
 
 	public int getId() {
 		return id;
