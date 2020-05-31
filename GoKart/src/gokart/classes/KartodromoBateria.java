@@ -1,5 +1,6 @@
 package gokart.classes;
 
+import java.sql.Time;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,9 +27,11 @@ public class KartodromoBateria implements EntityBase {
 	@Column
 	private int nrMaxPiloto;
 	
+	@Column
+	private String tracado;
+		
 	@ManyToOne
 	private Kartodromo kartodromo;
-	
 
 	public int getId() {
 		return id;
@@ -62,6 +65,14 @@ public class KartodromoBateria implements EntityBase {
 		this.nrMaxPiloto = nrMaxPiloto;
 	}
 
+	public String getTracado() {
+		return tracado;
+	}
+
+	public void setTracado(String tracado) {
+		this.tracado = tracado;
+	}
+
 	public Kartodromo getKartodromo() {
 		return kartodromo;
 	}
@@ -83,6 +94,7 @@ public class KartodromoBateria implements EntityBase {
 		result = prime * result + id;
 		result = prime * result + ((kartodromo == null) ? 0 : kartodromo.hashCode());
 		result = prime * result + nrMaxPiloto;
+		result = prime * result + ((tracado == null) ? 0 : tracado.hashCode());
 		return result;
 	}
 
@@ -114,15 +126,18 @@ public class KartodromoBateria implements EntityBase {
 			return false;
 		if (nrMaxPiloto != other.nrMaxPiloto)
 			return false;
+		if (tracado == null) {
+			if (other.tracado != null)
+				return false;
+		} else if (!tracado.equals(other.tracado))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "KartodromoBateria [id=" + id + ", data=" + data + ", horaBateria=" + horaBateria + ", nrMaxPiloto="
-				+ nrMaxPiloto + ", kartodromo=" + kartodromo + "]";
-	}
-	
-	
+				+ nrMaxPiloto + ", tracado=" + tracado + ", kartodromo=" + kartodromo + "]";
+	}	
 
 }

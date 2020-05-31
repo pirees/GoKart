@@ -37,6 +37,7 @@ public class TelaKartodromoBateria extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNrMaxPilotos;
 	private JTextField txtHorario;
+	private JTextField txtTracado;
 
 
 	/**
@@ -90,6 +91,15 @@ public class TelaKartodromoBateria extends JFrame {
 		dateChooser.setBounds(125, 145, 120, 20);
 		contentPane.add(dateChooser);
 		
+		JLabel lblTracado = new JLabel("Tra\u00E7ado");
+		lblTracado.setBounds(29, 259, 45, 14);
+		contentPane.add(lblTracado);
+		
+		txtTracado = new JTextField();
+		txtTracado.setColumns(10);
+		txtTracado.setBounds(125, 256, 120, 20);
+		contentPane.add(txtTracado);
+		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
@@ -100,6 +110,7 @@ public class TelaKartodromoBateria extends JFrame {
 				kartodromo.setData(dateChooser.getDate());
 				kartodromo.setHoraBateria(txtHorario.getText());
 				kartodromo.setNrMaxPiloto(Integer.parseInt(txtNrMaxPilotos.getText()));
+				kartodromo.setTracado(txtTracado.getText());
 				kartodromo.setKartodromo(k);
 
 				KartodromoBateriaBo kartodromobateriaBo = new KartodromoBateriaBo();

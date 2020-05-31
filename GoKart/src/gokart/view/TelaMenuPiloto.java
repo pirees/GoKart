@@ -17,12 +17,12 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JComboBox;
+import com.toedter.calendar.JDateChooser;
 
 public class TelaMenuPiloto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtKartodromo;
-	private JTextField txtData;
 	private JTable table;
 	private JLabel lblNomePiloto;
 	private JLabel lblNivelPiloto;
@@ -71,11 +71,6 @@ public class TelaMenuPiloto extends JFrame {
 		txtKartodromo.setBounds(150, 163, 168, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
-		
-		txtData = new JTextField();
-		txtData.setColumns(10);
-		txtData.setBounds(150, 226, 168, 20);
-		contentPane.add(txtData);
 		
 		table = new JTable();
 		table.setBounds(10, 374, 355, 275);
@@ -148,6 +143,10 @@ public class TelaMenuPiloto extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(92, 106, 180, 30);
 		contentPane.add(lblNewLabel);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(151, 226, 167, 20);
+		contentPane.add(dateChooser);
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
