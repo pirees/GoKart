@@ -58,4 +58,5 @@ public class KartodromoBo {
 		return rKartodromo;	
 	}
 
+	
 }

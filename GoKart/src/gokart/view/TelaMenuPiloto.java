@@ -5,9 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import gokart.bo.KartodromoBateriaBo;
+import gokart.bo.KartodromoBo;
 import gokart.bo.PilotoBo;
+import gokart.classes.KartodromoBateria;
 import gokart.classes.Piloto;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -15,6 +21,9 @@ import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
@@ -28,7 +37,6 @@ public class TelaMenuPiloto extends JFrame {
 	private JLabel lblNivelPiloto;
 	private JButton btnReserva;
 	private JButton btnCampeonato;
-	private JTextField txtEndereco;
 	
 	
 	public TelaMenuPiloto(Piloto piloto) throws Exception {
@@ -62,18 +70,20 @@ public class TelaMenuPiloto extends JFrame {
 		lblKartodromo.setBounds(10, 163, 82, 16);
 		contentPane.add(lblKartodromo);
 		
-		JLabel lblData = new JLabel("Data");
-		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblData.setBounds(10, 227, 77, 14);
-		contentPane.add(lblData);
-		
 		txtKartodromo = new JTextField();
 		txtKartodromo.setBounds(150, 163, 168, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
 		
 		table = new JTable();
-		table.setBounds(10, 374, 355, 275);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column"
+			}
+		));
+		table.setBounds(10, 203, 355, 275);
 		contentPane.add(table);
 		
 		JButton btnConvite = new JButton("");
@@ -107,49 +117,53 @@ public class TelaMenuPiloto extends JFrame {
 		lblSeuNvel.setBounds(22, 58, 107, 14);
 		contentPane.add(lblSeuNvel);
 		
-		JLabel lblCorrida = new JLabel("Hora");
-		lblCorrida.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCorrida.setBounds(10, 289, 63, 20);
-		contentPane.add(lblCorrida);
-		
 		JButton btnPesquisar = new JButton("Confirmar");
-		btnPesquisar.setBounds(150, 333, 108, 29);
+		btnPesquisar.setBounds(127, 555, 108, 29);
 		contentPane.add(btnPesquisar);
 		
-		JComboBox comboHora = new JComboBox();
-		comboHora.setBounds(150, 290, 97, 22);
-		contentPane.add(comboHora);
-		
 		JComboBox comboNrMaxPilotos = new JComboBox();
-		comboNrMaxPilotos.setBounds(150, 257, 63, 22);
+		comboNrMaxPilotos.setBounds(150, 498, 63, 22);
 		contentPane.add(comboNrMaxPilotos);
 		
 		JLabel lblNmeroDePilotos = new JLabel("N\u00FAmero de pilotos");
 		lblNmeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNmeroDePilotos.setBounds(10, 261, 130, 16);
+		lblNmeroDePilotos.setBounds(10, 499, 130, 16);
 		contentPane.add(lblNmeroDePilotos);
-		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o");
-		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblEndereo.setBounds(10, 196, 77, 20);
-		contentPane.add(lblEndereo);
-		
-		txtEndereco = new JTextField();
-		txtEndereco.setColumns(10);
-		txtEndereco.setBounds(150, 195, 168, 20);
-		contentPane.add(txtEndereco);
 		
 		JLabel lblNewLabel = new JLabel("Fa\u00E7a agora a sua reserva");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(92, 106, 180, 30);
 		contentPane.add(lblNewLabel);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(151, 226, 167, 20);
-		contentPane.add(dateChooser);
+		JButton btnBuscar = new JButton("");
+		btnBuscar.setBounds(328, 162, 30, 23);
+		pesquisarBateria();
+		contentPane.add(btnBuscar);
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
+	}
+	private void pesquisarBateria() {
+		// Carregar o model na JTable
+		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();
+		modelo.setRowCount(0);
+		table.setModel(modelo);
+
+		
+		// consultar grupo 	
+		try {
+			List<KartodromoBateria> lista = new KartodromoBateriaBo().listarBateria(txtKartodromo.getText());
+			for (KartodromoBateria k : lista) {
+				modelo.addRow(new Object[] {
+						k.getKartodromo(),
+						k.getNrMaxPiloto(),
+						k.getTracado(),
+						k.getData()
+				});
+			}
+		} catch (Exception e) {
+			//JOptionPane.showMessageDialog(this,  e.getMessage());
+		}				
 	}
 }

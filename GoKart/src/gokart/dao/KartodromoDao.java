@@ -30,4 +30,5 @@ private static EntityManager em = Fabrica.getEntityManager();
 				
 		return null;		
 	}
+
 }
