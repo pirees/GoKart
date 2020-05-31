@@ -25,9 +25,11 @@ import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.CampeonatoBo;
 import gokart.bo.PilotoBo;
+import gokart.bo.PilotoCampeonatoBo;
 import gokart.bo.PontuacaoCampeonatoBo;
 import gokart.classes.Campeonato;
 import gokart.classes.Piloto;
+import gokart.classes.PilotoCampeonato;
 import gokart.classes.PontuacaoCampeonato;
 
 import javax.swing.ListSelectionModel;
@@ -212,6 +214,15 @@ public class TelaCadastroCampeonato extends JFrame {
 			/* Salva o Campeonato no Banco de Dados */
 			CampeonatoBo cpBo = new CampeonatoBo();
 			cpBo.Salvar(cp);
+			
+			/*Grava Relacionamento Piloto x Campeonato*/			
+			PilotoCampeonato piCamp = new PilotoCampeonato();
+			piCamp.setPil(cp.getPilotoAdm());
+			piCamp.setCamp(cp);			
+			
+			PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();			
+			pcpBo.Salvar(piCamp);			
+			
 
 			/* Salva a Pontuação do Campeonato no Banco de Dados */
 			int i = 0;
