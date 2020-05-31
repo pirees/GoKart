@@ -21,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -137,9 +139,19 @@ public class TelaMenuPiloto extends JFrame {
 		
 		JButton btnBuscar = new JButton("");
 		btnBuscar.setBounds(328, 162, 30, 23);
-		pesquisarBateria();
 		contentPane.add(btnBuscar);
 		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					pesquisarBateria();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+				
+		});
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
@@ -163,7 +175,7 @@ public class TelaMenuPiloto extends JFrame {
 				});
 			}
 		} catch (Exception e) {
-			//JOptionPane.showMessageDialog(this,  e.getMessage());
+			JOptionPane.showMessageDialog(this,  e.getMessage());
 		}				
 	}
 }

@@ -1,6 +1,5 @@
 package gokart.classes;
 
-import java.sql.Time;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
