@@ -27,7 +27,7 @@ public class Bateria implements EntityBase{
 	
 	@Column
 	private String nome;
-	
+	("teste");
 	@Column
 	private int nrMaxPiloto;
 	
