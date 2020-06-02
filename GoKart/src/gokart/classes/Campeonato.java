@@ -103,8 +103,7 @@ public class Campeonato implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "Campeonato [id=" + id + ", nomeCampeonato=" + nomeCampeonato + ", nrBatCampeonato=" + nrBatCampeonato
-				+ ", ptMelhorVolta=" + ptMelhorVolta + ", pilotoAdm=" + pilotoAdm + "]";
+		return this.getNomeCampeonato();
 	}
 	
 	

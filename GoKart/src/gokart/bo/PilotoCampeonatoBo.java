@@ -1,8 +1,12 @@
 package gokart.bo;
 
+import java.util.List;
+
+import gokart.classes.Campeonato;
 import gokart.classes.Piloto;
 import gokart.classes.PilotoCampeonato;
 import gokart.dao.GenericDao;
+import gokart.dao.PilotoCampeonatoDao;
 
 public class PilotoCampeonatoBo {
 	
@@ -27,6 +31,12 @@ public class PilotoCampeonatoBo {
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
+	}
+	
+	public List<PilotoCampeonato> ListarPilotoCampeonato(Piloto piloto)throws Exception{	
+		
+		PilotoCampeonatoDao pcpDao = new PilotoCampeonatoDao();				
+		return pcpDao.ListaPilotoCampeonato(piloto);		
 	}
 
 	private void validarDadosGrupo(PilotoCampeonato pCmp) throws Exception {
