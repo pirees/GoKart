@@ -1,6 +1,9 @@
 package gokart.bo;
 
+import java.util.List;
+
 import gokart.classes.Campeonato;
+import gokart.classes.Piloto;
 import gokart.dao.GenericDao;
 
 public class CampeonatoBo {
@@ -29,6 +32,9 @@ public class CampeonatoBo {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
+	
+	
 		
 	private void validarDadosGrupo(Campeonato campeonato) throws Exception {
 		if (campeonato.getId() < 0) {
@@ -40,5 +46,6 @@ public class CampeonatoBo {
 		}
 		
 	}
-
+	
+	
 }
