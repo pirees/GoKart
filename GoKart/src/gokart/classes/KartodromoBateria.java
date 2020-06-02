@@ -1,5 +1,6 @@
 package gokart.classes;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class KartodromoBateria implements EntityBase {
 	private int id;
 	
 	@Column
-	private Date data;
+	private LocalDate data;
 	
 	@Column
 	private String horaBateria;
@@ -40,11 +41,11 @@ public class KartodromoBateria implements EntityBase {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
@@ -137,6 +138,6 @@ public class KartodromoBateria implements EntityBase {
 	public String toString() {
 		return "KartodromoBateria [id=" + id + ", data=" + data + ", horaBateria=" + horaBateria + ", nrMaxPiloto="
 				+ nrMaxPiloto + ", tracado=" + tracado + ", kartodromo=" + kartodromo + "]";
-	}	
-
+	}
+	
 }

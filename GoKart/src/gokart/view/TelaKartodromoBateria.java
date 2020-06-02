@@ -19,8 +19,10 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -70,11 +72,11 @@ public class TelaKartodromoBateria extends JFrame {
 		contentPane.add(lblNmeroDePilotos);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(29, 414, 89, 23);
+		btnSalvar.setBounds(35, 485, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(172, 414, 89, 23);
+		btnCancelar.setBounds(239, 485, 89, 23);
 		contentPane.add(btnCancelar);
 		
 		txtNrMaxPilotos = new JTextField();
@@ -86,11 +88,8 @@ public class TelaKartodromoBateria extends JFrame {
 		txtHorario.setColumns(10);
 		txtHorario.setBounds(125, 176, 120, 20);
 		contentPane.add(txtHorario);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(125, 145, 120, 20);
-		contentPane.add(dateChooser);
-		
+
+
 		JLabel lblTracado = new JLabel("Tra\u00E7ado");
 		lblTracado.setBounds(29, 259, 45, 14);
 		contentPane.add(lblTracado);
@@ -100,22 +99,32 @@ public class TelaKartodromoBateria extends JFrame {
 		txtTracado.setBounds(125, 256, 120, 20);
 		contentPane.add(txtTracado);
 		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(125, 139, 120, 20);
+		contentPane.add(dateChooser);
+		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+								
+				//SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
+				//String d = formatador.format(dateChooser.getDate());
+				LocalDate dataFinal = LocalDate.parse(dateChooser.getDate().toString());
+				//LocalDate dataFinal1 = LocalDate.parse(formatador.format(dateChooser.getDate()));
+				
 				KartodromoBateria kartodromo = new KartodromoBateria();
-				kartodromo.setData(dateChooser.getDate());
+				kartodromo.setData(dataFinal);
 				kartodromo.setHoraBateria(txtHorario.getText());
 				kartodromo.setNrMaxPiloto(Integer.parseInt(txtNrMaxPilotos.getText()));
 				kartodromo.setTracado(txtTracado.getText());
 				kartodromo.setKartodromo(k);
-
-				KartodromoBateriaBo kartodromobateriaBo = new KartodromoBateriaBo();
+			
 
 				try {
+					
+					KartodromoBateriaBo kartodromobateriaBo = new KartodromoBateriaBo();
 
 					JOptionPane.showMessageDialog(null, "Reservas configuradas com sucesso " + kartodromobateriaBo.Salvar(kartodromo));
 
