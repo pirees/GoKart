@@ -6,13 +6,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ConviteCampeonato")
 
-public class ConviteCampeonato {
+public class ConviteCampeonato implements EntityBase {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private int id;
 	
 	private boolean aceito;
+	
 	private String email;
 	
 	@ManyToOne

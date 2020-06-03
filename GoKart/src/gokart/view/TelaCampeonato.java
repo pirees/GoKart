@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -17,12 +18,17 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.CampeonatoBo;
+import gokart.bo.PilotoBo;
 import gokart.bo.PilotoCampeonatoBo;
+import gokart.classes.Campeonato;
+import gokart.classes.ConviteCampeonato;
 import gokart.classes.Piloto;
 import gokart.classes.PilotoCampeonato;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Cursor;
 
 public class TelaCampeonato extends JFrame {
 
@@ -31,6 +37,11 @@ public class TelaCampeonato extends JFrame {
 	private JTable tbN;
 	private JTable tbBateria;
 	private JComboBox cbCampeonato;
+	private JButton btNovoCampeonato;
+	private JButton btClassificacao;
+	private JButton btAddBateria;
+	private JButton btEnviaConvite;
+	private JScrollPane pnBateria;
 
 	/**
 	 * Launch the application.
@@ -59,109 +70,147 @@ public class TelaCampeonato extends JFrame {
 		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painel);
 		painel.setLayout(null);
-		
+
 		JLabel lblCampeonato = new JLabel("Campeonato:");
-		lblCampeonato.setBounds(10, 59, 88, 14);
+		lblCampeonato.setBounds(10, 122, 88, 14);
 		painel.add(lblCampeonato);
-		
+
 		cbCampeonato = new JComboBox();
-		cbCampeonato.setBounds(10, 84, 301, 22);
+		cbCampeonato.setBounds(10, 147, 301, 22);
 		painel.add(cbCampeonato);
-		
-		JButton btNovoCampeonato = new JButton("+");
-		
-		btNovoCampeonato.setBounds(10, 117, 41, 23);
+
+		btNovoCampeonato = new JButton("+");
+		btNovoCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		btNovoCampeonato.setBounds(321, 147, 41, 23);
 		painel.add(btNovoCampeonato);
-		
-		JButton btClassificacao = new JButton("Classifica\u00E7\u00E3o");
-		btClassificacao.setBounds(61, 117, 123, 23);
+
+		btClassificacao = new JButton("Classifica\u00E7\u00E3o");
+		btClassificacao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btClassificacao.setBounds(10, 180, 123, 23);
 		painel.add(btClassificacao);
-		
+
 		JLabel lblCvPiloto = new JLabel("Convidar Piloto:");
-		lblCvPiloto.setBounds(10, 187, 116, 14);
+		lblCvPiloto.setBounds(10, 230, 116, 14);
 		painel.add(lblCvPiloto);
-		
+
 		txtEmailPiloto = new JTextField();
 		txtEmailPiloto.setToolTipText("Ensira o e-mail do piloto para convida-lo ao campeonato.");
 		txtEmailPiloto.setText("Email Piloto");
-		txtEmailPiloto.setBounds(10, 212, 301, 20);
+		txtEmailPiloto.setBounds(10, 255, 301, 20);
 		painel.add(txtEmailPiloto);
 		txtEmailPiloto.setColumns(10);
+
+		btEnviaConvite = new JButton("");
+		btEnviaConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btEnviaConvite.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/IconeEnviar.png")));
 		
-		JButton btEnviaConvite = new JButton("V_");
-	
+
 		btEnviaConvite.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btEnviaConvite.setBounds(321, 212, 44, 20);
+		btEnviaConvite.setBounds(321, 255, 41, 20);
 		painel.add(btEnviaConvite);
-		
+
 		JLabel lblBaterias = new JLabel("Baterias:");
 		lblBaterias.setBounds(10, 298, 61, 14);
 		painel.add(lblBaterias);
-		
-		JScrollPane pnBateria = new JScrollPane();
+
+		pnBateria = new JScrollPane();
 		pnBateria.setBounds(10, 323, 355, 148);
-		painel.add(pnBateria);	
-		
-		
+		painel.add(pnBateria);
+
 		CarregaCampeonato(piloto);
-		
-		tbBateria = new JTable();	
-		
-		tbBateria.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis"
-			}
-		));
+
+		tbBateria = new JTable();
+
+		tbBateria.setModel(
+				new DefaultTableModel(new Object[][] { { null, null, null, null }, { null, null, null, null }, },
+						new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }));
 		tbBateria.getColumnModel().getColumn(3).setPreferredWidth(103);
 		pnBateria.setViewportView(tbBateria);
-		
-		JButton btAddBateria = new JButton("Adicionar Bateria");
+
+		btAddBateria = new JButton("Adicionar Bateria");
+		btAddBateria.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btAddBateria.setBounds(10, 478, 140, 23);
 		painel.add(btAddBateria);
 		
+		JLabel imgCampeonato = new JLabel("");
+		imgCampeonato.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/TrofeuCampeonatoPequeno.png")));
+		imgCampeonato.setBounds(249, 11, 116, 105);
+		painel.add(imgCampeonato);
+		
+		JLabel lbCamp = new JLabel("GoKart - Campeonato");
+		lbCamp.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lbCamp.setBounds(49, 48, 140, 22);
+		painel.add(lbCamp);
+
 		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+
+		/* Eventos */
 		
-		
-		/*Eventos*/
-		
+		/*Novo Campenato*/
 		btNovoCampeonato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				TelaCadastroCampeonato tcc = new TelaCadastroCampeonato(piloto);				
+
+				TelaCadastroCampeonato tcc = new TelaCadastroCampeonato(piloto);
 				dispose();
+
+			}
+		});
+		
+		/*Adicionar Bateria no Campeonato*/
+		btAddBateria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaAddBateriaCampeonato taddbt = new TelaAddBateriaCampeonato(piloto);
+				dispose();
+
+			}
+		});
+		
+		/*Convida Pilotos para Campeonato*/		
+		btEnviaConvite.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {					
 				
-				
+				try {
+					
+					PilotoBo pBo = new PilotoBo();
+					
+					ConviteCampeonato cvCp = new ConviteCampeonato();						
+					
+					cvCp.setId_campeonato((Campeonato) cbCampeonato.getSelectedItem());				
+					
+					/*Procura Piloto com Email Cadastrado e Envia Convite*/
+					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));					
+					cvCp.setEmail(txtEmailPiloto.getText());					
+					
+					JOptionPane.showMessageDialog(null, "Convite enviado com sucessso!");	
+					
+					
+				} catch (Exception e1) {					
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);					
+					e1.printStackTrace();
+				}				
 				
 			}
 		});
 		
-		
+
 	}
-	
+
 	private void CarregaCampeonato(Piloto piloto) {
-		
+
 		PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();
-		
+
 		try {
-			
-			for(PilotoCampeonato pc: pcpBo.ListarPilotoCampeonato(piloto)) {				
-				cbCampeonato.addItem(pc.getCamp());					
-			}	
-			
-			
+
+			for (PilotoCampeonato pc : pcpBo.ListarPilotoCampeonato(piloto)) {
+				cbCampeonato.addItem(pc.getCamp());
+			}
+
 		} catch (Exception e) {
 			System.out.println("Erro" + e.getMessage());
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
+
 	}
-	
 }
