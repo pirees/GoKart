@@ -160,10 +160,13 @@ public class TelaMenuPiloto extends JFrame {
 	}
 	private void pesquisarBateria() {
 		// Carregar o model na JTable
+		
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	
+		
 		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();
 		modelo.setRowCount(0);
 		table.setModel(modelo);
-
 		
 		// consultar grupo 	
 		try {
