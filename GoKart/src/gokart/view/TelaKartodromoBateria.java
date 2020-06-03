@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,10 +30,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import javax.swing.JEditorPane;
+import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 public class TelaKartodromoBateria extends JFrame {
 
@@ -40,6 +45,7 @@ public class TelaKartodromoBateria extends JFrame {
 	private JTextField txtNrMaxPilotos;
 	private JTextField txtHorario;
 	private JTextField txtTracado;
+	private JTextField txtData;
 
 
 	/**
@@ -72,11 +78,11 @@ public class TelaKartodromoBateria extends JFrame {
 		contentPane.add(lblNmeroDePilotos);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(35, 485, 89, 23);
+		btnSalvar.setBounds(60, 331, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(239, 485, 89, 23);
+		btnCancelar.setBounds(207, 331, 89, 23);
 		contentPane.add(btnCancelar);
 		
 		txtNrMaxPilotos = new JTextField();
@@ -99,20 +105,25 @@ public class TelaKartodromoBateria extends JFrame {
 		txtTracado.setBounds(125, 256, 120, 20);
 		contentPane.add(txtTracado);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(125, 139, 120, 20);
-		contentPane.add(dateChooser);
+		txtData = new JTextField();
+		try {
+			txtData = new JFormattedTextField(new MaskFormatter("##/##/####"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		txtData.setColumns(10);
+		txtData.setBounds(125, 142, 120, 20);
+		contentPane.add(txtData);
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-								
-				//SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
-				//String d = formatador.format(dateChooser.getDate());
-				LocalDate dataFinal = LocalDate.parse(dateChooser.getDate().toString());
-				//LocalDate dataFinal1 = LocalDate.parse(formatador.format(dateChooser.getDate()));
+				
+				DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate dataFinal = LocalDate.parse(txtData.getText().replaceAll("/", "-"), formatador);
 				
 				KartodromoBateria kartodromo = new KartodromoBateria();
 				kartodromo.setData(dataFinal);
@@ -121,7 +132,6 @@ public class TelaKartodromoBateria extends JFrame {
 				kartodromo.setTracado(txtTracado.getText());
 				kartodromo.setKartodromo(k);
 			
-
 				try {
 					
 					KartodromoBateriaBo kartodromobateriaBo = new KartodromoBateriaBo();
