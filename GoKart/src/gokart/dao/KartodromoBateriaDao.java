@@ -10,19 +10,20 @@ public class KartodromoBateriaDao {
 	
 private static EntityManager em = Fabrica.getEntityManager();	
 
-	public List <KartodromoBateria> ProcuraKartodromo(String tracado)throws Exception{	
-				
-		//Query q = em.createQuery("SELECT k from KartodromoBateria k"
-		//		+" where tracado like :tracado");
+	public List <KartodromoBateria> ProcuraKartodromo(String nome)throws Exception{	
 		
-		Query q = em.createQuery("select k from KartodromoBateria k" 
-				+" where tracado like :tracado");
+//		Query q = em.createQuery("select k from KartodromoBateria k" 
+//				+" where tracado like :tracado");
+//		
+//		q.setParameter("tracado", "%"+tracado.toUpperCase()+"%" );	
 		
-		q.setParameter("tracado", "%"+tracado.toUpperCase()+"%" );				
+		Query a = em.createQuery("select kb from KartodromoBateria kb"
+				+" inner join kb.kartodromo k"
+				+" where k.nome like :nome");
 		
-
-				
-		return q.getResultList();		
+		a.setParameter("nome", "%"+nome.toUpperCase()+"%" );	
+						
+		return a.getResultList();		
 	}
 
 }

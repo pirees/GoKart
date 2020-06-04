@@ -82,11 +82,19 @@ public class TelaMenuPiloto extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column"
 			}
-		));
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, Object.class, Object.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 		table.setBounds(10, 203, 355, 275);
 		contentPane.add(table);
 		
@@ -158,11 +166,13 @@ public class TelaMenuPiloto extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 	}
+	
 	private void pesquisarBateria() {
 		// Carregar o model na JTable
 		
+		
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	
+	    String data;
 		
 		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();
 		modelo.setRowCount(0);
@@ -172,11 +182,12 @@ public class TelaMenuPiloto extends JFrame {
 		try {
 			List<KartodromoBateria> lista = new KartodromoBateriaBo().listarBateria(txtKartodromo.getText());
 			for (KartodromoBateria k : lista) {
+				data = k.getData().format(formatador);
 				modelo.addRow(new Object[] {
 						k.getKartodromo(),
 						k.getNrMaxPiloto(),
 						k.getTracado(),
-						k.getData()
+						data
 				});
 			}
 		} catch (Exception e) {
