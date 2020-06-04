@@ -17,15 +17,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import gokart.bo.BateriaCampeonatoBo;
 import gokart.bo.CampeonatoBo;
 import gokart.bo.PilotoBo;
 import gokart.bo.PilotoCampeonatoBo;
+import gokart.classes.BateriaCampeonato;
 import gokart.classes.Campeonato;
 import gokart.classes.ConviteCampeonato;
 import gokart.classes.Piloto;
 import gokart.classes.PilotoCampeonato;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
@@ -42,6 +46,8 @@ public class TelaCampeonato extends JFrame {
 	private JButton btAddBateria;
 	private JButton btEnviaConvite;
 	private JScrollPane pnBateria;
+
+	private List<String[]> listaResultado = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -104,7 +110,6 @@ public class TelaCampeonato extends JFrame {
 		btEnviaConvite = new JButton("");
 		btEnviaConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btEnviaConvite.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/IconeEnviar.png")));
-		
 
 		btEnviaConvite.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btEnviaConvite.setBounds(321, 255, 41, 20);
@@ -118,13 +123,25 @@ public class TelaCampeonato extends JFrame {
 		pnBateria.setBounds(10, 323, 355, 148);
 		painel.add(pnBateria);
 
-		CarregaCampeonato(piloto);
+		CarregaDadosTela(piloto);
 
 		tbBateria = new JTable();
 
 		tbBateria.setModel(
-				new DefaultTableModel(new Object[][] { { null, null, null, null }, { null, null, null, null }, },
-						new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }));
+				new DefaultTableModel(new Object[][] { { null, null, null, null }, { null, null, null, null } },
+						new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }) {
+					Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+
+					boolean[] columnEditables = new boolean[] { false, false, false, false };
+
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				});
 		tbBateria.getColumnModel().getColumn(3).setPreferredWidth(103);
 		pnBateria.setViewportView(tbBateria);
 
@@ -132,12 +149,12 @@ public class TelaCampeonato extends JFrame {
 		btAddBateria.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btAddBateria.setBounds(10, 478, 140, 23);
 		painel.add(btAddBateria);
-		
+
 		JLabel imgCampeonato = new JLabel("");
 		imgCampeonato.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/TrofeuCampeonatoPequeno.png")));
 		imgCampeonato.setBounds(249, 11, 116, 105);
 		painel.add(imgCampeonato);
-		
+
 		JLabel lbCamp = new JLabel("GoKart - Campeonato");
 		lbCamp.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbCamp.setBounds(49, 48, 140, 22);
@@ -147,8 +164,8 @@ public class TelaCampeonato extends JFrame {
 		this.setLocationRelativeTo(null);
 
 		/* Eventos */
-		
-		/*Novo Campenato*/
+
+		/* Novo Campenato */
 		btNovoCampeonato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -157,8 +174,8 @@ public class TelaCampeonato extends JFrame {
 
 			}
 		});
-		
-		/*Adicionar Bateria no Campeonato*/
+
+		/* Adicionar Bateria no Campeonato */
 		btAddBateria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaAddBateriaCampeonato taddbt = new TelaAddBateriaCampeonato(piloto);
@@ -166,45 +183,65 @@ public class TelaCampeonato extends JFrame {
 
 			}
 		});
-		
-		/*Convida Pilotos para Campeonato*/		
+
+		/* Convida Pilotos para Campeonato */
 		btEnviaConvite.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {					
-				
+			public void actionPerformed(ActionEvent e) {
+
 				try {
-					
+
 					PilotoBo pBo = new PilotoBo();
-					
-					ConviteCampeonato cvCp = new ConviteCampeonato();						
-					
-					cvCp.setId_campeonato((Campeonato) cbCampeonato.getSelectedItem());				
-					
-					/*Procura Piloto com Email Cadastrado e Envia Convite*/
-					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));					
-					cvCp.setEmail(txtEmailPiloto.getText());					
-					
-					JOptionPane.showMessageDialog(null, "Convite enviado com sucessso!");	
-					
-					
-				} catch (Exception e1) {					
-					JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);					
+
+					ConviteCampeonato cvCp = new ConviteCampeonato();
+
+					cvCp.setId_campeonato((Campeonato) cbCampeonato.getSelectedItem());
+
+					/* Procura Piloto com Email Cadastrado e Envia Convite */
+					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));
+					cvCp.setEmail(txtEmailPiloto.getText());
+
+					JOptionPane.showMessageDialog(null, "Convite enviado com sucessso!");
+
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
-				}				
-				
+				}
+
 			}
 		});
-		
 
 	}
 
-	private void CarregaCampeonato(Piloto piloto) {
-
-		PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();
+	private void CarregaDadosTela(Piloto piloto) {
 
 		try {
 
+			PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();
+
 			for (PilotoCampeonato pc : pcpBo.ListarPilotoCampeonato(piloto)) {
 				cbCampeonato.addItem(pc.getCamp());
+			}
+
+			/*
+			 * listaResultado.add(new String[]{con.getNome(),
+			 * String.valueOf(con.getDataCadastro()), String.valueOf(con.getValor())});
+			 */
+
+			BateriaCampeonatoBo bcBo = new BateriaCampeonatoBo();
+
+			listaResultado.clear();
+			for (BateriaCampeonato b : bcBo.listaBateriaCampeonato((Campeonato) cbCampeonato.getSelectedItem())) {
+
+				listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(),
+						String.valueOf(b.getId_bateria().getData()), String.valueOf(b.getId_bateria().getHoraBateria()),
+						"?" });
+
+			}
+
+			if (!listaResultado.isEmpty()) {
+				tbBateria.setModel(new DefaultTableModel(listaResultado.toArray(new String[listaResultado.size()][]),
+						new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }));
+
 			}
 
 		} catch (Exception e) {

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "BateriaCampeonato")
 
-public class BateriaCampeonato {
+public class BateriaCampeonato implements EntityBase {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)		
