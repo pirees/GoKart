@@ -92,6 +92,7 @@ public class TelaCampeonato extends JFrame {
 		painel.add(btNovoCampeonato);
 
 		btClassificacao = new JButton("Classifica\u00E7\u00E3o");
+		
 		btClassificacao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btClassificacao.setBounds(10, 180, 123, 23);
 		painel.add(btClassificacao);
@@ -209,6 +210,16 @@ public class TelaCampeonato extends JFrame {
 
 			}
 		});
+		
+		btClassificacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaPontuacaoBateriaCampeonato tptb = new TelaPontuacaoBateriaCampeonato((Campeonato)cbCampeonato.getSelectedItem());
+				dispose();
+				
+			}
+		});
+		
 
 	}
 
