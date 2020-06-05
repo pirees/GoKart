@@ -52,6 +52,7 @@ public class TelaMenuPiloto extends JFrame {
 	
 	Bateria b = new Bateria();
 	private JTextField txtDataConsulta;
+	private JTextField txtIdBateria;
 	
 	
 	public TelaMenuPiloto(Piloto piloto) throws Exception {
@@ -94,23 +95,24 @@ public class TelaMenuPiloto extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				txtKartodromoSalvar.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-				txtNrPiloto.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
+				txtIdBateria.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+				txtKartodromoSalvar.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
+				txtNrPiloto.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
 				txtData.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
-				txtHorario.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+				txtHorario.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
 			}
 		});
 		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
+				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column", "New column"
+				"IdBateria", "New column", "New column", "New column", "New column", "New column"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Object.class, Object.class, Object.class, String.class, Object.class
+				Object.class, Object.class, Object.class, String.class, Object.class, Object.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
@@ -215,6 +217,12 @@ public class TelaMenuPiloto extends JFrame {
 		lblDataConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataConsulta.setBounds(10, 164, 82, 16);
 		contentPane.add(lblDataConsulta);
+		
+		txtIdBateria = new JTextField();
+		txtIdBateria.setColumns(10);
+		txtIdBateria.setBounds(283, 534, 48, 20);
+		txtIdBateria.setVisible(false);
+		contentPane.add(txtIdBateria);
 
 		
 		btnBuscar.addActionListener(new ActionListener() {
@@ -256,12 +264,16 @@ public class TelaMenuPiloto extends JFrame {
 			for (Bateria b : lista) {
 				data = b.getData().format(formatador);
 				modelo.addRow(new Object[] {
+						b.getId(),
 						b.getKartodromo(),
 						b.getNrMaxPiloto(),
 						b.getTracado(),
 						data,
 						b.getHoraBateria()
 				});
+				
+				table.getColumnModel().getColumn(0).setMinWidth(0);
+				table.getColumnModel().getColumn(0).setMaxWidth(0);
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this,  e.getMessage());
@@ -270,8 +282,10 @@ public class TelaMenuPiloto extends JFrame {
 	
 	private void salvarBateria(Piloto piloto) {
 		PilotoBateria pilotobateria = new PilotoBateria();
+		
+		b.setId(Integer.parseInt(txtIdBateria.getText()));
 
-		//pilotobateria.setBat();
+		pilotobateria.setBat(b);
 		pilotobateria.setPil(piloto);
 
 		
@@ -286,5 +300,4 @@ public class TelaMenuPiloto extends JFrame {
 			e1.printStackTrace();
 		}
 	}
-
 }
