@@ -32,14 +32,15 @@ public class BateriaBo {
 		}
 	}
 	
-	public List<Bateria> listarBateria(String nome, LocalDate data) 
+	public List<Bateria> listarBateriasNome(String nome, LocalDate date) 
 			throws Exception {
 		try {
-			return new BateriaDao().ProcuraKartodromo(nome,data);
+			return new BateriaDao().ProcurarBateria(nome, date);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
+
 		
 	private void validarDadosGrupo(Bateria bateria) throws Exception {
 		if (bateria.getId() < 0) {

@@ -220,7 +220,7 @@ public class TelaMenuPiloto extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					pesquisarBateria();
+					pesquisarBateriaNome();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -240,23 +240,19 @@ public class TelaMenuPiloto extends JFrame {
 		
 	}
 	
-	private void pesquisarBateria() throws ParseException {
-		
-		
+	private void pesquisarBateriaNome() {	
+
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	    String data;
-		
+		String data;
+
+		LocalDate localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
+
 		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();
 		modelo.setRowCount(0);
 		table.setModel(modelo); 
-	    
-	    LocalDate localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
-	    
-	    
-		// consultar grupo 	
+
 		try {
-			List<Bateria> lista = new BateriaBo().listarBateria(txtKartodromo.getText(), localDate);
-			//List<Bateria> lista = new BateriaBo().listarBateria(localDate);
+			List<Bateria> lista = new BateriaBo().listarBateriasNome(txtKartodromo.getText(), localDate);
 			for (Bateria b : lista) {
 				data = b.getData().format(formatador);
 				modelo.addRow(new Object[] {
@@ -290,4 +286,5 @@ public class TelaMenuPiloto extends JFrame {
 			e1.printStackTrace();
 		}
 	}
+
 }
