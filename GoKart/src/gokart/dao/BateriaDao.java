@@ -29,6 +29,13 @@ public class BateriaDao {
 
 		return a.getResultList();		
 	}
+	
+	public List<Bateria> ListaBateria() throws Exception {	
+
+		Query a = em.createQuery("select b from Bateria b");
+
+		return a.getResultList();
+	}
 
 }
 
