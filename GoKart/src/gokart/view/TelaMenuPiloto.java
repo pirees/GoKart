@@ -1,36 +1,40 @@
 package gokart.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
-import gokart.bo.KartodromoBateriaBo;
-import gokart.bo.KartodromoBo;
-import gokart.bo.PilotoBo;
-import gokart.classes.KartodromoBateria;
+import gokart.bo.BateriaBo;
+import gokart.bo.PilotoBateriaBo;
+import gokart.classes.Bateria;
+import gokart.classes.Kartodromo;
 import gokart.classes.Piloto;
-import javax.swing.JList;
+import gokart.classes.PilotoBateria;
+
 import javax.swing.JOptionPane;
-import javax.swing.JToggleButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.awt.Color;
-import javax.swing.JComboBox;
-import com.toedter.calendar.JDateChooser;
+
 
 public class TelaMenuPiloto extends JFrame {
 
@@ -41,6 +45,13 @@ public class TelaMenuPiloto extends JFrame {
 	private JLabel lblNivelPiloto;
 	private JButton btnReserva;
 	private JButton btnCampeonato;
+	private JTextField txtNrPiloto;
+	private JTextField txtHorario;
+	private JTextField txtData;
+	private JTextField txtKartodromoSalvar;
+	
+	Bateria b = new Bateria();
+	private JTextField txtDataConsulta;
 	
 	
 	public TelaMenuPiloto(Piloto piloto) throws Exception {
@@ -71,25 +82,35 @@ public class TelaMenuPiloto extends JFrame {
 		
 		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo");
 		lblKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblKartodromo.setBounds(10, 163, 82, 16);
+		lblKartodromo.setBounds(10, 137, 82, 16);
 		contentPane.add(lblKartodromo);
 		
 		txtKartodromo = new JTextField();
-		txtKartodromo.setBounds(150, 163, 168, 20);
+		txtKartodromo.setBounds(102, 137, 168, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtKartodromoSalvar.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+				txtNrPiloto.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
+				txtData.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+				txtHorario.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+			}
+		});
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column"
+				"New column", "New column", "New column", "New column", "New column"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Object.class, Object.class, Object.class, String.class
+				Object.class, Object.class, Object.class, String.class, Object.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
@@ -130,16 +151,12 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(lblSeuNvel);
 		
 		JButton btnPesquisar = new JButton("Confirmar");
-		btnPesquisar.setBounds(127, 555, 108, 29);
+		btnPesquisar.setBounds(127, 639, 108, 29);
 		contentPane.add(btnPesquisar);
-		
-		JComboBox comboNrMaxPilotos = new JComboBox();
-		comboNrMaxPilotos.setBounds(150, 498, 63, 22);
-		contentPane.add(comboNrMaxPilotos);
 		
 		JLabel lblNmeroDePilotos = new JLabel("N\u00FAmero de pilotos");
 		lblNmeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNmeroDePilotos.setBounds(10, 499, 130, 16);
+		lblNmeroDePilotos.setBounds(10, 595, 130, 16);
 		contentPane.add(lblNmeroDePilotos);
 		
 		JLabel lblNewLabel = new JLabel("Fa\u00E7a agora a sua reserva");
@@ -148,8 +165,57 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnBuscar = new JButton("");
-		btnBuscar.setBounds(328, 162, 30, 23);
+		btnBuscar.setBounds(298, 157, 30, 23);
 		contentPane.add(btnBuscar);
+		
+		txtNrPiloto = new JTextField();
+		txtNrPiloto.setBounds(139, 595, 48, 20);
+		contentPane.add(txtNrPiloto);
+		txtNrPiloto.setColumns(10);
+		
+		JLabel lblHorrio = new JLabel("Hor\u00E1rio");
+		lblHorrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHorrio.setBounds(10, 557, 130, 16);
+		contentPane.add(lblHorrio);
+		
+		JLabel lblData = new JLabel("Data");
+		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblData.setBounds(10, 518, 130, 16);
+		contentPane.add(lblData);
+		
+		JLabel lblKartdromo = new JLabel("Kart\u00F3dromo");
+		lblKartdromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblKartdromo.setBounds(10, 491, 130, 16);
+		contentPane.add(lblKartdromo);
+		
+		txtHorario = new JTextField();
+		txtHorario.setColumns(10);
+		txtHorario.setBounds(139, 557, 77, 20);
+		txtHorario.setEditable(false);
+		contentPane.add(txtHorario);
+		
+		txtData = new JTextField();
+		txtData.setColumns(10);
+		txtData.setBounds(139, 518, 77, 20);
+		txtData.setEditable(false);
+		contentPane.add(txtData);
+		
+		txtKartodromoSalvar = new JTextField();
+		txtKartodromoSalvar.setColumns(10);
+		txtKartodromoSalvar.setBounds(139, 489, 77, 20);
+		txtKartodromoSalvar.setEditable(false);
+		contentPane.add(txtKartodromoSalvar);
+		
+		txtDataConsulta = new JTextField();
+		txtDataConsulta.setColumns(10);
+		txtDataConsulta.setBounds(102, 168, 168, 20);
+		contentPane.add(txtDataConsulta);
+		
+		JLabel lblDataConsulta = new JLabel("Data");
+		lblDataConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDataConsulta.setBounds(10, 164, 82, 16);
+		contentPane.add(lblDataConsulta);
+
 		
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -162,13 +228,19 @@ public class TelaMenuPiloto extends JFrame {
 			}
 				
 		});
+		
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {								
+				salvarBateria(piloto);				
+			}
+				
+		});
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
 	}
 	
-	private void pesquisarBateria() {
-		// Carregar o model na JTable
+	private void pesquisarBateria() throws ParseException {
 		
 		
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -176,22 +248,46 @@ public class TelaMenuPiloto extends JFrame {
 		
 		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();
 		modelo.setRowCount(0);
-		table.setModel(modelo);
-		
+		table.setModel(modelo); 
+	    
+	    LocalDate localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
+	    
+	    
 		// consultar grupo 	
 		try {
-			List<KartodromoBateria> lista = new KartodromoBateriaBo().listarBateria(txtKartodromo.getText());
-			for (KartodromoBateria k : lista) {
-				data = k.getData().format(formatador);
+			List<Bateria> lista = new BateriaBo().listarBateria(txtKartodromo.getText(), localDate);
+			//List<Bateria> lista = new BateriaBo().listarBateria(localDate);
+			for (Bateria b : lista) {
+				data = b.getData().format(formatador);
 				modelo.addRow(new Object[] {
-						k.getKartodromo(),
-						k.getNrMaxPiloto(),
-						k.getTracado(),
-						data
+						b.getKartodromo(),
+						b.getNrMaxPiloto(),
+						b.getTracado(),
+						data,
+						b.getHoraBateria()
 				});
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(this,  e.getMessage());
-		}				
+		}	
+	}
+	
+	private void salvarBateria(Piloto piloto) {
+		PilotoBateria pilotobateria = new PilotoBateria();
+
+		//pilotobateria.setBat();
+		pilotobateria.setPil(piloto);
+
+		
+		PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();
+
+		try {
+
+			JOptionPane.showMessageDialog(null, "Bateria " + pilotobateriaBo.Salvar(pilotobateria));
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
+			e1.printStackTrace();
+		}
 	}
 }

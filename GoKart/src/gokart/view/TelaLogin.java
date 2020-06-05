@@ -9,8 +9,10 @@ import javax.swing.border.EmptyBorder;
 
 import gokart.bo.KartodromoBo;
 import gokart.bo.PilotoBo;
+import gokart.classes.Bateria;
 import gokart.classes.Kartodromo;
 import gokart.classes.Piloto;
+import gokart.classes.PilotoBateria;
 import gokart.dao.PilotoDao;
 
 import javax.swing.JTextField;
@@ -135,6 +137,8 @@ public class TelaLogin extends JFrame {
 				
 				Piloto pi = new Piloto();								
 				PilotoBo pBo = new PilotoBo();	
+
+
 				
 				Kartodromo k = new Kartodromo();
 				KartodromoBo kBo = new KartodromoBo();

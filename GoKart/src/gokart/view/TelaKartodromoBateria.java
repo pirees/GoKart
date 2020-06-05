@@ -1,42 +1,25 @@
 package gokart.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import gokart.bo.KartodromoBateriaBo;
-import gokart.bo.KartodromoBo;
-import gokart.classes.Estado;
+import gokart.bo.BateriaBo;
+import gokart.classes.Bateria;
 import gokart.classes.Kartodromo;
-import gokart.classes.KartodromoBateria;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JToggleButton;
-import javax.swing.JEditorPane;
 import javax.swing.JFormattedTextField;
-import javax.swing.JRadioButton;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDayChooser;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
 public class TelaKartodromoBateria extends JFrame {
@@ -121,29 +104,33 @@ public class TelaKartodromoBateria extends JFrame {
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				LocalDate dataFinal = LocalDate.parse(txtData.getText().replaceAll("/", "-"), formatador);
-				
-				KartodromoBateria kartodromo = new KartodromoBateria();
-				kartodromo.setData(dataFinal);
-				kartodromo.setHoraBateria(txtHorario.getText());
-				kartodromo.setNrMaxPiloto(Integer.parseInt(txtNrMaxPilotos.getText()));
-				kartodromo.setTracado(txtTracado.getText());
-				kartodromo.setKartodromo(k);
-			
-				try {
-					
-					KartodromoBateriaBo kartodromobateriaBo = new KartodromoBateriaBo();
-
-					JOptionPane.showMessageDialog(null, "Reservas configuradas com sucesso " + kartodromobateriaBo.Salvar(kartodromo));
-
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
-					e1.printStackTrace();
-				}
-
+				salvarBateria(k);
 			}
 		});
+	}
+	
+	public void salvarBateria(Kartodromo k) {
+		
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate dataFinal = LocalDate.parse(txtData.getText().replaceAll("/", "-"), formatador);
+		
+		Bateria bateria = new Bateria();
+		bateria.setData(dataFinal);
+		bateria.setHoraBateria(txtHorario.getText());
+		bateria.setNrMaxPiloto(Integer.parseInt(txtNrMaxPilotos.getText()));
+		bateria.setTracado(txtTracado.getText());
+		bateria.setKartodromo(k);
+	
+		try {
+			
+			BateriaBo bateriaBo = new BateriaBo();
+
+			JOptionPane.showMessageDialog(null, "Reservas configuradas com sucesso " + bateriaBo.Salvar(bateria));
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
+			e1.printStackTrace();
+		}
+		
 	}
 }

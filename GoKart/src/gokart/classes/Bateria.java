@@ -26,20 +26,16 @@ public class Bateria implements EntityBase{
 	private LocalDate data;
 	
 	@Column
-	private String nome;
-
+	private String horaBateria;
+	
 	@Column
 	private int nrMaxPiloto;
 	
 	@Column
-	private Time horaBateria;	
-	
+	private String tracado;
+		
 	@ManyToOne
-	private Piloto piloto;
-	
-	@ManyToOne
-	private Kartodromo kartodromo;	
-	
+	private Kartodromo kartodromo;
 
 	public int getId() {
 		return id;
@@ -56,15 +52,15 @@ public class Bateria implements EntityBase{
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
-	public String getNome() {
-		return nome;
+
+	public String getHoraBateria() {
+		return horaBateria;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setHoraBateria(String horaBateria) {
+		this.horaBateria = horaBateria;
 	}
-	
+
 	public int getNrMaxPiloto() {
 		return nrMaxPiloto;
 	}
@@ -73,20 +69,12 @@ public class Bateria implements EntityBase{
 		this.nrMaxPiloto = nrMaxPiloto;
 	}
 
-	public Time getHoraBateria() {
-		return horaBateria;
+	public String getTracado() {
+		return tracado;
 	}
 
-	public void setHoraBateria(Time horaBateria) {
-		this.horaBateria = horaBateria;
-	}
-
-	public Piloto getPiloto() {
-		return piloto;
-	}
-
-	public void setPiloto(Piloto piloto) {
-		this.piloto = piloto;
+	public void setTracado(String tracado) {
+		this.tracado = tracado;
 	}
 
 	public Kartodromo getKartodromo() {
@@ -95,8 +83,11 @@ public class Bateria implements EntityBase{
 
 	public void setKartodromo(Kartodromo kartodromo) {
 		this.kartodromo = kartodromo;
-	}	
+	}
 
+	public Bateria() {
+		super();
+	}
 
 	@Override
 	public int hashCode() {
@@ -106,9 +97,8 @@ public class Bateria implements EntityBase{
 		result = prime * result + ((horaBateria == null) ? 0 : horaBateria.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((kartodromo == null) ? 0 : kartodromo.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + nrMaxPiloto;
-		result = prime * result + ((piloto == null) ? 0 : piloto.hashCode());
+		result = prime * result + ((tracado == null) ? 0 : tracado.hashCode());
 		return result;
 	}
 
@@ -138,29 +128,20 @@ public class Bateria implements EntityBase{
 				return false;
 		} else if (!kartodromo.equals(other.kartodromo))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
 		if (nrMaxPiloto != other.nrMaxPiloto)
 			return false;
-		if (piloto == null) {
-			if (other.piloto != null)
+		if (tracado == null) {
+			if (other.tracado != null)
 				return false;
-		} else if (!piloto.equals(other.piloto))
+		} else if (!tracado.equals(other.tracado))
 			return false;
 		return true;
-	}	
-	
-	@Override
-	public String toString() {
-		return "Bateria [id=" + id + ", data=" + data + ", nome=" + nome + ", nrMaxPiloto=" + nrMaxPiloto
-				+ ", horaBateria=" + horaBateria + ", piloto=" + piloto + ", kartodromo=" + kartodromo + "]";
 	}
 
-	public Bateria() {
-		super();
-	}
+	@Override
+	public String toString() {
+		return "Bateria [id=" + id + ", data=" + data + ", horaBateria=" + horaBateria + ", nrMaxPiloto=" + nrMaxPiloto
+				+ ", tracado=" + tracado + ", kartodromo=" + kartodromo + "]";
+	}	
 	
 }
