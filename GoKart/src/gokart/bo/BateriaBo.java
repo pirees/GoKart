@@ -32,13 +32,8 @@ public class BateriaBo {
 		}
 	}
 	
-	public List<Bateria> listarBateriasNome(String nome, LocalDate date) 
-			throws Exception {
-		try {
-			return new BateriaDao().ProcurarBateria(nome, date);
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
+	public List<Bateria> listarBateriasNome(String nome, LocalDate date) throws Exception {		
+			return new BateriaDao().ProcurarBateria(nome, date);		
 	}
 
 		

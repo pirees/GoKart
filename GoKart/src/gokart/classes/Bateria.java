@@ -141,8 +141,7 @@ public class Bateria implements EntityBase{
 
 	@Override
 	public String toString() {
-		return "Bateria [id=" + id + ", data=" + data + ", horaBateria=" + horaBateria + ", nrMaxPiloto=" + nrMaxPiloto
-				+ ", tracado=" + tracado + ", kartodromo=" + kartodromo + "]";
+		return this.getKartodromo().getNome();
 	}	
 	
 }
