@@ -14,8 +14,12 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -113,10 +117,12 @@ public class TelaKartodromoBateria extends JFrame {
 		
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate dataFinal = LocalDate.parse(txtData.getText().replaceAll("/", "-"), formatador);
-		
+
+		LocalTime horaFormatada = LocalTime.parse(txtHorario.getText());
+	
 		Bateria bateria = new Bateria();
 		bateria.setData(dataFinal);
-		bateria.setHoraBateria(txtHorario.getText());
+		bateria.setHoraBateria(horaFormatada.minusHours(3));
 		bateria.setNrMaxPiloto(Integer.parseInt(txtNrMaxPilotos.getText()));
 		bateria.setTracado(txtTracado.getText());
 		bateria.setKartodromo(k);

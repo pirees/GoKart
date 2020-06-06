@@ -4,6 +4,7 @@ package gokart.classes;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Bateria implements EntityBase{
 	private LocalDate data;
 	
 	@Column
-	private String horaBateria;
+	private LocalTime horaBateria;
 	
 	@Column
 	private int nrMaxPiloto;
@@ -53,11 +54,11 @@ public class Bateria implements EntityBase{
 		this.data = data;
 	}
 
-	public String getHoraBateria() {
+	public LocalTime getHoraBateria() {
 		return horaBateria;
 	}
 
-	public void setHoraBateria(String horaBateria) {
+	public void setHoraBateria(LocalTime horaBateria) {
 		this.horaBateria = horaBateria;
 	}
 

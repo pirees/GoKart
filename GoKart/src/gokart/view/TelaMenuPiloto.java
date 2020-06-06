@@ -49,6 +49,7 @@ public class TelaMenuPiloto extends JFrame {
 	private JTextField txtHorario;
 	private JTextField txtData;
 	private JTextField txtKartodromoSalvar;
+	private LocalDate localDate;
 	
 	Bateria b = new Bateria();
 	private JTextField txtDataConsulta;
@@ -173,6 +174,7 @@ public class TelaMenuPiloto extends JFrame {
 		txtNrPiloto = new JTextField();
 		txtNrPiloto.setBounds(139, 595, 48, 20);
 		contentPane.add(txtNrPiloto);
+		txtNrPiloto.setEditable(false);
 		txtNrPiloto.setColumns(10);
 		
 		JLabel lblHorrio = new JLabel("Hor\u00E1rio");
@@ -247,14 +249,20 @@ public class TelaMenuPiloto extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 	}
+
 	
 	private void pesquisarBateriaNome() {	
 
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
 
-		LocalDate localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
+		
+		//LocalDate localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
 
+		if(!txtDataConsulta.getText().isBlank()) {
+			localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
+		}
+		
 		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();
 		modelo.setRowCount(0);
 		table.setModel(modelo); 

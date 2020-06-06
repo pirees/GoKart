@@ -14,14 +14,22 @@ public class BateriaDao {
 
 	public List<Bateria> ProcurarBateria(String nome, LocalDate data)throws Exception{	
 
-		  Query	a = em.createQuery("select b from Bateria b"
-					+" inner join b.kartodromo k"
-					+" where k.nome like :nome"
-		            +" and b.data like :data");
+		Query a = null;
 		
-		  a.setParameter("nome", "%"+nome.toUpperCase()+"%" );
-		  a.setParameter("data", data );	
+		if(!nome.isBlank()) { 
+		a = em.createQuery("select b from Bateria b"
+					+" inner join b.kartodromo k"
+					+" where k.nome like :nome");
+		            //+" and b.data like :data");
+		
+		  a.setParameter("nome", "%"+nome.toUpperCase()+"%" );		 	
 
+		}else {
+			a = em.createQuery("select b from Bateria b"
+					+" where b.data like :data");
+			
+			 a.setParameter("data", data);
+		}
 		return a.getResultList();		
 	}
 	
