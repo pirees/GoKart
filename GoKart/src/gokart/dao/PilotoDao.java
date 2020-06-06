@@ -31,4 +31,27 @@ public class PilotoDao {
 		return null;		
 	}
 	
+	public Piloto ProcuraEmail(String email)throws Exception{	
+		
+		List<Piloto> lista;
+		
+		Query q = em.createQuery("SELECT p from Piloto p"
+				+" where email = :email");
+		
+		q.setParameter("email", email);				
+		
+		lista = q.getResultList();	
+		
+		/*Caso exista um piloto, entra no bloco do FOR e retorna, caso contrario retorna null*/				
+		for (Piloto pi : lista) {				
+			return pi;					
+		}
+				
+		return null;		
+	}
+	
+	
+	
+	
+	
 }

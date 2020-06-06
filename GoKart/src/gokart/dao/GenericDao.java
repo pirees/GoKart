@@ -1,6 +1,10 @@
 package gokart.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import gokart.classes.EntityBase;
 
 public class GenericDao <T extends EntityBase> {
@@ -17,6 +21,9 @@ public class GenericDao <T extends EntityBase> {
 				em.merge(obj);
 			}
 			em.getTransaction().commit();	
+			
+			
+			
 		}
 		catch(Exception e){
 			throw new Exception("Erro Gravando \n"+e.getMessage());
@@ -36,6 +43,7 @@ public class GenericDao <T extends EntityBase> {
 		}
 		return "Removeu";		
 	}
+	
 		
 	// Recebe uma entidade modelo
 	public T findById(Class<T> classe, int id) {

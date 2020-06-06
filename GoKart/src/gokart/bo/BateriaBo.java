@@ -1,6 +1,11 @@
 package gokart.bo;
 
+
+import java.time.LocalDate;
+import java.util.List;
+
 import gokart.classes.Bateria;
+import gokart.dao.BateriaDao;
 import gokart.dao.GenericDao;
 
 public class BateriaBo {
@@ -26,6 +31,16 @@ public class BateriaBo {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
+	public List<Bateria> listarBateriasNome(String nome, LocalDate date) 
+			throws Exception {
+		try {
+			return new BateriaDao().ProcurarBateria(nome, date);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+
 		
 	private void validarDadosGrupo(Bateria bateria) throws Exception {
 		if (bateria.getId() < 0) {

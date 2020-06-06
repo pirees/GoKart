@@ -176,9 +176,7 @@ public class Kartodromo implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "Kartodromo [id=" + id + ", cnpj=" + cnpj + ", nome=" + nome + ", endereco=" + endereco + ", email="
-				+ email + ", senha=" + senha + ", repetirSenha=" + repetirSenha + ", horaAtendimento=" + horaAtendimento
-				+ ", est=" + est + "]";
+		return getNome();
 	}
 	
 }
