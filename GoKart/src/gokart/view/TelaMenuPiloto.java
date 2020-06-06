@@ -118,6 +118,12 @@ public class TelaMenuPiloto extends JFrame {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		table.setBounds(10, 203, 355, 275);
 		contentPane.add(table);

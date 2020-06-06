@@ -16,19 +16,22 @@ public class BateriaDao {
 
 		Query a = null;
 		
-		if(!nome.isBlank()) { 
-		a = em.createQuery("select b from Bateria b"
-					+" inner join b.kartodromo k"
-					+" where k.nome like :nome");
-		            //+" and b.data like :data");
+		if(nome.isBlank()) {
+		a = em.createQuery("select b from Bateria b"				
+		            +" where b.data <= :data");	
 		
-		  a.setParameter("nome", "%"+nome.toUpperCase()+"%" );		 	
+		  a.setParameter("data", data);
 
 		}else {
 			a = em.createQuery("select b from Bateria b"
-					+" where b.data like :data");
+					+" inner join b.kartodromo k"
+					+" where k.nome like :nome"
+		            +" and b.data <= :data");
 			
-			 a.setParameter("data", data);
+			a.setParameter("nome", "%"+nome.toUpperCase()+"%" );
+			a.setParameter("data", data);
+			
+			
 		}
 		return a.getResultList();		
 	}

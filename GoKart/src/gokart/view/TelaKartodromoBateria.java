@@ -122,7 +122,7 @@ public class TelaKartodromoBateria extends JFrame {
 	
 		Bateria bateria = new Bateria();
 		bateria.setData(dataFinal);
-		bateria.setHoraBateria(horaFormatada.minusHours(3));
+		bateria.setHoraBateria(horaFormatada);
 		bateria.setNrMaxPiloto(Integer.parseInt(txtNrMaxPilotos.getText()));
 		bateria.setTracado(txtTracado.getText());
 		bateria.setKartodromo(k);
