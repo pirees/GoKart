@@ -34,6 +34,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 
 public class TelaMenuPiloto extends JFrame {
@@ -50,10 +51,20 @@ public class TelaMenuPiloto extends JFrame {
 	private JTextField txtData;
 	private JTextField txtKartodromoSalvar;
 	private LocalDate localDate;
-	
-	Bateria b = new Bateria();
+	private JLabel lblHey;
 	private JTextField txtDataConsulta;
 	private JTextField txtIdBateria;
+	private JLabel lblSeuNvel;
+	private JButton btnConfirmar; 
+	private JLabel lblDataConsulta;
+	private JLabel lblKartdromo;
+	private JLabel lblData;
+	private JLabel lblHorario;
+	private JButton btnBuscar;
+	private JLabel lblBoasVindas;
+	private JLabel lblNumeroDePilotos;
+	private JButton btnConvite;
+	private JLabel lblKartodromo;
 	
 	
 	public TelaMenuPiloto(Piloto piloto) throws Exception {
@@ -64,10 +75,6 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel label = new JLabel("");
-		label.setBounds(127, 622, 48, 14);
-		contentPane.add(label);
 		
 	    lblNomePiloto = new JLabel("");
 	    lblNomePiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -82,7 +89,7 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(lblNivelPiloto);
 		lblNivelPiloto.setText(piloto.getNivel().toString());
 		
-		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo");
+		lblKartodromo = new JLabel("Kart\u00F3dromo");
 		lblKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblKartodromo.setBounds(10, 137, 82, 16);
 		contentPane.add(lblKartodromo);
@@ -109,26 +116,13 @@ public class TelaMenuPiloto extends JFrame {
 				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"IdBateria", "New column", "New column", "New column", "New column", "New column"
+				"New column", "Kartódromo", "Nr Max Piloto", "Traçado", "Data", "Hora"
 			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Object.class, Object.class, Object.class, String.class, Object.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.setBounds(10, 203, 355, 275);
+		));
+		table.setBounds(21, 228, 333, 236);
 		contentPane.add(table);
 		
-		JButton btnConvite = new JButton("");
+		btnConvite = new JButton("");
 		btnConvite.setToolTipText("Convites Pendentes");
 		btnConvite.setBackground(Color.WHITE);
 		btnConvite.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/convite-32.png")));
@@ -149,32 +143,35 @@ public class TelaMenuPiloto extends JFrame {
 		btnCampeonato.setBounds(325, 101, 40, 35);
 		contentPane.add(btnCampeonato);
 		
-		JLabel lblHey = new JLabel("Olá,");
+		lblHey = new JLabel("Olá,");
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblHey.setBounds(22, 25, 40, 24);
 		contentPane.add(lblHey);
 		
-		JLabel lblSeuNvel = new JLabel("Seu n\u00EDvel \u00E9:");
+		lblSeuNvel = new JLabel("Seu n\u00EDvel \u00E9:");
 		lblSeuNvel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSeuNvel.setBounds(22, 58, 107, 14);
 		contentPane.add(lblSeuNvel);
 		
-		JButton btnPesquisar = new JButton("Confirmar");
-		btnPesquisar.setBounds(127, 639, 108, 29);
-		contentPane.add(btnPesquisar);
+		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setBounds(127, 639, 108, 29);
+		contentPane.add(btnConfirmar);
 		
-		JLabel lblNmeroDePilotos = new JLabel("N\u00FAmero de pilotos");
-		lblNmeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNmeroDePilotos.setBounds(10, 595, 130, 16);
-		contentPane.add(lblNmeroDePilotos);
+		lblNumeroDePilotos = new JLabel("N\u00FAmero de pilotos");
+		lblNumeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNumeroDePilotos.setBounds(10, 595, 130, 16);
+		contentPane.add(lblNumeroDePilotos);
 		
-		JLabel lblNewLabel = new JLabel("Fa\u00E7a agora a sua reserva");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(92, 106, 180, 30);
-		contentPane.add(lblNewLabel);
+		lblBoasVindas = new JLabel("Fa\u00E7a agora a sua reserva");
+		lblBoasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblBoasVindas.setBounds(92, 106, 180, 30);
+		contentPane.add(lblBoasVindas);
 		
-		JButton btnBuscar = new JButton("");
-		btnBuscar.setBounds(298, 157, 30, 23);
+		btnBuscar = new JButton("");
+		btnBuscar.setToolTipText("Pesquisar");
+		btnBuscar.setBackground(Color.WHITE);
+		btnBuscar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/pesquisar-32.png")));
+		btnBuscar.setBounds(280, 149, 40, 31);
 		contentPane.add(btnBuscar);
 		
 		txtNrPiloto = new JTextField();
@@ -183,17 +180,17 @@ public class TelaMenuPiloto extends JFrame {
 		txtNrPiloto.setEditable(false);
 		txtNrPiloto.setColumns(10);
 		
-		JLabel lblHorrio = new JLabel("Hor\u00E1rio");
-		lblHorrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblHorrio.setBounds(10, 557, 130, 16);
-		contentPane.add(lblHorrio);
+		lblHorario = new JLabel("Hor\u00E1rio");
+		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHorario.setBounds(10, 557, 130, 16);
+		contentPane.add(lblHorario);
 		
-		JLabel lblData = new JLabel("Data");
+		lblData = new JLabel("Data");
 		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblData.setBounds(10, 518, 130, 16);
 		contentPane.add(lblData);
 		
-		JLabel lblKartdromo = new JLabel("Kart\u00F3dromo");
+		lblKartdromo = new JLabel("Kart\u00F3dromo");
 		lblKartdromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblKartdromo.setBounds(10, 491, 130, 16);
 		contentPane.add(lblKartdromo);
@@ -221,7 +218,7 @@ public class TelaMenuPiloto extends JFrame {
 		txtDataConsulta.setBounds(102, 168, 168, 20);
 		contentPane.add(txtDataConsulta);
 		
-		JLabel lblDataConsulta = new JLabel("Data");
+		lblDataConsulta = new JLabel("Data");
 		lblDataConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataConsulta.setBounds(10, 164, 82, 16);
 		contentPane.add(lblDataConsulta);
@@ -232,7 +229,7 @@ public class TelaMenuPiloto extends JFrame {
 		txtIdBateria.setVisible(false);
 		contentPane.add(txtIdBateria);
 
-		
+
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -242,18 +239,18 @@ public class TelaMenuPiloto extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-				
+
 		});
-		
-		btnPesquisar.addActionListener(new ActionListener() {
+
+		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {								
 				salvarBateria(piloto);				
 			}
-				
+
 		});
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
+
 	}
 
 	
@@ -261,9 +258,6 @@ public class TelaMenuPiloto extends JFrame {
 
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
-
-		
-		//LocalDate localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
 
 		if(!txtDataConsulta.getText().isBlank()) {
 			localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
@@ -296,6 +290,7 @@ public class TelaMenuPiloto extends JFrame {
 	
 	private void salvarBateria(Piloto piloto) {
 		PilotoBateria pilotobateria = new PilotoBateria();
+		Bateria b = new Bateria();
 		
 		b.setId(Integer.parseInt(txtIdBateria.getText()));
 
