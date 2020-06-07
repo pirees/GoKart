@@ -35,6 +35,7 @@ import java.util.Date;
 import java.util.List;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import java.awt.Cursor;
 
 
 public class TelaMenuPiloto extends JFrame {
@@ -67,7 +68,7 @@ public class TelaMenuPiloto extends JFrame {
 	private JLabel lblKartodromo;
 	
 	
-	public TelaMenuPiloto(Piloto piloto) throws Exception {
+	public TelaMenuPiloto(Piloto piloto){
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
@@ -137,6 +138,8 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(btnReserva);
 		
 		btnCampeonato = new JButton("");
+		btnCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
 		btnCampeonato.setToolTipText("Novo Campeonato");
 		btnCampeonato.setBackground(Color.WHITE);
 		btnCampeonato.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/campeonato-32.png")));
@@ -248,6 +251,16 @@ public class TelaMenuPiloto extends JFrame {
 			}
 
 		});
+		
+		btnCampeonato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaCampeonato cp = new TelaCampeonato(piloto);				
+				dispose();
+			}
+		});
+		
+		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 

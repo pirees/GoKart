@@ -48,6 +48,7 @@ public class TelaCampeonato extends JFrame {
 	private JScrollPane pnBateria;
 
 	private List<String[]> listaResultado = new ArrayList<>();
+	private JButton btVoltar;
 
 	/**
 	 * Launch the application.
@@ -92,7 +93,7 @@ public class TelaCampeonato extends JFrame {
 		painel.add(btNovoCampeonato);
 
 		btClassificacao = new JButton("Classifica\u00E7\u00E3o");
-		
+
 		btClassificacao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btClassificacao.setBounds(10, 180, 123, 23);
 		painel.add(btClassificacao);
@@ -123,8 +124,6 @@ public class TelaCampeonato extends JFrame {
 		pnBateria = new JScrollPane();
 		pnBateria.setBounds(10, 323, 355, 148);
 		painel.add(pnBateria);
-
-		CarregaDadosTela(piloto);
 
 		tbBateria = new JTable();
 
@@ -161,6 +160,12 @@ public class TelaCampeonato extends JFrame {
 		lbCamp.setBounds(49, 48, 140, 22);
 		painel.add(lbCamp);
 
+		btVoltar = new JButton("Voltar");
+
+		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btVoltar.setBounds(10, 645, 89, 23);
+		painel.add(btVoltar);
+
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 
@@ -179,7 +184,8 @@ public class TelaCampeonato extends JFrame {
 		/* Adicionar Bateria no Campeonato */
 		btAddBateria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaAddBateriaCampeonato taddbt = new TelaAddBateriaCampeonato(piloto);
+				TelaAddBateriaCampeonato taddbt = new TelaAddBateriaCampeonato(piloto,
+						(Campeonato) cbCampeonato.getSelectedItem());
 				dispose();
 
 			}
@@ -210,16 +216,27 @@ public class TelaCampeonato extends JFrame {
 
 			}
 		});
-		
+
 		btClassificacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				TelaPontuacaoBateriaCampeonato tptb = new TelaPontuacaoBateriaCampeonato((Campeonato)cbCampeonato.getSelectedItem());
+
+				TelaPontuacaoBateriaCampeonato tptb = new TelaPontuacaoBateriaCampeonato(
+						(Campeonato) cbCampeonato.getSelectedItem());
 				dispose();
-				
+
 			}
 		});
-		
+
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaMenuPiloto tmp = new TelaMenuPiloto(piloto);
+				dispose();
+
+			}
+		});
+
+		CarregaDadosTela(piloto);
 
 	}
 
@@ -240,19 +257,26 @@ public class TelaCampeonato extends JFrame {
 
 			BateriaCampeonatoBo bcBo = new BateriaCampeonatoBo();
 
+			Object obj = cbCampeonato.getSelectedItem();
+
 			listaResultado.clear();
-			for (BateriaCampeonato b : bcBo.listaBateriaCampeonato((Campeonato) cbCampeonato.getSelectedItem())) {
 
-				listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(),
-						String.valueOf(b.getId_bateria().getData()), String.valueOf(b.getId_bateria().getHoraBateria()),
-						"?" });
+			if (!(obj == null)) {
 
-			}
+				for (BateriaCampeonato b : bcBo.listaBateriaCampeonato((Campeonato) cbCampeonato.getSelectedItem())) {
 
-			if (!listaResultado.isEmpty()) {
-				tbBateria.setModel(new DefaultTableModel(listaResultado.toArray(new String[listaResultado.size()][]),
-						new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }));
+					listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(),
+							String.valueOf(b.getId_bateria().getData()),
+							String.valueOf(b.getId_bateria().getHoraBateria()), "?" });
 
+				}
+
+				if (!listaResultado.isEmpty()) {
+					tbBateria.setModel(new DefaultTableModel(
+							listaResultado.toArray(new String[listaResultado.size()][]), new String[] {
+									"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }));
+
+				}
 			}
 
 		} catch (Exception e) {

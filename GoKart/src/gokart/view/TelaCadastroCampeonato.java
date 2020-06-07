@@ -217,6 +217,8 @@ public class TelaCadastroCampeonato extends JFrame {
 
 			/* Salva o Campeonato no Banco de Dados */
 			CampeonatoBo cpBo = new CampeonatoBo();
+			
+			
 			cpBo.Salvar(cp);
 			
 			

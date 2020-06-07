@@ -34,13 +34,15 @@ public class BateriaCampeonatoBo {
 		}
 	}
 
-	public List<BateriaCampeonato> listaBateriaCampeonato(Campeonato cp) throws Exception{
-		
-		
-		BateriaCampeonatoDao bcDao = new BateriaCampeonatoDao();
-	
-		return bcDao.listaBateriaCp(cp);				
-		
+	public List<BateriaCampeonato> listaBateriaCampeonato(Campeonato cp) throws Exception {
+
+		if (!(cp == null)) {
+			BateriaCampeonatoDao bcDao = new BateriaCampeonatoDao();
+			return bcDao.listaBateriaCp(cp);
+		}
+
+		return null;
+
 	}
 
 	private void validarDadosGrupo(BateriaCampeonato btCampeonato) throws Exception {

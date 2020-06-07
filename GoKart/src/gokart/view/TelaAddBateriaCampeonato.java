@@ -1,6 +1,7 @@
 package gokart.view;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,9 +11,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
 import gokart.bo.BateriaBo;
+import gokart.bo.BateriaCampeonatoBo;
 import gokart.classes.Bateria;
+import gokart.classes.BateriaCampeonato;
+import gokart.classes.Campeonato;
 import gokart.classes.Piloto;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -47,7 +52,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAddBateriaCampeonato frame = new TelaAddBateriaCampeonato(null);
+					TelaAddBateriaCampeonato frame = new TelaAddBateriaCampeonato(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +64,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAddBateriaCampeonato(Piloto piloto) {
+	public TelaAddBateriaCampeonato(Piloto piloto, Campeonato camp) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
@@ -138,7 +143,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		tbBateriaCamp = new JTable();
 		tbBateriaCamp.setModel(new DefaultTableModel(
-				new Object[][] { { /*null, null, null, null, null }, { null, null, null, null, null */}, },
+				new Object[][] { { /* null, null, null, null, null }, { null, null, null, null, null */ }, },
 				new String[] { "Kart\u00F3dromo", "Nr Max Piloto", "Tra\u00E7ado", "Data", "Hora" }) {
 			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class, String.class, String.class };
 
@@ -146,12 +151,13 @@ public class TelaAddBateriaCampeonato extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
-		
+
 		modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
 		modeloCamp.setRowCount(0);
 		tbBateriaCamp.setModel(modeloCamp);
 		
 		
+
 		pnBateria.setViewportView(tbBateriaCamp);
 
 		JButton btSalvar = new JButton("Salvar");
@@ -166,6 +172,19 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		btRemover.setBounds(10, 524, 89, 23);
 		contentPane.add(btRemover);
+		
+		btPesquisar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btAddBat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btRemover.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		this.setVisible(true);
+		this.setLocationRelativeTo(null);
+		
+		txtCampeonato.setText(camp.getNomeCampeonato());
+		
+		/*Eventos*/
 
 		btPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -182,7 +201,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 				String data;
 
 				modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
-				
+
 				/* Se existir campo selecionado, cria Bateria */
 				if (!(tbResultado.getSelectedRow() < 0)) {
 
@@ -192,10 +211,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 					modeloCamp.addRow(new Object[] { b, b.getNrMaxPiloto(), b.getTracado(), data, b.getHoraBateria() });
 
 					tbBateriaCamp.setModel(modeloCamp);
-
 				}
-
-				// *txtTeste.setText(b.getKartodromo().getNome());*/
 
 			}
 		});
@@ -203,19 +219,52 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		/* Remove bateria do Campeonato */
 		btRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
 				modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
-				
-				/* Se existir campo selecionado, cria Bateria */
-				if (!(tbBateriaCamp.getSelectedRow() < 0)) {					
-					modeloCamp.removeRow(tbBateriaCamp.getSelectedRow());					
+
+				/* Se existir campo selecionado */
+				if (!(tbBateriaCamp.getSelectedRow() < 0)) {
+					modeloCamp.removeRow(tbBateriaCamp.getSelectedRow());
 				}
-				
-				tbBateriaCamp.setModel(modeloCamp);				
+
+				tbBateriaCamp.setModel(modeloCamp);
 
 			}
 		});
+		
+		btSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {			
+				
+				
+				int i = 0;				
+				for(i = 0; i < tbBateriaCamp.getModel().getRowCount(); i++) {
+						
+						BateriaCampeonato bCp = new BateriaCampeonato();
+						
+						bCp.setId_bateria((Bateria) tbBateriaCamp.getModel().getValueAt(i, 0));
+						bCp.setId_campeonato(camp);
+						
+						BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();
+						
+						try {
+							bcpBo.Salvar(bCp);
+						} catch (Exception e1) {			
+							JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+							e1.printStackTrace();
+						}					
+					
+				}							
+
+			}
+		});
+		
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCampeonato tc = new TelaCampeonato(piloto);
+				dispose();
+			}
+		});
+		
 
 	}
 
@@ -248,7 +297,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			tbResultado.setModel(modelo);
 
 		} catch (Exception e) {
-
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 
