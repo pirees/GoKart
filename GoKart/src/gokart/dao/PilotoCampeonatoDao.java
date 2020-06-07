@@ -17,7 +17,7 @@ private static EntityManager em = Fabrica.getEntityManager();
 		Query q = em.createQuery("SELECT pcp from PilotoCampeonato pcp"
 				+ " where piloto_id = :piloto");	
 		
-		q.setParameter("piloto", 1);
+		q.setParameter("piloto", piloto.getId());
 		
 		return q.getResultList();				
 	}	
