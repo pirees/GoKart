@@ -34,6 +34,11 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	private JFormattedTextField txtData;
 	private JTable tbResultado;
 	private LocalDate localDate;
+	private JButton btAddBat;
+	private JTable tbBateriaCamp;
+	private JButton btRemover;
+
+	private DefaultTableModel modeloCamp;
 
 	/**
 	 * Launch the application.
@@ -61,35 +66,35 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		lblCampeonato = new JLabel("Campeonato:");
 		lblCampeonato.setBounds(10, 11, 94, 14);
 		contentPane.add(lblCampeonato);
-		
+
 		txtCampeonato = new JTextField();
 		txtCampeonato.setEditable(false);
 		txtCampeonato.setBounds(10, 36, 355, 20);
 		contentPane.add(txtCampeonato);
 		txtCampeonato.setColumns(10);
-		
+
 		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo:");
-		lblKartodromo.setBounds(10, 180, 94, 14);
+		lblKartodromo.setBounds(10, 88, 94, 14);
 		contentPane.add(lblKartodromo);
-		
+
 		txtKartodromo = new JTextField();
-		txtKartodromo.setBounds(98, 177, 267, 20);
+		txtKartodromo.setBounds(98, 85, 267, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
-		
+
 		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(10, 208, 94, 14);
+		lblData.setBounds(10, 116, 94, 14);
 		contentPane.add(lblData);
-		
+
 		txtData = new JFormattedTextField();
-		txtData.setBounds(98, 205, 144, 20);
+		txtData.setBounds(98, 113, 144, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(20);
-		
+
 		MaskFormatter maskData;
 		try {
 			maskData = new MaskFormatter("##/##/####");
@@ -98,92 +103,154 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
+
 		JButton btPesquisar = new JButton("Pesquisar");
-		
-		btPesquisar.setBounds(252, 204, 113, 23);
+
+		btPesquisar.setBounds(252, 112, 113, 23);
 		contentPane.add(btPesquisar);
-		
+
 		JScrollPane pnScroll = new JScrollPane();
-		pnScroll.setBounds(10, 233, 355, 200);
+		pnScroll.setBounds(10, 141, 355, 200);
 		contentPane.add(pnScroll);
-		
+
 		tbResultado = new JTable();
-		tbResultado.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Kart\u00F3dromo", "Nr Max Piloto", "Tra\u00E7ado", "Data", "Hora"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Object.class, Integer.class, String.class, String.class, String.class
-			};
+		tbResultado.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
+				new String[] { "Kart\u00F3dromo", "Nr Max Piloto", "Tra\u00E7ado", "Data", "Hora" }) {
+			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class, String.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
 		pnScroll.setViewportView(tbResultado);
-		
-		this.setVisible(true);
-		this.setLocationRelativeTo(null);
-		
-		btPesquisar.addActionListener(new ActionListener() {
+
+		btAddBat = new JButton("Add");
+		btAddBat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PesquisaBateria();
-				
+			}
+		});
+		btAddBat.setBounds(10, 352, 89, 23);
+		contentPane.add(btAddBat);
+
+		JScrollPane pnBateria = new JScrollPane();
+		pnBateria.setBounds(10, 386, 355, 127);
+		contentPane.add(pnBateria);
+
+		tbBateriaCamp = new JTable();
+		tbBateriaCamp.setModel(new DefaultTableModel(
+				new Object[][] { { /*null, null, null, null, null }, { null, null, null, null, null */}, },
+				new String[] { "Kart\u00F3dromo", "Nr Max Piloto", "Tra\u00E7ado", "Data", "Hora" }) {
+			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class, String.class, String.class };
+
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
 			}
 		});
 		
+		modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
+		modeloCamp.setRowCount(0);
+		tbBateriaCamp.setModel(modeloCamp);
 		
+		
+		pnBateria.setViewportView(tbBateriaCamp);
+
+		JButton btSalvar = new JButton("Salvar");
+		btSalvar.setBounds(10, 645, 89, 23);
+		contentPane.add(btSalvar);
+
+		JButton btVoltar = new JButton("Voltar");
+		btVoltar.setBounds(109, 645, 89, 23);
+		contentPane.add(btVoltar);
+
+		btRemover = new JButton("Remover");
+
+		btRemover.setBounds(10, 524, 89, 23);
+		contentPane.add(btRemover);
+
+		btPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PesquisaBateria();
+
+			}
+		});
+
+		/* Adiciona bateria no campeonato */
+		btAddBat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				String data;
+
+				modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
+				
+				/* Se existir campo selecionado, cria Bateria */
+				if (!(tbResultado.getSelectedRow() < 0)) {
+
+					Bateria b = (Bateria) tbResultado.getModel().getValueAt(tbResultado.getSelectedRow(), 0);
+
+					data = b.getData().format(formatador);
+					modeloCamp.addRow(new Object[] { b, b.getNrMaxPiloto(), b.getTracado(), data, b.getHoraBateria() });
+
+					tbBateriaCamp.setModel(modeloCamp);
+
+				}
+
+				// *txtTeste.setText(b.getKartodromo().getNome());*/
+
+			}
+		});
+
+		/* Remove bateria do Campeonato */
+		btRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
+				
+				/* Se existir campo selecionado, cria Bateria */
+				if (!(tbBateriaCamp.getSelectedRow() < 0)) {					
+					modeloCamp.removeRow(tbBateriaCamp.getSelectedRow());					
+				}
+				
+				tbBateriaCamp.setModel(modeloCamp);				
+
+			}
+		});
+
 	}
-	
-	public void PesquisaBateria()	{
-		
+
+	public void PesquisaBateria() {
+
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
-		
-		if(!txtData.getText().isBlank()) {
+
+		if (!txtData.getText().isBlank()) {
 			localDate = LocalDate.parse(txtData.getText(), formatador);
 		}
-		
-		DefaultTableModel modelo = (DefaultTableModel)this.tbResultado.getModel();		
-		/*tbResultado.setModel(modelo);*/
-		
-		
-		try {			
-			
-			BateriaBo bBo = new BateriaBo();			
-			
-			List<Bateria> lista = bBo.listarBateriasNome(txtKartodromo.getText(), localDate);	
-			
-			modelo.setRowCount(0);		
-			for (Bateria b : lista) {			
-				
+
+		DefaultTableModel modelo = (DefaultTableModel) this.tbResultado.getModel();
+		/* tbResultado.setModel(modelo); */
+
+		try {
+
+			BateriaBo bBo = new BateriaBo();
+
+			List<Bateria> lista = bBo.listarBateriasNome(txtKartodromo.getText(), localDate);
+
+			modelo.setRowCount(0);
+			for (Bateria b : lista) {
+
 				data = b.getData().format(formatador);
-				modelo.addRow(new Object[] {
-						b,						
-						b.getNrMaxPiloto(),
-						b.getTracado(),
-						data,
-						b.getHoraBateria()
-				});
-				
-			}		
-			
+				modelo.addRow(new Object[] { b, b.getNrMaxPiloto(), b.getTracado(), data, b.getHoraBateria() });
+
+			}
+
 			tbResultado.setModel(modelo);
-			
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
+
 	}
 }
