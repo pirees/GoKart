@@ -5,18 +5,27 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
+
 import gokart.bo.KartodromoBo;
 import gokart.classes.Estado;
 import gokart.classes.Kartodromo;
+import gokart.dao.EstadoDao;
+import gokart.viacep.WebServiceCep;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+
 import java.awt.SystemColor;
 
 public class TelaCadastroKartodromo extends JFrame {
@@ -29,6 +38,8 @@ public class TelaCadastroKartodromo extends JFrame {
 	private JPasswordField txtSenha;
 	private JPasswordField txtReptSenha;
 	private JTextField txtCidade;
+	private JComboBox cbEstado;
+	private JTextField txtCEP;
 
 	/**
 	 * Create the frame.
@@ -68,16 +79,16 @@ public class TelaCadastroKartodromo extends JFrame {
 		contentPane.add(txtCNPJ);
 		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o");
-		lblEndereo.setBounds(10, 227, 56, 14);
+		lblEndereo.setBounds(10, 264, 56, 14);
 		contentPane.add(lblEndereo);
 		
 		txtEndereco = new JTextField();
 		txtEndereco.setColumns(10);
-		txtEndereco.setBounds(10, 252, 296, 20);
+		txtEndereco.setBounds(10, 279, 296, 20);
 		contentPane.add(txtEndereco);
 		
 		JLabel lblEstado = new JLabel("Estado");
-		lblEstado.setBounds(10, 294, 56, 14);
+		lblEstado.setBounds(10, 366, 56, 14);
 		contentPane.add(lblEstado);
 		
 		JLabel lblEmail = new JLabel("E-mail");
@@ -113,21 +124,60 @@ public class TelaCadastroKartodromo extends JFrame {
 		btnVoltar.setBounds(122, 645, 89, 23);
 		contentPane.add(btnVoltar);
 		
-		JComboBox comboEstado = new JComboBox();
-		comboEstado.setBounds(10, 319, 128, 22);
-		contentPane.add(comboEstado);
+		cbEstado = new JComboBox();
+		cbEstado.setBounds(10, 391, 56, 22);
+		contentPane.add(cbEstado);
 		
 		txtCidade = new JTextField();
 		txtCidade.setColumns(10);
-		txtCidade.setBounds(10, 393, 296, 20);
+		txtCidade.setBounds(10, 335, 296, 20);
 		contentPane.add(txtCidade);
 		
 		JLabel lblCidade = new JLabel("Cidade");
-		lblCidade.setBounds(10, 368, 56, 14);
+		lblCidade.setBounds(10, 310, 56, 14);
 		contentPane.add(lblCidade);
+		
+		JLabel lblCep = new JLabel("CEP");
+		lblCep.setBounds(10, 219, 56, 14);
+		contentPane.add(lblCep);
+		
+		txtCEP = new JTextField();
+		try {
+			txtCEP = new JFormattedTextField(new MaskFormatter("##.###-###"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		txtCEP.setColumns(10);
+		txtCEP.setBounds(10, 233, 128, 20);
+		contentPane.add(txtCEP);
+		
+		JButton btnBuscar = new JButton("BUSCAR");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String cep = txtCEP.getText();
+				WebServiceCep wsc = WebServiceCep.searchCep(cep);
+
+				if(wsc.wasSuccessful()) {
+					txtCidade.setText(wsc.getCidade());
+					txtEndereco.setText(wsc.getLogradouro());
+					cbEstado.addItem(wsc.getUf());
+
+				} else {
+					JOptionPane.showMessageDialog(null, wsc.getResultText());
+				}
+
+			}
+		});
+		btnBuscar.setBounds(158, 232, 89, 23);
+		contentPane.add(btnBuscar);
 		
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+		/*Carrega dados nas ComboBox*/		
+		LoadCb();
 		
 		/* Botão Cancelar */
 		btnVoltar.addActionListener(new ActionListener() {
@@ -149,7 +199,7 @@ public class TelaCadastroKartodromo extends JFrame {
 				kartodromo.setEndereco(txtEndereco.getText());
 				kartodromo.setEmail(txtEmail.getText());
 				kartodromo.setSenha(txtSenha.getText());
-				kartodromo.setEst((Estado) comboEstado.getSelectedItem());
+				kartodromo.setEst((Estado) cbEstado.getSelectedItem());
 
 				KartodromoBo kartodromoBo = new KartodromoBo();
 
@@ -164,5 +214,12 @@ public class TelaCadastroKartodromo extends JFrame {
 
 			}
 		});
+	}
+	public void LoadCb() {		
+		EstadoDao eDao = new EstadoDao();
+		
+		for(Estado e: eDao.LoadEstado()) {
+			cbEstado.addItem(e);			
+		}
 	}
 }
