@@ -4,6 +4,7 @@ package gokart.view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
@@ -17,6 +18,7 @@ import gokart.classes.PilotoBateria;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -66,6 +68,7 @@ public class TelaMenuPiloto extends JFrame {
 	private JLabel lblNumeroDePilotos;
 	private JButton btnConvite;
 	private JLabel lblKartodromo;
+	private JScrollPane scrollPane;
 	
 	
 	public TelaMenuPiloto(Piloto piloto){
@@ -82,8 +85,7 @@ public class TelaMenuPiloto extends JFrame {
 		lblNomePiloto.setBounds(56, 23, 160, 29);
 		contentPane.add(lblNomePiloto);
 		lblNomePiloto.setText(piloto.getNome());
-		
-		
+			
 		lblNivelPiloto = new JLabel("");
 		lblNivelPiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNivelPiloto.setBounds(116, 51, 107, 29);
@@ -117,11 +119,24 @@ public class TelaMenuPiloto extends JFrame {
 				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "Kartódromo", "Nr Max Piloto", "Traçado", "Data", "Hora"
+				"New column", "Kart\u00F3dromo", "Pilotos", "Tra\u00E7ado", "Data", "Hora"
 			}
 		));
-		table.setBounds(21, 228, 333, 236);
-		contentPane.add(table);
+		table.getColumnModel().getColumn(0).setPreferredWidth(0);
+		table.getColumnModel().getColumn(0).setMinWidth(0);
+		table.getColumnModel().getColumn(0).setMaxWidth(0);
+		table.setBounds(32, 266, 333, 236);
+		//contentPane.add(table);
+		
+		//CENTRALIZANDO OS ITENS DA TABELA
+		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+		centralizado.setHorizontalAlignment(SwingConstants.CENTER);	
+
+		table.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(5).setCellRenderer(centralizado);
 		
 		btnConvite = new JButton("");
 		btnConvite.setToolTipText("Convites Pendentes");
@@ -217,6 +232,12 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(txtKartodromoSalvar);
 		
 		txtDataConsulta = new JTextField();
+		try {
+			txtDataConsulta = new JFormattedTextField(new MaskFormatter("##/##/####"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		txtDataConsulta.setColumns(10);
 		txtDataConsulta.setBounds(102, 168, 168, 20);
 		contentPane.add(txtDataConsulta);
@@ -231,6 +252,11 @@ public class TelaMenuPiloto extends JFrame {
 		txtIdBateria.setBounds(283, 534, 48, 20);
 		txtIdBateria.setVisible(false);
 		contentPane.add(txtIdBateria);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 199, 355, 281);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(table);
 
 
 		btnBuscar.addActionListener(new ActionListener() {
@@ -263,9 +289,7 @@ public class TelaMenuPiloto extends JFrame {
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-
 	}
-
 	
 	private void pesquisarBateriaNome() {	
 
