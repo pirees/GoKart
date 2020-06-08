@@ -245,20 +245,11 @@ public class TelaCampeonato extends JFrame {
 		try {
 
 			PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();
-			
-			System.out.println(piloto.getNome());
 
 			for (PilotoCampeonato pc : pcpBo.ListarPilotoCampeonato(piloto)) {
-				
-				System.out.println(pc.getCamp().getNomeCampeonato());
-				
-				cbCampeonato.addItem(pc.getCamp());
-			}
 
-			/*
-			 * listaResultado.add(new String[]{con.getNome(),
-			 * String.valueOf(con.getDataCadastro()), String.valueOf(con.getValor())});
-			 */
+				cbCampeonato.addItem(pc.getCamp());
+			}	
 
 			BateriaCampeonatoBo bcBo = new BateriaCampeonatoBo();
 

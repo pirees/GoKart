@@ -126,6 +126,13 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			
+			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+			
 		});
 		pnScroll.setViewportView(tbResultado);
 
@@ -150,13 +157,18 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+
+			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+
 		});
 
 		modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
-		modeloCamp.setRowCount(0);
+		modeloCamp.setRowCount(0);		
 		tbBateriaCamp.setModel(modeloCamp);
-		
-		
 
 		pnBateria.setViewportView(tbBateriaCamp);
 
@@ -172,19 +184,19 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		btRemover.setBounds(10, 524, 89, 23);
 		contentPane.add(btRemover);
-		
+
 		btPesquisar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btAddBat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btRemover.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		
+
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
+
 		txtCampeonato.setText(camp.getNomeCampeonato());
-		
-		/*Eventos*/
+
+		/* Eventos */
 
 		btPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -231,40 +243,44 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 			}
 		});
-		
+
 		btSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
-				
-				
-				int i = 0;				
-				for(i = 0; i < tbBateriaCamp.getModel().getRowCount(); i++) {
-						
-						BateriaCampeonato bCp = new BateriaCampeonato();
-						
-						bCp.setId_bateria((Bateria) tbBateriaCamp.getModel().getValueAt(i, 0));
-						bCp.setId_campeonato(camp);
-						
-						BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();
-						
-						try {
-							bcpBo.Salvar(bCp);
-						} catch (Exception e1) {			
-							JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
-							e1.printStackTrace();
-						}					
-					
-				}							
+			public void actionPerformed(ActionEvent e) {
+
+				int i = 0;
+				for (i = 0; i < tbBateriaCamp.getModel().getRowCount(); i++) {
+
+					BateriaCampeonato bCp = new BateriaCampeonato();
+
+					bCp.setId_bateria((Bateria) tbBateriaCamp.getModel().getValueAt(i, 0));
+					bCp.setId_campeonato(camp);
+
+					BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();
+
+					try {
+						bcpBo.Salvar(bCp);
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					}
+
+				}
+
+				if (i != 0) {
+					JOptionPane.showMessageDialog(null, "Bateria(s) do Campeonato salva com sucesso!");
+					TelaCampeonato tc = new TelaCampeonato(piloto);
+					dispose();
+				}
 
 			}
 		});
-		
+
 		btVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCampeonato tc = new TelaCampeonato(piloto);
 				dispose();
 			}
 		});
-		
 
 	}
 
