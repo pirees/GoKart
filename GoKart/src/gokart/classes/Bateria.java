@@ -22,7 +22,7 @@ public class Bateria implements EntityBase{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+	("teste")
 	@Column
 	private LocalDate data;
 	
