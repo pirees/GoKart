@@ -14,8 +14,6 @@ public class ConviteCampeonato implements EntityBase {
 	
 	private boolean aceito;
 	
-	private String email;
-	
 	@ManyToOne
 	private Campeonato id_campeonato;
 	
@@ -37,15 +35,7 @@ public class ConviteCampeonato implements EntityBase {
 
 	public void setAceito(boolean aceito) {
 		this.aceito = aceito;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	}	
 
 	public Campeonato getId_campeonato() {
 		return id_campeonato;
@@ -67,8 +57,7 @@ public class ConviteCampeonato implements EntityBase {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (aceito ? 1231 : 1237);
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + (aceito ? 1231 : 1237);		
 		result = prime * result + id;
 		result = prime * result + ((id_campeonato == null) ? 0 : id_campeonato.hashCode());
 		result = prime * result + ((id_piloto == null) ? 0 : id_piloto.hashCode());
@@ -85,12 +74,7 @@ public class ConviteCampeonato implements EntityBase {
 			return false;
 		ConviteCampeonato other = (ConviteCampeonato) obj;
 		if (aceito != other.aceito)
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
+			return false;		
 		if (id != other.id)
 			return false;
 		if (id_campeonato == null) {
@@ -108,8 +92,7 @@ public class ConviteCampeonato implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "ConviteCampeonato [id=" + id + ", aceito=" + aceito + ", email=" + email + ", id_campeonato="
-				+ id_campeonato + ", id_piloto=" + id_piloto + "]";
+		return "ConviteCamp";
 	}
 	
 	

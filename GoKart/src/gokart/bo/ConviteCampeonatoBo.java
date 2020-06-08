@@ -34,11 +34,7 @@ public class ConviteCampeonatoBo {
 	private void validarDadosGrupo(ConviteCampeonato cvCp) throws Exception {
 		if (cvCp.getId() < 0) {
 			throw new Exception("ID do Campeonato não poder ser menor que ZERO.");
-		}
-		
-		if(cvCp.getEmail().isBlank()) {
-			throw new Exception("Email do Piloto não pode ser Branco ou Nulo!");			
-		}
+		}		
 		
 	}
 

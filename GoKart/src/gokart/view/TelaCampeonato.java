@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.BateriaCampeonatoBo;
 import gokart.bo.CampeonatoBo;
+import gokart.bo.ConviteCampeonatoBo;
 import gokart.bo.PilotoBo;
 import gokart.bo.PilotoCampeonatoBo;
 import gokart.classes.BateriaCampeonato;
@@ -202,10 +203,11 @@ public class TelaCampeonato extends JFrame {
 					ConviteCampeonato cvCp = new ConviteCampeonato();
 
 					cvCp.setId_campeonato((Campeonato) cbCampeonato.getSelectedItem());
-
 					/* Procura Piloto com Email Cadastrado e Envia Convite */
-					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));
-					cvCp.setEmail(txtEmailPiloto.getText());
+					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));					
+					
+					ConviteCampeonatoBo cvCpBo = new ConviteCampeonatoBo();					
+					cvCpBo.Salvar(cvCp);					
 
 					JOptionPane.showMessageDialog(null, "Convite enviado com sucessso!");
 
