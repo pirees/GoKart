@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="C:/Users/Lucas Cordeiro/Documents/Universidade/LOO/BlibiotecasJava/txw2-2.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Lucas Cordeiro/Documents/Universidade/LOO/BlibiotecasJava/MySql/mysql-connector-java-5.1.48-bin.jar"/>
 	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lucas Cordeiro/Documents/Universidade/LOO/BlibiotecasJava/dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
