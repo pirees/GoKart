@@ -152,8 +152,7 @@ public class TelaCadastroKartodromo extends JFrame {
 		txtCEP.setBounds(10, 233, 128, 20);
 		contentPane.add(txtCEP);
 		
-		/*Carrega dados nas ComboBox*/		
-		LoadCb();
+		
 		
 		JButton btnBuscar = new JButton("BUSCAR");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -170,11 +169,13 @@ public class TelaCadastroKartodromo extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, wsc.getResultText());
 				}
-
 			}
 		});
 		btnBuscar.setBounds(158, 232, 89, 23);
 		contentPane.add(btnBuscar);
+		
+		/*Carrega dados nas ComboBox*/		
+		LoadCb();
 		
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

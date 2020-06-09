@@ -252,7 +252,7 @@ public final class WebServiceCep {
 			loadCep.setResulCode(-16);
 		} catch (Exception ex) {
 			loadCep.setExceptio(ex);
-			loadCep.setResultText("Erro inesperado.");
+			loadCep.setResultText("CEP não existe.");
 			loadCep.setResulCode(-17);
 		}
 		return loadCep;
