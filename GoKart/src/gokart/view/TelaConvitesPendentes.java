@@ -11,24 +11,18 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import gokart.bo.ConviteCampeonatoBo;
-import gokart.classes.Bateria;
 import gokart.classes.Campeonato;
 import gokart.classes.ConviteCampeonato;
 import gokart.classes.Piloto;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JTextField;
 
 public class TelaConvitesPendentes extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel modelo;
-	private JTextField txtIdConvite;
 
 
 	public TelaConvitesPendentes(Piloto piloto) {
@@ -45,25 +39,18 @@ public class TelaConvitesPendentes extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				txtIdConvite.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-			}
-		});
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
 			},
 			new String[] {
-					"ID","Piloto", "Campeonato", "Etapas"
+					"ID", "Piloto", "Campeonato", "Etapas"
 			}
 		));
 		table.getColumnModel().getColumn(0).setMinWidth(0);
 		table.getColumnModel().getColumn(0).setMaxWidth(0);
-		
-		
+				
 		JButton btnAceitar = new JButton("Aceitar");
 		btnAceitar.setBounds(10, 395, 89, 23);
 		contentPane.add(btnAceitar);
@@ -75,11 +62,6 @@ public class TelaConvitesPendentes extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(263, 395, 89, 23);
 		contentPane.add(btnCancelar);
-		
-		txtIdConvite = new JTextField();
-		txtIdConvite.setBounds(52, 41, 96, 20);
-		contentPane.add(txtIdConvite);
-		txtIdConvite.setColumns(10);
 		
 		//CENTRALIZANDO OS ITENS DA TABELA
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
@@ -128,7 +110,7 @@ public class TelaConvitesPendentes extends JFrame {
 	
 	private void aceitarConvite(Piloto piloto) {
 		
-		int i = 1;
+		int i = 0;
 		
 		int a = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
 
@@ -138,7 +120,7 @@ public class TelaConvitesPendentes extends JFrame {
 		
 		cc.setId(a);
 
-		cc.setId_campeonato((Campeonato) table.getModel().getValueAt(i, 2));
+		cc.setId_campeonato((Campeonato) table.getModel().getValueAt(i, 0));
 		cc.setId_piloto(piloto);
 		cc.setAceito(true);
 		
@@ -149,6 +131,6 @@ public class TelaConvitesPendentes extends JFrame {
 			e.printStackTrace();
 		}
 		
-		JOptionPane.showMessageDialog(null, "ATUALIZADO COM SUCESSO");		
-	}
+		JOptionPane.showMessageDialog(null, "Convite aceito com sucesso");		
+	} 
 }
