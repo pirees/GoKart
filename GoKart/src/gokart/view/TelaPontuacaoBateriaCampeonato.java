@@ -133,8 +133,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 	private void CarregaDados(Campeonato cp) {
 
-		BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();
-		
+		BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();	
 
 		try {
 

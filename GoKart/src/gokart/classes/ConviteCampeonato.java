@@ -28,15 +28,7 @@ public class ConviteCampeonato implements EntityBase {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public boolean isAceito() {
-		return aceito;
-	}
-
-	public void setAceito(boolean aceito) {
-		this.aceito = aceito;
-	}	
-
+	
 	public Campeonato getId_campeonato() {
 		return id_campeonato;
 	}
@@ -51,6 +43,16 @@ public class ConviteCampeonato implements EntityBase {
 
 	public void setId_piloto(Piloto id_piloto) {
 		this.id_piloto = id_piloto;
+	}
+	
+	
+
+	public boolean isAceito() {
+		return aceito;
+	}
+
+	public void setAceito(boolean aceito) {
+		this.aceito = aceito;
 	}
 
 	@Override
@@ -92,7 +94,7 @@ public class ConviteCampeonato implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "ConviteCamp";
+		return this.getId_campeonato().getNomeCampeonato();
 	}
 	
 	

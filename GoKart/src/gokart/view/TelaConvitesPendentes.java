@@ -42,14 +42,19 @@ public class TelaConvitesPendentes extends JFrame {
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
+				{null, null},
 			},
 			new String[] {
-					"ID", "Piloto", "Campeonato", "Etapas"
+				"Campeonato", "Aceito"
 			}
-		));
-		table.getColumnModel().getColumn(0).setMinWidth(0);
-		table.getColumnModel().getColumn(0).setMaxWidth(0);
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, Boolean.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});		
 				
 		JButton btnAceitar = new JButton("Aceitar");
 		btnAceitar.setBounds(10, 395, 89, 23);
@@ -74,14 +79,11 @@ public class TelaConvitesPendentes extends JFrame {
 		
 		btnAceitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					aceitarConvite(piloto);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
+				aceitarConvite(piloto);			
+				
+				
 			}
-
 		});
 		
 	}
@@ -96,10 +98,8 @@ public class TelaConvitesPendentes extends JFrame {
 			List<ConviteCampeonato> lista = new ConviteCampeonatoBo().listarBaterias(piloto);
 			for (ConviteCampeonato cc : lista) {
 				modelo.addRow(new Object[] {
-						cc.getId(),
-						cc.getId_piloto(),
-						cc.getId_campeonato().getNomeCampeonato(),
-						cc.getId_campeonato().getNrBatCampeonato()					
+						cc,
+						cc.isAceito()						
 				});
 				
 			}
@@ -108,29 +108,30 @@ public class TelaConvitesPendentes extends JFrame {
 		}	
 	}
 	
-	private void aceitarConvite(Piloto piloto) {
+	private void aceitarConvite(Piloto piloto){
 		
-		int i = 0;
+		ConviteCampeonato cc = (ConviteCampeonato) table.getModel().getValueAt(table.getSelectedRow(), 0);		
+		cc.setAceito((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1));	
 		
-		int a = (Integer) table.getModel().getValueAt(table.getSelectedRow(), 0);
-
-
-		ConviteCampeonato cc = new ConviteCampeonato();
-		ConviteCampeonatoBo ccBo = new ConviteCampeonatoBo();
 		
-		cc.setId(a);
-
-		cc.setId_campeonato((Campeonato) table.getModel().getValueAt(i, 0));
-		cc.setId_piloto(piloto);
-		cc.setAceito(true);
+		ConviteCampeonatoBo ccBo = new ConviteCampeonatoBo();		
 		
 		try {
 			ccBo.Salvar(cc);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Convite aceito com sucesso");		
+		} catch (Exception e) {			
 			e.printStackTrace();
 		}
+
 		
-		JOptionPane.showMessageDialog(null, "Convite aceito com sucesso");		
+		
+		
+		System.out.println("Étrue?" + cc.isAceito());		
+		System.out.println("Qual é o ID?" + cc.getId());
+			
+		
+		/*System.out.println("É true?" + cc.isAceito());*/			
+		
+		
 	} 
 }
