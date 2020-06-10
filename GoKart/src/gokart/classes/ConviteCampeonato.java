@@ -97,14 +97,5 @@ public class ConviteCampeonato implements EntityBase {
 		return this.getId_campeonato().getNomeCampeonato();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
