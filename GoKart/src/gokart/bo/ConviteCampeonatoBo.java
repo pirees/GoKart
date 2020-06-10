@@ -1,7 +1,9 @@
 package gokart.bo;
 
-import gokart.classes.Campeonato;
+import java.util.List;
 import gokart.classes.ConviteCampeonato;
+import gokart.classes.Piloto;
+import gokart.dao.ConviteCampeonatoDao;
 import gokart.dao.GenericDao;
 
 public class ConviteCampeonatoBo {
@@ -36,6 +38,10 @@ public class ConviteCampeonatoBo {
 			throw new Exception("ID do Campeonato não poder ser menor que ZERO.");
 		}		
 		
+	}
+	
+	public List<ConviteCampeonato> listarBaterias(Piloto piloto) throws Exception {		
+		return new ConviteCampeonatoDao().ListarConvites(piloto);
 	}
 
 }

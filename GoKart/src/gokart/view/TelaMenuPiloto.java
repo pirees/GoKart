@@ -7,14 +7,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
-
 import gokart.bo.BateriaBo;
 import gokart.bo.PilotoBateriaBo;
 import gokart.classes.Bateria;
-import gokart.classes.Kartodromo;
 import gokart.classes.Piloto;
 import gokart.classes.PilotoBateria;
-
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -23,17 +20,14 @@ import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.awt.Color;
 import javax.swing.JScrollPane;
@@ -69,6 +63,7 @@ public class TelaMenuPiloto extends JFrame {
 	private JButton btnConvite;
 	private JLabel lblKartodromo;
 	private JScrollPane scrollPane;
+	private DefaultTableModel modelo;
 	
 	
 	public TelaMenuPiloto(Piloto piloto){
@@ -257,6 +252,14 @@ public class TelaMenuPiloto extends JFrame {
 		scrollPane.setBounds(10, 199, 355, 281);
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(table);
+		
+		btnConvite.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaConvitesPendentes tcp = new TelaConvitesPendentes(piloto);
+				dispose();
+			}
+		});
 
 
 		btnBuscar.addActionListener(new ActionListener() {
@@ -273,7 +276,10 @@ public class TelaMenuPiloto extends JFrame {
 
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {								
-				salvarBateria(piloto);				
+				salvarBateria(piloto);	
+				if (!(table.getSelectedRow() < 0)) {
+                    modelo.removeRow(table.getSelectedRow());
+                }
 			}
 
 		});
@@ -300,7 +306,7 @@ public class TelaMenuPiloto extends JFrame {
 			localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
 		}
 		
-		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();
+		modelo = (DefaultTableModel)this.table.getModel();
 		modelo.setRowCount(0);
 		table.setModel(modelo); 
 
