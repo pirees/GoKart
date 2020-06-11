@@ -217,7 +217,7 @@ public class TelaCadastroPiloto extends JFrame {
 					JOptionPane.showMessageDialog(null, "Piloto " + pBo.Salvar(piloto));
 
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Atenção:" + e1.getMessage());
 					e1.printStackTrace();
 				}
 

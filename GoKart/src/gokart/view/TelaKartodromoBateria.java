@@ -5,7 +5,6 @@ package gokart.view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import gokart.bo.BateriaBo;
 import gokart.classes.Bateria;
 import gokart.classes.Kartodromo;
@@ -14,10 +13,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -39,6 +35,7 @@ public class TelaKartodromoBateria extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaKartodromoBateria(Kartodromo k) {
+		
 		setTitle("GoKart");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
@@ -105,6 +102,13 @@ public class TelaKartodromoBateria extends JFrame {
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaMenuKartodromo tmk = new TelaMenuKartodromo(k);
+				dispose();
+			}
+		});
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

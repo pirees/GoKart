@@ -1,8 +1,6 @@
 package gokart.bo;
 
-import java.util.List;
 
-import javax.persistence.Query;
 
 import gokart.classes.Piloto;
 import gokart.dao.GenericDao;
@@ -15,7 +13,15 @@ public class PilotoBo {
 		validarDadosGrupo(piloto);
 
 		GenericDao<Piloto> tcDao = new GenericDao<Piloto>();
-
+		
+		if(piloto.getNome().isBlank()) {
+			throw new Exception("É necessário inserir um nome");			
+		}
+		
+		if(piloto.getIdade() < 14) {
+			throw new Exception("É necessário ser maior de 14 anos para realizar o cadastro");			
+		}
+		
 		try {
 			return tcDao.saveOrUpdate(piloto);
 		} catch (Exception e) {
@@ -62,7 +68,7 @@ public class PilotoBo {
 		
 		return rPiloto;	
 	}
-	
+		
 	public Piloto ProcuraEmail(String email) throws Exception{
 		
 		if(email.isBlank()) {			

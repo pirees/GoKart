@@ -11,7 +11,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import gokart.bo.ConviteCampeonatoBo;
-import gokart.classes.Campeonato;
 import gokart.classes.ConviteCampeonato;
 import gokart.classes.Piloto;
 import javax.swing.JButton;
@@ -78,11 +77,15 @@ public class TelaConvitesPendentes extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		btnAceitar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				aceitarConvite(piloto);			
-				
-				
+			public void actionPerformed(ActionEvent e) {				
+				aceitarConvite(piloto);										
+			}
+		});
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				TelaMenuPiloto tmp = new TelaMenuPiloto(piloto);
+				dispose();
 			}
 		});
 		
