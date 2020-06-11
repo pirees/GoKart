@@ -37,8 +37,15 @@ public class PilotoCampeonatoBo {
 		
 		PilotoCampeonatoDao pcpDao = new PilotoCampeonatoDao();				
 		return pcpDao.ListaPilotoCampeonato(piloto);		
+	}	
+	
+	public List<PilotoCampeonato> ListarCampeonatoPiloto(Campeonato cp)throws Exception{	
+		
+		PilotoCampeonatoDao pcpDao = new PilotoCampeonatoDao();		
+		return pcpDao.ListaCampeonatoPiloto(cp);
+			
 	}
-
+	
 	private void validarDadosGrupo(PilotoCampeonato pCmp) throws Exception {
 		if (pCmp.getId() < 0) {
 			throw new Exception("Id do Piloto não pode ser negativo!");

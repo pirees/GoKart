@@ -16,8 +16,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.BateriaCampeonatoBo;
+import gokart.bo.PilotoCampeonatoBo;
 import gokart.classes.BateriaCampeonato;
 import gokart.classes.Campeonato;
+import gokart.classes.PilotoCampeonato;
 
 import javax.swing.JButton;
 import java.awt.Cursor;
@@ -134,17 +136,31 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 	private void CarregaDados(Campeonato cp) {
 
 		BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();	
-
+		
 		try {
 
-			listaResultado = bcpBo.listaBateriaCampeonato(cp);	
-			
+			listaResultado = bcpBo.listaBateriaCampeonato(cp);				
 
 			if (!listaResultado.isEmpty()) {
 				for (BateriaCampeonato bcp : listaResultado) {					
 					cbBateriaCampeonato.addItem(bcp);
 				}
 			}
+			
+			
+			PilotoCampeonatoBo pcBo = new PilotoCampeonatoBo();
+			
+			
+			DefaultTableModel modelo = (DefaultTableModel) this.tbPontuacao.getModel();
+			
+			modelo.setRowCount(0);			
+			for(PilotoCampeonato pc: pcBo.ListarCampeonatoPiloto(cp)) {
+				
+				modelo.addRow(new Object[] {pc, null, null});
+							
+			}	
+			
+			tbPontuacao.setModel(modelo);					
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -86,7 +86,7 @@ public class PilotoCampeonato implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "PilotoCampeonato [id=" + id + ", piloto=" + piloto + ", campeonato=" + campeonato + "]";
+		return this.piloto.getNome();
 	}
 
 

@@ -9,18 +9,11 @@ import gokart.dao.PilotoDao;
 public class PilotoBo {
 
 	public String Salvar(Piloto piloto) throws Exception {
-
+		
+		/*Validações a serem feitas:*/
 		validarDadosGrupo(piloto);
 
-		GenericDao<Piloto> tcDao = new GenericDao<Piloto>();
-		
-		if(piloto.getNome().isBlank()) {
-			throw new Exception("É necessário inserir um nome");			
-		}
-		
-		if(piloto.getIdade() < 14) {
-			throw new Exception("É necessário ser maior de 14 anos para realizar o cadastro");			
-		}
+		GenericDao<Piloto> tcDao = new GenericDao<Piloto>();	
 		
 		try {
 			return tcDao.saveOrUpdate(piloto);
@@ -38,11 +31,21 @@ public class PilotoBo {
 			throw new Exception(e.getMessage());
 		}
 	}
-
+	
+	/*INCLUIR VALIDAÇÕES AQUI:*/
 	private void validarDadosGrupo(Piloto piloto) throws Exception {
 		if (piloto.getId() < 0) {
 			throw new Exception("Id do Piloto não pode ser negativo!");
 		}
+		
+		if(piloto.getNome().isBlank()) {
+			throw new Exception("É necessário inserir um nome");			
+		}
+		
+		if(piloto.getIdade() < 14) {
+			throw new Exception("É necessário ser maior de 14 anos para realizar o cadastro");			
+		}		
+		
 	}
 
 	public Piloto ValidaLogin(String email, String senha) throws Exception {

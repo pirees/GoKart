@@ -79,7 +79,7 @@ public class BateriaCampeonato implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "BateriaCampeonato [id=" + id + ", id_campeonato=" + id_campeonato + ", id_bateria=" + id_bateria + "]";
+		return "Kartódromo: " + this.getId_bateria().getKartodromo().getNome() + " Data:" + this.getId_bateria().getData();
 	}	
 	
 }
