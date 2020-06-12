@@ -204,10 +204,10 @@ public class TelaCampeonato extends JFrame {
 
 					cvCp.setId_campeonato((Campeonato) cbCampeonato.getSelectedItem());
 					/* Procura Piloto com Email Cadastrado e Envia Convite */
-					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));					
-					
-					ConviteCampeonatoBo cvCpBo = new ConviteCampeonatoBo();					
-					cvCpBo.Salvar(cvCp);					
+					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));
+
+					ConviteCampeonatoBo cvCpBo = new ConviteCampeonatoBo();
+					cvCpBo.Salvar(cvCp);
 
 					JOptionPane.showMessageDialog(null, "Convite enviado com sucessso!");
 
@@ -223,7 +223,7 @@ public class TelaCampeonato extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				TelaPontuacaoBateriaCampeonato tptb = new TelaPontuacaoBateriaCampeonato(
-						(Campeonato) cbCampeonato.getSelectedItem());
+						(Campeonato) cbCampeonato.getSelectedItem(), piloto);
 				dispose();
 
 			}
@@ -251,7 +251,7 @@ public class TelaCampeonato extends JFrame {
 			for (PilotoCampeonato pc : pcpBo.ListarPilotoCampeonato(piloto)) {
 
 				cbCampeonato.addItem(pc.getCamp());
-			}	
+			}
 
 			BateriaCampeonatoBo bcBo = new BateriaCampeonatoBo();
 

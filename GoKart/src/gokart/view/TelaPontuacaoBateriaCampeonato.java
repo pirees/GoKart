@@ -17,12 +17,20 @@ import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.BateriaCampeonatoBo;
 import gokart.bo.PilotoCampeonatoBo;
+import gokart.bo.PontuacaoCampeonatoBo;
 import gokart.classes.BateriaCampeonato;
 import gokart.classes.Campeonato;
+import gokart.classes.Piloto;
 import gokart.classes.PilotoCampeonato;
+import gokart.classes.PontuacaoCampeonato;
 
 import javax.swing.JButton;
 import java.awt.Cursor;
+import java.awt.event.ItemListener;
+import java.time.format.DateTimeFormatter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 
 public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
@@ -43,7 +51,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaPontuacaoBateriaCampeonato frame = new TelaPontuacaoBateriaCampeonato(null);
+					TelaPontuacaoBateriaCampeonato frame = new TelaPontuacaoBateriaCampeonato(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +63,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPontuacaoBateriaCampeonato(Campeonato cp) {
+	public TelaPontuacaoBateriaCampeonato(Campeonato cp, Piloto piloto) {
 		setTitle("GoKart - Cadastro Pontua\u00E7\u00E3o Campeonato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
@@ -69,6 +77,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		contentPane.add(lblBateria);
 
 		cbBateriaCampeonato = new JComboBox();
+
 		cbBateriaCampeonato.setBounds(10, 62, 355, 22);
 		contentPane.add(cbBateriaCampeonato);
 
@@ -105,6 +114,13 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+
+			boolean[] columnEditables = new boolean[] { false, true, true };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+
 		});
 		tbPontuacao.getColumnModel().getColumn(2).setPreferredWidth(122);
 		pnScroll.setViewportView(tbPontuacao);
@@ -122,45 +138,87 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btVoltar.setBounds(109, 645, 89, 23);
 		contentPane.add(btVoltar);
-		
+
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
-		if(!(cp  == null)) {
-			CarregaDados(cp);		
+
+		if (!(cp == null)) {
+			CarregaDados(cp);
 		}
-		
-		
+
+		cbBateriaCampeonato.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+
+				DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				String data;
+
+				BateriaCampeonato bc = (BateriaCampeonato) cbBateriaCampeonato.getSelectedItem();
+
+				data = bc.getId_bateria().getData().format(formatador);
+
+				txtKartodromo.setText(bc.getId_bateria().getKartodromo().getNome());
+				txtData.setText(data);
+
+			}
+		});
+
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCampeonato tc = new TelaCampeonato(piloto);
+				dispose();
+			}
+		});
+
+		btSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SalvarPontuacao(cp);
+			}
+		});
+
 	}
 
 	private void CarregaDados(Campeonato cp) {
 
-		BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();	
-		
+		BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();
+
 		try {
 
-			listaResultado = bcpBo.listaBateriaCampeonato(cp);				
+			listaResultado = bcpBo.listaBateriaCampeonato(cp);
 
 			if (!listaResultado.isEmpty()) {
-				for (BateriaCampeonato bcp : listaResultado) {					
+				for (BateriaCampeonato bcp : listaResultado) {
 					cbBateriaCampeonato.addItem(bcp);
 				}
 			}
-			
-			
+
 			PilotoCampeonatoBo pcBo = new PilotoCampeonatoBo();
-			
-			
+
 			DefaultTableModel modelo = (DefaultTableModel) this.tbPontuacao.getModel();
-			
-			modelo.setRowCount(0);			
-			for(PilotoCampeonato pc: pcBo.ListarCampeonatoPiloto(cp)) {
-				
-				modelo.addRow(new Object[] {pc, null, null});
-							
-			}	
-			
-			tbPontuacao.setModel(modelo);					
+
+			modelo.setRowCount(0);
+			for (PilotoCampeonato pc : pcBo.ListarCampeonatoPiloto(cp)) {
+				modelo.addRow(new Object[] { pc, null, null });
+			}
+
+			tbPontuacao.setModel(modelo);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void SalvarPontuacao(Campeonato cp) {
+
+		PontuacaoCampeonatoBo ptCp = new PontuacaoCampeonatoBo();
+
+		List<PontuacaoCampeonato> listaPt;
+
+		try {
+
+			for (PontuacaoCampeonato pt : ptCp.listarPt(cp)) {
+				System.out.println("Pos: " + pt.getPosicao() + " Pontuacao: " + pt.getPontuacao());
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

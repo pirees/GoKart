@@ -1,8 +1,12 @@
 package gokart.bo;
 
+import java.util.List;
+
+import gokart.classes.Campeonato;
 import gokart.classes.Kartodromo;
 import gokart.classes.PontuacaoCampeonato;
 import gokart.dao.GenericDao;
+import gokart.dao.PontuacaoCampeonatoDao;
 
 public class PontuacaoCampeonatoBo {
 	
@@ -34,6 +38,15 @@ public class PontuacaoCampeonatoBo {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
+	
+	public List<PontuacaoCampeonato> listarPt (Campeonato cp)throws Exception {	
+		
+		PontuacaoCampeonatoDao pcDao = new PontuacaoCampeonatoDao();		
+		return pcDao.listaPontuacao(cp);		
+		
+	}
+	
 		
 	private void validarDadosGrupo(PontuacaoCampeonato pCp) throws Exception {
 		if (pCp.getId() < 0) {
