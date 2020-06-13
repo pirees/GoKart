@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -16,10 +17,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.BateriaCampeonatoBo;
+import gokart.bo.ClassificacaoCampeonatoBo;
 import gokart.bo.PilotoCampeonatoBo;
 import gokart.bo.PontuacaoCampeonatoBo;
 import gokart.classes.BateriaCampeonato;
 import gokart.classes.Campeonato;
+import gokart.classes.ClassificacaoCampeonato;
 import gokart.classes.Piloto;
 import gokart.classes.PilotoCampeonato;
 import gokart.classes.PontuacaoCampeonato;
@@ -107,20 +110,13 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 		tbPontuacao = new JTable();
 		tbPontuacao.setModel(new DefaultTableModel(
-				new Object[][] { { "Gerson", "1", "10:20:20" }, { null, null, null }, { null, null, null }, },
+				new Object[][] { { "Gerson", null, "10:20:20" }, { null, null, null }, { null, null, null }, },
 				new String[] { "Piloto", "Posi\u00E7\u00E3o", "Tempo Melhor Volta" }) {
-			Class[] columnTypes = new Class[] { Object.class, Object.class, String.class };
+			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class };
 
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-
-			boolean[] columnEditables = new boolean[] { false, true, true };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-
 		});
 		tbPontuacao.getColumnModel().getColumn(2).setPreferredWidth(122);
 		pnScroll.setViewportView(tbPontuacao);
@@ -212,15 +208,37 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 		PontuacaoCampeonatoBo ptCp = new PontuacaoCampeonatoBo();
 
-		List<PontuacaoCampeonato> listaPt;
+		int i = 0;
 
 		try {
 
-			for (PontuacaoCampeonato pt : ptCp.listarPt(cp)) {
-				System.out.println("Pos: " + pt.getPosicao() + " Pontuacao: " + pt.getPontuacao());
+			for (i = 0; i < tbPontuacao.getModel().getRowCount(); i++) {
+
+				ClassificacaoCampeonato cc = new ClassificacaoCampeonato();
+
+				cc.setBat((BateriaCampeonato) cbBateriaCampeonato.getSelectedItem());
+				cc.setCamp(cp);
+				cc.setPil((PilotoCampeonato) tbPontuacao.getModel().getValueAt(i, 0));
+
+				for (PontuacaoCampeonato pt : ptCp.listarPt(cp)) {
+					if (pt.getPosicao() == (Integer) tbPontuacao.getModel().getValueAt(i, 1)) {
+						cc.setPontuacao(pt.getPontuacao());
+						break;
+					}
+
+				}
+				
+				
+				ClassificacaoCampeonatoBo ccBo = new ClassificacaoCampeonatoBo();
+				ccBo.Salvar(cc);
+				
+				JOptionPane.showConfirmDialog(null, "Pontuação salva com sucesso!");
+
 			}
 
 		} catch (Exception e) {
+			
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 

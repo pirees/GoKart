@@ -1,25 +1,29 @@
 package gokart.classes;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "ClassificacaoCampeonato")
 public class ClassificacaoCampeonato implements EntityBase {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int pontuacao;
+	private long pontuacao;
 	
 	@ManyToOne
-	private Piloto pil;
+	private PilotoCampeonato pil;
 	
 	@ManyToOne
 	private Campeonato camp;
 	
 	@ManyToOne
-	private Bateria bat;
+	private BateriaCampeonato bat;
 
 	public int getId() {
 		return id;
@@ -29,19 +33,19 @@ public class ClassificacaoCampeonato implements EntityBase {
 		this.id = id;
 	}
 
-	public int getPontuacao() {
+	public long getPontuacao() {
 		return pontuacao;
 	}
 
-	public void setPontuacao(int pontuacao) {
+	public void setPontuacao(long pontuacao) {
 		this.pontuacao = pontuacao;
 	}
 
-	public Piloto getPil() {
+	public PilotoCampeonato getPil() {
 		return pil;
 	}
 
-	public void setPil(Piloto pil) {
+	public void setPil(PilotoCampeonato pil) {
 		this.pil = pil;
 	}
 
@@ -53,11 +57,11 @@ public class ClassificacaoCampeonato implements EntityBase {
 		this.camp = camp;
 	}
 
-	public Bateria getBat() {
+	public BateriaCampeonato getBat() {
 		return bat;
 	}
 
-	public void setBat(Bateria bat) {
+	public void setBat(BateriaCampeonato bat) {
 		this.bat = bat;
 	}
 
@@ -73,7 +77,6 @@ public class ClassificacaoCampeonato implements EntityBase {
 		result = prime * result + ((camp == null) ? 0 : camp.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((pil == null) ? 0 : pil.hashCode());
-		result = prime * result + pontuacao;
 		return result;
 	}
 
