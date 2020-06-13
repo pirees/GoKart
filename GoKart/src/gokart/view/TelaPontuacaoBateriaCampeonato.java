@@ -206,20 +206,41 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 	private void SalvarPontuacao(Campeonato cp) {
 
+		List<ClassificacaoCampeonato> lista;
+		ClassificacaoCampeonato cc = null;
+
 		PontuacaoCampeonatoBo ptCp = new PontuacaoCampeonatoBo();
 
 		int i = 0;
 
 		try {
 
+			/* Percorre a table em tela */
 			for (i = 0; i < tbPontuacao.getModel().getRowCount(); i++) {
 
-				ClassificacaoCampeonato cc = new ClassificacaoCampeonato();
+				ClassificacaoCampeonatoBo ccBo = new ClassificacaoCampeonatoBo();
+
+				/*
+				 * Procura registro de Pontuação Cadastrada, caso exista sobrescreve, caso
+				 * contrario cria uma nova
+				 */
+				lista = ccBo.listarCC((BateriaCampeonato) cbBateriaCampeonato.getSelectedItem(),
+						(PilotoCampeonato) tbPontuacao.getModel().getValueAt(i, 0));
+
+				if (lista.isEmpty()) {
+					cc = new ClassificacaoCampeonato();
+				} else {
+					cc = lista.get(0);
+				}
 
 				cc.setBat((BateriaCampeonato) cbBateriaCampeonato.getSelectedItem());
 				cc.setCamp(cp);
 				cc.setPil((PilotoCampeonato) tbPontuacao.getModel().getValueAt(i, 0));
 
+				/*
+				 * Percorre Tabela de Pontos, cadastradas no campeonato, cada posição recebe X
+				 * pontos
+				 */
 				for (PontuacaoCampeonato pt : ptCp.listarPt(cp)) {
 					if (pt.getPosicao() == (Integer) tbPontuacao.getModel().getValueAt(i, 1)) {
 						cc.setPontuacao(pt.getPontuacao());
@@ -227,17 +248,14 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 					}
 
 				}
-				
-				
-				ClassificacaoCampeonatoBo ccBo = new ClassificacaoCampeonatoBo();
+
 				ccBo.Salvar(cc);
-				
-				JOptionPane.showConfirmDialog(null, "Pontuação salva com sucesso!");
+				JOptionPane.showMessageDialog(null, "Pontuação salva com sucesso!");
 
 			}
 
 		} catch (Exception e) {
-			
+
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
