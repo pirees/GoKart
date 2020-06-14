@@ -41,6 +41,21 @@ public class TelaCadastroPiloto extends JFrame {
 	private JComboBox cbNivelPiloto;
 	private JComboBox cbEstado;
 	private JTextField txtCEP;
+	private JLabel lblIdade;
+	private JLabel lblEndereo;
+	private JLabel lblEstado;
+	private JLabel lblEmail;
+	private JLabel lblSenha;
+	private JLabel lblNome;
+	private JLabel lblCadastro;
+	private JButton btnSalvar;
+	private JButton btnVoltar;
+	private JLabel lblCpf;
+	private JLabel lblNvel;
+	private JLabel lblCidade;
+	private JButton btnBuscarCep;
+	private JLabel lblCep;
+	private JLabel lblRepetirSenha;
 
 	public TelaCadastroPiloto() {
 		setTitle("GoKart - Cadastro");
@@ -51,11 +66,11 @@ public class TelaCadastroPiloto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNome = new JLabel("Nome completo:");
+		lblNome = new JLabel("Nome completo:");
 		lblNome.setBounds(10, 42, 125, 14);
 		contentPane.add(lblNome);
 
-		JLabel lblCadastro = new JLabel("Cadastro de Piloto");
+		lblCadastro = new JLabel("Cadastro de Piloto");
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCadastro.setBounds(109, 11, 134, 20);
 		contentPane.add(lblCadastro);
@@ -65,7 +80,7 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 
-		JLabel lblIdade = new JLabel("Idade:");
+		lblIdade = new JLabel("Idade:");
 		lblIdade.setBounds(10, 98, 36, 14);
 		contentPane.add(lblIdade);
 
@@ -74,7 +89,7 @@ public class TelaCadastroPiloto extends JFrame {
 		txtIdade.setBounds(10, 123, 56, 20);
 		contentPane.add(txtIdade);
 
-		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
+		lblEndereo = new JLabel("Endere\u00E7o:");
 		lblEndereo.setBounds(10, 257, 89, 14);
 		contentPane.add(lblEndereo);
 
@@ -83,11 +98,11 @@ public class TelaCadastroPiloto extends JFrame {
 		txtEndereco.setBounds(10, 274, 271, 20);
 		contentPane.add(txtEndereco);
 
-		JLabel lblEstado = new JLabel("Estado:");
+		lblEstado = new JLabel("Estado:");
 		lblEstado.setBounds(10, 357, 56, 14);
 		contentPane.add(lblEstado);
 
-		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(10, 456, 56, 14);
 		contentPane.add(lblEmail);
 
@@ -96,7 +111,7 @@ public class TelaCadastroPiloto extends JFrame {
 		txtEmail.setBounds(10, 481, 271, 20);
 		contentPane.add(txtEmail);
 
-		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha = new JLabel("Senha:");
 		lblSenha.setBounds(10, 512, 56, 14);
 		contentPane.add(lblSenha);
 
@@ -108,16 +123,15 @@ public class TelaCadastroPiloto extends JFrame {
 		txtReptSenha.setBounds(10, 592, 271, 20);
 		contentPane.add(txtReptSenha);
 
-		JButton btnSalvar = new JButton("Salvar");
-
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btnSalvar);
 
-		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(109, 645, 89, 23);
 		contentPane.add(btnVoltar);
 
-		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(10, 154, 56, 14);
 		contentPane.add(lblCpf);
 
@@ -126,7 +140,7 @@ public class TelaCadastroPiloto extends JFrame {
 		txtCPF.setBounds(10, 170, 271, 20);
 		contentPane.add(txtCPF);
 
-		JLabel lblNvel = new JLabel("N\u00EDvel:");
+		lblNvel = new JLabel("N\u00EDvel:");
 		lblNvel.setBounds(10, 403, 56, 14);
 		contentPane.add(lblNvel);
 
@@ -134,7 +148,7 @@ public class TelaCadastroPiloto extends JFrame {
 		cbNivelPiloto.setBounds(10, 423, 125, 22);
 		contentPane.add(cbNivelPiloto);
 
-		JLabel lblCidade = new JLabel("Cidade:");
+		lblCidade = new JLabel("Cidade:");
 		lblCidade.setBounds(10, 305, 46, 14);
 		contentPane.add(lblCidade);
 
@@ -154,28 +168,11 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(txtCEP);
 		txtCEP.setColumns(10);
 		
-		JButton btnBuscarCep = new JButton("BUSCAR");
-		btnBuscarCep.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String cep = txtCEP.getText();
-				WebServiceCep wsc = WebServiceCep.searchCep(cep);
-
-				if(wsc.wasSuccessful()) {
-					txtCidade.setText(wsc.getCidade());
-					txtEndereco.setText(wsc.getLogradouro());
-					cbEstado.addItem(wsc.getUf());
-
-				} else {
-					JOptionPane.showMessageDialog(null, wsc.getResultText());
-				}
-
-			}
-		});
+		btnBuscarCep = new JButton("BUSCAR");
 		btnBuscarCep.setBounds(139, 225, 89, 23);
 		contentPane.add(btnBuscarCep);
 		
-		JLabel lblCep = new JLabel("CEP:");
+		lblCep = new JLabel("CEP:");
 		lblCep.setBounds(10, 201, 36, 14);
 		contentPane.add(lblCep);
 		
@@ -183,7 +180,7 @@ public class TelaCadastroPiloto extends JFrame {
 		cbEstado.setBounds(10, 373, 57, 22);
 		contentPane.add(cbEstado);
 		
-		JLabel lblRepetirSenha = new JLabel("Repetir Senha:");
+		lblRepetirSenha = new JLabel("Repetir Senha:");
 		lblRepetirSenha.setBounds(10, 568, 89, 14);
 		contentPane.add(lblRepetirSenha);
 
@@ -198,38 +195,21 @@ public class TelaCadastroPiloto extends JFrame {
 		/* Salvar dados via BO */
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				Piloto piloto = new Piloto();
-
-				piloto.setNome(txtNome.getText());
-				piloto.setEndereco(txtEndereco.getText());
-				piloto.setCidade(txtCidade.getText());
-				piloto.setIdade(Integer.parseInt(txtIdade.getText()));
-				piloto.setNivel((Nivel) cbNivelPiloto.getSelectedItem());
-				piloto.setEmail(txtEmail.getText());
-				piloto.setSenha(txtSenha.getText());
-				piloto.setUf((Estado) cbEstado.getSelectedItem());
-
-				PilotoBo pBo = new PilotoBo();
-
-				try {
-
-					JOptionPane.showMessageDialog(null, "Piloto " + pBo.Salvar(piloto));
-
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Atenção:" + e1.getMessage());
-					e1.printStackTrace();
-				}
-
+				salvarPiloto();
 			}
 		});
 
 		/* Botão Voltar */
 		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {			
 				TelaLogin tl = new TelaLogin();
 				dispose();
+			}
+		});
+		
+		btnBuscarCep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+			    buscarCep();
 			}
 		});
 
@@ -250,5 +230,45 @@ public class TelaCadastroPiloto extends JFrame {
 			cbNivelPiloto.addItem(n);		
 		}		
 		
+	}
+	
+	public void buscarCep() {
+		
+		String cep = txtCEP.getText();
+		WebServiceCep wsc = WebServiceCep.searchCep(cep);
+
+		if(wsc.wasSuccessful()) {
+			txtCidade.setText(wsc.getCidade());
+			txtEndereco.setText(wsc.getLogradouro());
+			//cbEstado.addItem(wsc.getUf());
+
+		} else {
+			JOptionPane.showMessageDialog(null, wsc.getResultText());
+		}
+	}
+	
+	public void salvarPiloto() {
+		
+		Piloto piloto = new Piloto();
+
+		piloto.setNome(txtNome.getText());
+		piloto.setEndereco(txtEndereco.getText());
+		piloto.setCidade(txtCidade.getText());
+		piloto.setIdade(Integer.parseInt(txtIdade.getText()));
+		piloto.setNivel((Nivel) cbNivelPiloto.getSelectedItem());
+		piloto.setEmail(txtEmail.getText());
+		piloto.setSenha(txtSenha.getText());
+		piloto.setUf((Estado) cbEstado.getSelectedItem());
+
+		PilotoBo pBo = new PilotoBo();
+
+		try {
+
+			JOptionPane.showMessageDialog(null, "Piloto " + pBo.Salvar(piloto));
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "Atenção:" + e1.getMessage());
+			e1.printStackTrace();
+		}		
 	}
 }

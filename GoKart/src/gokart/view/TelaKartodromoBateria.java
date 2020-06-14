@@ -10,6 +10,8 @@ import gokart.classes.Bateria;
 import gokart.classes.Kartodromo;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
@@ -29,7 +32,13 @@ public class TelaKartodromoBateria extends JFrame {
 	private JTextField txtHorario;
 	private JTextField txtTracado;
 	private JTextField txtData;
-
+	private JLabel C;
+	private JLabel lblData;
+	private JLabel lblHorario;
+	private JLabel lblNmeroDePilotos;
+	private JButton btnSalvar;
+	private JButton btnVoltar;
+	private JLabel lblTracado;
 
 	/**
 	 * Create the frame.
@@ -44,30 +53,34 @@ public class TelaKartodromoBateria extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel C = new JLabel("Cadastro de Baterias");
+	    C = new JLabel("Cadastro de Baterias");
 		C.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		C.setBounds(73, 48, 154, 20);
 		contentPane.add(C);
 		
-		JLabel lblData = new JLabel("Data");
+		lblData = new JLabel("Data");
 		lblData.setBounds(31, 145, 37, 14);
 		contentPane.add(lblData);
 		
-		JLabel lblHorario = new JLabel("Hor\u00E1rio");
+		lblHorario = new JLabel("Hor\u00E1rio");
 		lblHorario.setBounds(29, 179, 64, 14);
 		contentPane.add(lblHorario);
 		
-		JLabel lblNmeroDePilotos = new JLabel("N\u00FAmero de Pilotos");
+		lblNmeroDePilotos = new JLabel("N\u00FAmero de Pilotos");
 		lblNmeroDePilotos.setBounds(29, 214, 120, 14);
 		contentPane.add(lblNmeroDePilotos);
 		
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(60, 331, 89, 23);
 		contentPane.add(btnSalvar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(207, 331, 89, 23);
-		contentPane.add(btnCancelar);
+		btnVoltar = new JButton("");
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBackground(Color.WHITE);
+		btnVoltar.setToolTipText("Voltar ");
+		btnVoltar.setIcon(new ImageIcon(TelaKartodromoBateria.class.getResource("/img/voltar - 32.png")));
+		btnVoltar.setBounds(20, 31, 30, 29);
+		contentPane.add(btnVoltar);
 		
 		txtNrMaxPilotos = new JTextField();
 		txtNrMaxPilotos.setColumns(10);
@@ -80,7 +93,7 @@ public class TelaKartodromoBateria extends JFrame {
 		contentPane.add(txtHorario);
 
 
-		JLabel lblTracado = new JLabel("Tra\u00E7ado");
+		lblTracado = new JLabel("Tra\u00E7ado");
 		lblTracado.setBounds(29, 259, 45, 14);
 		contentPane.add(lblTracado);
 		
@@ -103,7 +116,7 @@ public class TelaKartodromoBateria extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
-		btnCancelar.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaMenuKartodromo tmk = new TelaMenuKartodromo(k);
 				dispose();

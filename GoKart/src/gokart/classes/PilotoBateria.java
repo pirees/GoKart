@@ -20,6 +20,8 @@ public class PilotoBateria implements EntityBase {
 	
 	@ManyToOne
 	private Bateria bat;
+	
+	private int nrEscolhaPiloto;
 
 	public int getId() {
 		return id;
@@ -45,6 +47,14 @@ public class PilotoBateria implements EntityBase {
 		this.bat = bat;
 	}
 
+	public int getNrEscolhaPiloto() {
+		return nrEscolhaPiloto;
+	}
+
+	public void setNrEscolhaPiloto(int nrEscolhaPiloto) {
+		this.nrEscolhaPiloto = nrEscolhaPiloto;
+	}
+
 	public PilotoBateria() {
 		super();
 	}
@@ -55,6 +65,7 @@ public class PilotoBateria implements EntityBase {
 		int result = 1;
 		result = prime * result + ((bat == null) ? 0 : bat.hashCode());
 		result = prime * result + id;
+		result = prime * result + nrEscolhaPiloto;
 		result = prime * result + ((pil == null) ? 0 : pil.hashCode());
 		return result;
 	}
@@ -75,6 +86,8 @@ public class PilotoBateria implements EntityBase {
 			return false;
 		if (id != other.id)
 			return false;
+		if (nrEscolhaPiloto != other.nrEscolhaPiloto)
+			return false;
 		if (pil == null) {
 			if (other.pil != null)
 				return false;
@@ -85,9 +98,7 @@ public class PilotoBateria implements EntityBase {
 
 	@Override
 	public String toString() {
-		return "PilotoBateria [id=" + id + ", pil=" + pil + ", bat=" + bat + "]";
-	}
-
-	
-	
+		return "PilotoBateria [id=" + id + ", pil=" + pil + ", bat=" + bat + ", nrEscolhaPiloto=" + nrEscolhaPiloto
+				+ "]";
+	}	
 }

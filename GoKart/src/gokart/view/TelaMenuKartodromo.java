@@ -1,6 +1,7 @@
 package gokart.view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,6 +69,7 @@ public class TelaMenuKartodromo extends JFrame {
 		contentPane.add(lblReservas);
 		
 		btnReserva = new JButton("");
+		btnReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReserva.setToolTipText("Nova Reserva");
 		btnReserva.setBackground(Color.WHITE);
 		btnReserva.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/bateria-32.png")));
@@ -92,6 +94,7 @@ public class TelaMenuKartodromo extends JFrame {
 		
 		btnBuscar = new JButton("");
 		btnBuscar.setToolTipText("Pesquisar");
+		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.setBackground(Color.WHITE);
 		btnBuscar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/pesquisar-32.png")));
 		btnBuscar.setBounds(198, 158, 40, 31);

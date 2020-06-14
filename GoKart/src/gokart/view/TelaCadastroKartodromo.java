@@ -40,7 +40,20 @@ public class TelaCadastroKartodromo extends JFrame {
 	private JTextField txtCidade;
 	private JComboBox cbEstado;
 	private JTextField txtCEP;
-
+	private JLabel lblNome;
+	private JLabel lblCadastro;
+	private JLabel lblCnpj;
+	private JLabel lblEndereo;
+	private JButton btnBuscar;
+	private JLabel lblCep;
+	private JLabel lblCidade;
+	private JButton btnVoltar;
+	private JButton btnSalvar;
+	private JLabel lblRepetirSenha;
+	private JLabel lblSenha;
+	private JLabel lblEmail;
+	private JLabel lblEstado;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -55,11 +68,11 @@ public class TelaCadastroKartodromo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNome = new JLabel("Nome");
+		lblNome = new JLabel("Nome");
 		lblNome.setBounds(10, 96, 36, 14);
 		contentPane.add(lblNome);
 		
-		JLabel lblCadastro = new JLabel("Cadastro de Kart\u00F3dromo");
+		lblCadastro = new JLabel("Cadastro de Kart\u00F3dromo");
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCadastro.setBounds(97, 45, 177, 20);
 		contentPane.add(lblCadastro);
@@ -69,7 +82,7 @@ public class TelaCadastroKartodromo extends JFrame {
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
-		JLabel lblCnpj = new JLabel("CNPJ");
+		lblCnpj = new JLabel("CNPJ");
 		lblCnpj.setBounds(10, 163, 36, 14);
 		contentPane.add(lblCnpj);
 		
@@ -78,7 +91,7 @@ public class TelaCadastroKartodromo extends JFrame {
 		txtCNPJ.setBounds(10, 188, 296, 20);
 		contentPane.add(txtCNPJ);
 		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o");
+		lblEndereo = new JLabel("Endere\u00E7o");
 		lblEndereo.setBounds(10, 264, 56, 14);
 		contentPane.add(lblEndereo);
 		
@@ -87,11 +100,11 @@ public class TelaCadastroKartodromo extends JFrame {
 		txtEndereco.setBounds(10, 279, 296, 20);
 		contentPane.add(txtEndereco);
 		
-		JLabel lblEstado = new JLabel("Estado");
+		lblEstado = new JLabel("Estado");
 		lblEstado.setBounds(10, 366, 56, 14);
 		contentPane.add(lblEstado);
 		
-		JLabel lblEmail = new JLabel("E-mail");
+		lblEmail = new JLabel("E-mail");
 		lblEmail.setBounds(10, 424, 56, 14);
 		contentPane.add(lblEmail);
 		
@@ -100,7 +113,7 @@ public class TelaCadastroKartodromo extends JFrame {
 		txtEmail.setBounds(10, 449, 296, 20);
 		contentPane.add(txtEmail);
 		
-		JLabel lblSenha = new JLabel("Senha");
+		lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(10, 484, 56, 14);
 		contentPane.add(lblSenha);
 		
@@ -108,7 +121,7 @@ public class TelaCadastroKartodromo extends JFrame {
 		txtSenha.setBounds(10, 509, 296, 20);
 		contentPane.add(txtSenha);
 		
-		JLabel lblRepetirSenha = new JLabel("Repetir Senha");
+		lblRepetirSenha = new JLabel("Repetir Senha");
 		lblRepetirSenha.setBounds(10, 553, 81, 14);
 		contentPane.add(lblRepetirSenha);
 		
@@ -116,11 +129,11 @@ public class TelaCadastroKartodromo extends JFrame {
 		txtReptSenha.setBounds(10, 578, 296, 20);
 		contentPane.add(txtReptSenha);
 		
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btnSalvar);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(122, 645, 89, 23);
 		contentPane.add(btnVoltar);
 		
@@ -133,11 +146,11 @@ public class TelaCadastroKartodromo extends JFrame {
 		txtCidade.setBounds(10, 335, 296, 20);
 		contentPane.add(txtCidade);
 		
-		JLabel lblCidade = new JLabel("Cidade");
+		lblCidade = new JLabel("Cidade");
 		lblCidade.setBounds(10, 310, 56, 14);
 		contentPane.add(lblCidade);
 		
-		JLabel lblCep = new JLabel("CEP");
+		lblCep = new JLabel("CEP");
 		lblCep.setBounds(10, 219, 56, 14);
 		contentPane.add(lblCep);
 		
@@ -154,21 +167,10 @@ public class TelaCadastroKartodromo extends JFrame {
 		
 		
 		
-		JButton btnBuscar = new JButton("BUSCAR");
+		btnBuscar = new JButton("BUSCAR");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String cep = txtCEP.getText();
-				WebServiceCep wsc = WebServiceCep.searchCep(cep);
-
-				if(wsc.wasSuccessful()) {
-					txtCidade.setText(wsc.getCidade());
-					txtEndereco.setText(wsc.getLogradouro());
-					cbEstado.addItem(wsc.getUf());
-
-				} else {
-					JOptionPane.showMessageDialog(null, wsc.getResultText());
-				}
+				buscarCep();				
 			}
 		});
 		btnBuscar.setBounds(158, 232, 89, 23);
@@ -183,36 +185,14 @@ public class TelaCadastroKartodromo extends JFrame {
 		/* Botão Cancelar */
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				TelaLogin tl = new TelaLogin();
 				dispose();
-
 			}
 		});
 		
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				Kartodromo kartodromo = new Kartodromo();
-
-				kartodromo.setNome(txtNome.getText());
-				kartodromo.setCnpj(Integer.parseInt(txtCNPJ.getText()));
-				kartodromo.setEndereco(txtEndereco.getText());
-				kartodromo.setEmail(txtEmail.getText());
-				kartodromo.setSenha(txtSenha.getText());
-				kartodromo.setEst((Estado) cbEstado.getSelectedItem());
-
-				KartodromoBo kartodromoBo = new KartodromoBo();
-
-				try {
-
-					JOptionPane.showMessageDialog(null, "Kartodromo " + kartodromoBo.Salvar(kartodromo));
-
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
-					e1.printStackTrace();
-				}
-
+				salvarKartodromo();
 			}
 		});
 	}
@@ -221,6 +201,44 @@ public class TelaCadastroKartodromo extends JFrame {
 		
 		for(Estado e: eDao.LoadEstado()) {
 			cbEstado.addItem(e);			
+		}
+	}
+	
+	public void buscarCep() {
+		
+		String cep = txtCEP.getText();
+		WebServiceCep wsc = WebServiceCep.searchCep(cep);
+
+		if(wsc.wasSuccessful()) {
+			txtCidade.setText(wsc.getCidade());
+			txtEndereco.setText(wsc.getLogradouro());
+			cbEstado.addItem(wsc.getUf());
+
+		} else {
+			JOptionPane.showMessageDialog(null, wsc.getResultText());
+		}
+	}
+	
+	public void salvarKartodromo() {
+		
+		Kartodromo kartodromo = new Kartodromo();
+
+		kartodromo.setNome(txtNome.getText());
+		kartodromo.setCnpj(Integer.parseInt(txtCNPJ.getText()));
+		kartodromo.setEndereco(txtEndereco.getText());
+		kartodromo.setEmail(txtEmail.getText());
+		kartodromo.setSenha(txtSenha.getText());
+		kartodromo.setEst((Estado) cbEstado.getSelectedItem());
+
+		KartodromoBo kartodromoBo = new KartodromoBo();
+
+		try {
+
+			JOptionPane.showMessageDialog(null, "Kartodromo " + kartodromoBo.Salvar(kartodromo));
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
+			e1.printStackTrace();
 		}
 	}
 }

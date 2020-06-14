@@ -13,15 +13,24 @@ import javax.swing.table.DefaultTableModel;
 import gokart.bo.ConviteCampeonatoBo;
 import gokart.classes.ConviteCampeonato;
 import gokart.classes.Piloto;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Cursor;
 
 public class TelaConvitesPendentes extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel modelo;
+	private JLabel lblInfo;
+	private JScrollPane scrollPane;
+	private JButton btnAceitar;
+	private JButton btnVoltar;
+	private JButton btnCancelar;
 
 
 	public TelaConvitesPendentes(Piloto piloto) {
@@ -33,8 +42,8 @@ public class TelaConvitesPendentes extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 128, 342, 218);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 146, 355, 218);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -55,17 +64,27 @@ public class TelaConvitesPendentes extends JFrame {
 			}
 		});		
 				
-		JButton btnAceitar = new JButton("Aceitar");
-		btnAceitar.setBounds(10, 395, 89, 23);
+		btnAceitar = new JButton("Aceitar");
+		btnAceitar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAceitar.setBounds(10, 422, 89, 23);
 		contentPane.add(btnAceitar);
 		
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(141, 395, 89, 23);
+		btnVoltar = new JButton("");
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBackground(Color.WHITE);
+		btnVoltar.setToolTipText("Voltar ");
+		btnVoltar.setBounds(20, 31, 30, 29);
+		btnVoltar.setIcon(new ImageIcon(TelaConvitesPendentes.class.getResource("/img/voltar - 32.png")));
 		contentPane.add(btnVoltar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(263, 395, 89, 23);
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCancelar.setBounds(276, 422, 89, 23);
 		contentPane.add(btnCancelar);
+		
+		lblInfo = new JLabel("Aqui voc\u00EA pode ver seus convites pendentes");
+		lblInfo.setBounds(77, 73, 260, 14);
+		contentPane.add(lblInfo);
 		
 		//CENTRALIZANDO OS ITENS DA TABELA
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
@@ -125,16 +144,6 @@ public class TelaConvitesPendentes extends JFrame {
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
-
-		
-		
-		
-		System.out.println("Étrue?" + cc.isAceito());		
-		System.out.println("Qual é o ID?" + cc.getId());
-			
-		
-		/*System.out.println("É true?" + cc.isAceito());*/			
-		
-		
+				
 	} 
 }

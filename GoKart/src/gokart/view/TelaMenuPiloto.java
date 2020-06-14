@@ -104,7 +104,7 @@ public class TelaMenuPiloto extends JFrame {
 				txtIdBateria.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
 				txtKartodromoSalvar.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
 				txtNrPiloto.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
-				txtData.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+				txtData.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
 				txtHorario.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
 			}
 		});
@@ -134,6 +134,7 @@ public class TelaMenuPiloto extends JFrame {
 		table.getColumnModel().getColumn(5).setCellRenderer(centralizado);
 		
 		btnConvite = new JButton("");
+		btnConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConvite.setToolTipText("Convites Pendentes");
 		btnConvite.setBackground(Color.WHITE);
 		btnConvite.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/convite-32.png")));
@@ -142,6 +143,7 @@ public class TelaMenuPiloto extends JFrame {
 		
 		btnReserva = new JButton("");
 		btnReserva.setToolTipText("Baterias");
+		btnReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReserva.setBackground(Color.WHITE);
 		btnReserva.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/bateria-32.png")));
 		btnReserva.setBounds(325, 63, 40, 35);
@@ -167,6 +169,7 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(lblSeuNvel);
 		
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConfirmar.setBounds(127, 639, 108, 29);
 		contentPane.add(btnConfirmar);
 		
@@ -181,6 +184,7 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(lblBoasVindas);
 		
 		btnBuscar = new JButton("");
+		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.setToolTipText("Pesquisar");
 		btnBuscar.setBackground(Color.WHITE);
 		btnBuscar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/pesquisar-32.png")));
@@ -190,7 +194,6 @@ public class TelaMenuPiloto extends JFrame {
 		txtNrPiloto = new JTextField();
 		txtNrPiloto.setBounds(139, 595, 48, 20);
 		contentPane.add(txtNrPiloto);
-		txtNrPiloto.setEditable(false);
 		txtNrPiloto.setColumns(10);
 		
 		lblHorario = new JLabel("Hor\u00E1rio");
@@ -222,7 +225,7 @@ public class TelaMenuPiloto extends JFrame {
 		
 		txtKartodromoSalvar = new JTextField();
 		txtKartodromoSalvar.setColumns(10);
-		txtKartodromoSalvar.setBounds(139, 489, 77, 20);
+		txtKartodromoSalvar.setBounds(139, 489, 131, 20);
 		txtKartodromoSalvar.setEditable(false);
 		contentPane.add(txtKartodromoSalvar);
 		
@@ -339,6 +342,7 @@ public class TelaMenuPiloto extends JFrame {
 
 		pilotobateria.setBat(b);
 		pilotobateria.setPil(piloto);
+		pilotobateria.setNrEscolhaPiloto(Integer.parseInt(txtNrPiloto.getText()));
 
 		
 		PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();
