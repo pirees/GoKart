@@ -89,6 +89,7 @@ public class TelaConvitesPendentes extends JFrame {
 		//CENTRALIZANDO OS ITENS DA TABELA
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+		table.getColumnModel().getColumn(0).setCellRenderer(centralizado);
 		
 		listarBaterias(piloto);
 		

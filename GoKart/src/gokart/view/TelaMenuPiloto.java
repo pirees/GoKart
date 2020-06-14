@@ -64,6 +64,8 @@ public class TelaMenuPiloto extends JFrame {
 	private JLabel lblKartodromo;
 	private JScrollPane scrollPane;
 	private DefaultTableModel modelo;
+	private JTextField txtNrPilotoBateria;
+	private DefaultTableCellRenderer centralizado;
 	
 	
 	public TelaMenuPiloto(Piloto piloto){
@@ -103,7 +105,7 @@ public class TelaMenuPiloto extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				txtIdBateria.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
 				txtKartodromoSalvar.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-				txtNrPiloto.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+				txtNrPilotoBateria.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
 				txtData.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
 				txtHorario.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
 			}
@@ -124,9 +126,8 @@ public class TelaMenuPiloto extends JFrame {
 		//contentPane.add(table);
 		
 		//CENTRALIZANDO OS ITENS DA TABELA
-		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
-		centralizado.setHorizontalAlignment(SwingConstants.CENTER);	
-
+		centralizado = new DefaultTableCellRenderer();
+		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
 		table.getColumnModel().getColumn(1).setCellRenderer(centralizado);
 		table.getColumnModel().getColumn(2).setCellRenderer(centralizado);
 		table.getColumnModel().getColumn(3).setCellRenderer(centralizado);
@@ -256,6 +257,12 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(table);
 		
+		txtNrPilotoBateria = new JTextField();
+		txtNrPilotoBateria.setBounds(283, 576, 48, 20);
+		contentPane.add(txtNrPilotoBateria);
+		txtNrPilotoBateria.setVisible(false);
+		txtNrPilotoBateria.setColumns(10);
+		
 		btnConvite.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -279,7 +286,12 @@ public class TelaMenuPiloto extends JFrame {
 
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {								
-				salvarBateria(piloto);	
+				try {
+					salvarBateria(piloto);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				if (!(table.getSelectedRow() < 0)) {
                     modelo.removeRow(table.getSelectedRow());
                 }
@@ -338,20 +350,26 @@ public class TelaMenuPiloto extends JFrame {
 		PilotoBateria pilotobateria = new PilotoBateria();
 		Bateria b = new Bateria();
 		
-		b.setId(Integer.parseInt(txtIdBateria.getText()));
+		b.setId(Integer.parseInt(txtIdBateria.getText()));		
+		b.setNrMaxPiloto(Integer.parseInt(txtNrPilotoBateria.getText()));
+
 
 		pilotobateria.setBat(b);
 		pilotobateria.setPil(piloto);
 		pilotobateria.setNrEscolhaPiloto(Integer.parseInt(txtNrPiloto.getText()));
-
 		
-		PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();
-
+		PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();		
+		
 		try {
-
-			JOptionPane.showMessageDialog(null, "Bateria " + pilotobateriaBo.Salvar(pilotobateria));
-
+			
+			if(pilotobateria.getNrEscolhaPiloto() > b.getNrMaxPiloto()) {
+				JOptionPane.showMessageDialog(null, "Número de vagas indisponíveis");
+			}else {
+				JOptionPane.showMessageDialog(null, "Bateria " + pilotobateriaBo.Salvar(pilotobateria));	
+			}
+			
 		} catch (Exception e1) {
+			
 			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
 			e1.printStackTrace();
 		}

@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.SystemColor;
+
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.CampeonatoBo;
@@ -33,6 +35,7 @@ import gokart.classes.PilotoCampeonato;
 import gokart.classes.PontuacaoCampeonato;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
