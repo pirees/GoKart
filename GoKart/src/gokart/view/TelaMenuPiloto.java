@@ -307,6 +307,13 @@ public class TelaMenuPiloto extends JFrame {
 			}
 		});
 		
+		btnReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaHistoricoBateria cp = new TelaHistoricoBateria(piloto);				
+				dispose();
+			}
+		});
+		
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);

@@ -27,6 +27,10 @@ public class PilotoBateriaBo {
 	public List<PilotoBateria> bsucarReservas(LocalDate data) throws Exception {		
 		return new PilotoBateriaDao().ProcurarReserva(data);
 	}
+	
+	public List<PilotoBateria> carregarReserva() throws Exception {		
+		return new PilotoBateriaDao().CarregarReserva();	
+	}
 
 	
 //	public void validarBateria(PilotoBateria pilotobateria) throws Exception {
