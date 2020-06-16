@@ -50,6 +50,7 @@ public class TelaCampeonato extends JFrame {
 
 	private List<String[]> listaResultado = new ArrayList<>();
 	private JButton btVoltar;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -93,10 +94,10 @@ public class TelaCampeonato extends JFrame {
 		btNovoCampeonato.setBounds(321, 147, 41, 23);
 		painel.add(btNovoCampeonato);
 
-		btClassificacao = new JButton("Classifica\u00E7\u00E3o");
+		btClassificacao = new JButton("+ Classifica\u00E7\u00E3o");
 
 		btClassificacao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btClassificacao.setBounds(10, 180, 123, 23);
+		btClassificacao.setBounds(10, 180, 127, 23);
 		painel.add(btClassificacao);
 
 		JLabel lblCvPiloto = new JLabel("Convidar Piloto:");
@@ -167,6 +168,11 @@ public class TelaCampeonato extends JFrame {
 		btVoltar.setBounds(10, 645, 89, 23);
 		painel.add(btVoltar);
 
+		btnNewButton = new JButton("Classifica\u00E7\u00E3o");
+
+		btnNewButton.setBounds(147, 180, 116, 23);
+		painel.add(btnNewButton);
+
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 
@@ -226,6 +232,14 @@ public class TelaCampeonato extends JFrame {
 						(Campeonato) cbCampeonato.getSelectedItem(), piloto);
 				dispose();
 
+			}
+		});
+
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaConsultaClassificacaoCamp tccc = new TelaConsultaClassificacaoCamp(piloto, (Campeonato) cbCampeonato.getSelectedItem());
+				dispose();
 			}
 		});
 

@@ -141,20 +141,26 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		if (!(cp == null)) {
 			CarregaDados(cp);
 		}
+		
+		cbBateriaCampeonato.setSelectedItem(null);
 
 		cbBateriaCampeonato.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				
+				if (e.getStateChange() == 1) {
+					
+					DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					String data;
 
-				DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				String data;
+					BateriaCampeonato bc = (BateriaCampeonato) cbBateriaCampeonato.getSelectedItem();
 
-				BateriaCampeonato bc = (BateriaCampeonato) cbBateriaCampeonato.getSelectedItem();
+					data = bc.getId_bateria().getData().format(formatador);
 
-				data = bc.getId_bateria().getData().format(formatador);
-
-				txtKartodromo.setText(bc.getId_bateria().getKartodromo().getNome());
-				txtData.setText(data);
-
+					txtKartodromo.setText(bc.getId_bateria().getKartodromo().getNome());
+					txtData.setText(data);			
+					
+				}
+				
 			}
 		});
 
@@ -167,7 +173,15 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 		btSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SalvarPontuacao(cp);
+				
+				int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja atualizar a Classificação para: " + cbBateriaCampeonato.getSelectedItem().toString()
+																   + "\n todos os dados já gravados, serão sobrescritos!");				
+				
+				if(resposta == 0) {
+					SalvarPontuacao(cp);			
+				}
+				
+				
 			}
 		});
 
@@ -179,7 +193,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 		try {
 
-			listaResultado = bcpBo.listaBateriaCampeonato(cp);
+			listaResultado = bcpBo.listaBateriaCampeonato(cp);		
 
 			if (!listaResultado.isEmpty()) {
 				for (BateriaCampeonato bcp : listaResultado) {

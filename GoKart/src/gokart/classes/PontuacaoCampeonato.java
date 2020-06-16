@@ -1,11 +1,6 @@
 package gokart.classes;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PontuacaoCampeonato")
@@ -14,10 +9,10 @@ public class PontuacaoCampeonato implements EntityBase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;	
+	private int id;
 	private int posicao;
-	private long pontuacao;	
-	
+	private long pontuacao;
+
 	@ManyToOne
 	private Campeonato id_campeonato;
 
@@ -92,20 +87,4 @@ public class PontuacaoCampeonato implements EntityBase {
 		return "PontuacaoCampeonato [id=" + id + ", posicao=" + posicao + ", pontuacao=" + pontuacao
 				+ ", id_campeonato=" + id_campeonato + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

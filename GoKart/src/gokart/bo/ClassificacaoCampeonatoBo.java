@@ -3,6 +3,7 @@ package gokart.bo;
 import java.util.List;
 
 import gokart.classes.BateriaCampeonato;
+import gokart.classes.Campeonato;
 import gokart.classes.ClassificacaoCampeonato;
 import gokart.classes.Piloto;
 import gokart.classes.PilotoCampeonato;
@@ -41,6 +42,13 @@ public class ClassificacaoCampeonatoBo {
 		ClassificacaoCampeonatoDao ccDao = new ClassificacaoCampeonatoDao();
 		return ccDao.listarCC(bc, piloto);
 
+	}
+	
+	public List<ClassificacaoCampeonato> listar(Campeonato c){
+		
+		ClassificacaoCampeonatoDao ccDao = new ClassificacaoCampeonatoDao();
+		return ccDao.listar(c);
+		
 	}
 
 	private void validarDadosGrupo(ClassificacaoCampeonato cvCp) throws Exception {
