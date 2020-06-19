@@ -8,9 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import gokart.bo.KartodromoBo;
-import gokart.classes.Estado;
 import gokart.classes.Kartodromo;
-import gokart.dao.EstadoDao;
 import gokart.viacep.WebServiceCep;
 
 import javax.swing.JLabel;
@@ -87,6 +85,12 @@ public class TelaCadastroKartodromo extends JFrame {
 		contentPane.add(lblCnpj);
 		
 		txtCNPJ = new JTextField();
+		try {
+			txtCNPJ = new JFormattedTextField(new MaskFormatter("##.###.###/####-##"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		txtCNPJ.setColumns(10);
 		txtCNPJ.setBounds(10, 188, 296, 20);
 		contentPane.add(txtCNPJ);
@@ -176,9 +180,6 @@ public class TelaCadastroKartodromo extends JFrame {
 		btnBuscar.setBounds(158, 232, 89, 23);
 		contentPane.add(btnBuscar);
 		
-		/*Carrega dados nas ComboBox*/		
-		LoadCb();
-		
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
@@ -195,13 +196,6 @@ public class TelaCadastroKartodromo extends JFrame {
 				salvarKartodromo();
 			}
 		});
-	}
-	public void LoadCb() {		
-		EstadoDao eDao = new EstadoDao();
-		
-		for(Estado e: eDao.LoadEstado()) {
-			cbEstado.addItem(e);			
-		}
 	}
 	
 	public void buscarCep() {
@@ -224,11 +218,11 @@ public class TelaCadastroKartodromo extends JFrame {
 		Kartodromo kartodromo = new Kartodromo();
 
 		kartodromo.setNome(txtNome.getText());
-		kartodromo.setCnpj(Integer.parseInt(txtCNPJ.getText()));
+		kartodromo.setCnpj(txtCNPJ.getText());
 		kartodromo.setEndereco(txtEndereco.getText());
 		kartodromo.setEmail(txtEmail.getText());
 		kartodromo.setSenha(txtSenha.getText());
-		kartodromo.setEst((Estado) cbEstado.getSelectedItem());
+		kartodromo.setEstado(cbEstado.getSelectedItem().toString());
 
 		KartodromoBo kartodromoBo = new KartodromoBo();
 

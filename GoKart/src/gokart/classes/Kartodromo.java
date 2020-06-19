@@ -19,17 +19,14 @@ public class Kartodromo implements EntityBase {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private int cnpj;
+	private String cnpj;
 	private String nome;
 	private String endereco;
 	private String email;
 	private String senha;
 	private String repetirSenha;
 	private Time horaAtendimento;
-	
-	
-	@ManyToOne
-	private Estado est;
+	private String estado;
 
 	public int getId() {
 		return id;
@@ -39,11 +36,11 @@ public class Kartodromo implements EntityBase {
 		this.id = id;
 	}
 
-	public int getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(int cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -95,12 +92,12 @@ public class Kartodromo implements EntityBase {
 		this.horaAtendimento = horaAtendimento;
 	}
 
-	public Estado getEst() {
-		return est;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setEst(Estado est) {
-		this.est = est;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Kartodromo() {
@@ -111,10 +108,10 @@ public class Kartodromo implements EntityBase {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cnpj;
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + ((est == null) ? 0 : est.hashCode());
+		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
 		result = prime * result + ((horaAtendimento == null) ? 0 : horaAtendimento.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -144,10 +141,10 @@ public class Kartodromo implements EntityBase {
 				return false;
 		} else if (!endereco.equals(other.endereco))
 			return false;
-		if (est == null) {
-			if (other.est != null)
+		if (estado == null) {
+			if (other.estado != null)
 				return false;
-		} else if (!est.equals(other.est))
+		} else if (!estado.equals(other.estado))
 			return false;
 		if (horaAtendimento == null) {
 			if (other.horaAtendimento != null)

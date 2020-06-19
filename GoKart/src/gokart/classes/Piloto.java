@@ -29,8 +29,8 @@ public class Piloto implements EntityBase {
 	@Column
 	private String cidade;
 	
-	@ManyToOne
-	private Estado uf;	
+	@Column
+	private String estado;	
 	
 	@ManyToOne
 	private Nivel nivel;
@@ -43,9 +43,10 @@ public class Piloto implements EntityBase {
 	
 	@Column
 	private String reSenha;	
-
 	
-	/*Get and Setters*/
+	@Column
+	private String cpf;	
+
 	public int getId() {
 		return Id;
 	}
@@ -60,6 +61,14 @@ public class Piloto implements EntityBase {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
 	}
 
 	public String getEndereco() {
@@ -78,12 +87,12 @@ public class Piloto implements EntityBase {
 		this.cidade = cidade;
 	}
 
-	public int getIdade() {
-		return idade;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Nivel getNivel() {
@@ -118,26 +127,33 @@ public class Piloto implements EntityBase {
 		this.reSenha = reSenha;
 	}
 
-	public Estado getUf() {
-		return uf;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setUf(Estado uf) {
-		this.uf = uf;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-
+		
 	public Piloto() {
 		super();
-	}
+	}	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
-		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + Id;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());		
+		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
+		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+		result = prime * result + idade;
+		result = prime * result + ((nivel == null) ? 0 : nivel.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((reSenha == null) ? 0 : reSenha.hashCode());
+		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
 
@@ -150,27 +166,54 @@ public class Piloto implements EntityBase {
 		if (getClass() != obj.getClass())
 			return false;
 		Piloto other = (Piloto) obj;
+		if (Id != other.Id)
+			return false;
 		if (cidade == null) {
 			if (other.cidade != null)
 				return false;
 		} else if (!cidade.equals(other.cidade))
+			return false;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		if (endereco == null) {
 			if (other.endereco != null)
 				return false;
 		} else if (!endereco.equals(other.endereco))
 			return false;
-		if (Id != other.Id)
+		if (estado == null) {
+			if (other.estado != null)
+				return false;
+		} else if (!estado.equals(other.estado))
+			return false;
+		if (idade != other.idade)
+			return false;
+		if (nivel == null) {
+			if (other.nivel != null)
+				return false;
+		} else if (!nivel.equals(other.nivel))
 			return false;
 		if (nome == null) {
-			if (other.nome != null)		
+			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (uf == null) {
-			if (other.uf != null)
+		if (reSenha == null) {
+			if (other.reSenha != null)
 				return false;
-		} else if (!uf.equals(other.uf))
+		} else if (!reSenha.equals(other.reSenha))
+			return false;
+		if (senha == null) {
+			if (other.senha != null)
+				return false;
+		} else if (!senha.equals(other.senha))
 			return false;
 		return true;
 	}

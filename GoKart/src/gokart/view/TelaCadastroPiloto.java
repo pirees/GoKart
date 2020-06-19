@@ -14,12 +14,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
-
 import gokart.bo.PilotoBo;
-import gokart.classes.Estado;
 import gokart.classes.Nivel;
 import gokart.classes.Piloto;
-import gokart.dao.EstadoDao;
 import gokart.dao.NivelDao;
 import gokart.viacep.WebServiceCep;
 
@@ -136,6 +133,12 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(lblCpf);
 
 		txtCPF = new JTextField();
+		try {
+			txtCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		txtCPF.setColumns(10);
 		txtCPF.setBounds(10, 170, 271, 20);
 		contentPane.add(txtCPF);
@@ -216,14 +219,7 @@ public class TelaCadastroPiloto extends JFrame {
 	}
 	
 	
-	public void LoadCb() {		
-		EstadoDao eDao = new EstadoDao();
-		
-		for(Estado e: eDao.LoadEstado()) {
-			cbEstado.addItem(e);			
-		}	
-		
-		
+	public void LoadCb() {			
 		NivelDao nDao = new NivelDao();
 		
 		for(Nivel n: nDao.LoadNivel()) {
@@ -240,7 +236,7 @@ public class TelaCadastroPiloto extends JFrame {
 		if(wsc.wasSuccessful()) {
 			txtCidade.setText(wsc.getCidade());
 			txtEndereco.setText(wsc.getLogradouro());
-			//cbEstado.addItem(wsc.getUf());
+			cbEstado.addItem(wsc.getUf());
 
 		} else {
 			JOptionPane.showMessageDialog(null, wsc.getResultText());
@@ -253,12 +249,14 @@ public class TelaCadastroPiloto extends JFrame {
 
 		piloto.setNome(txtNome.getText());
 		piloto.setEndereco(txtEndereco.getText());
+		piloto.setCpf(txtCPF.getText());
 		piloto.setCidade(txtCidade.getText());
 		piloto.setIdade(Integer.parseInt(txtIdade.getText()));
 		piloto.setNivel((Nivel) cbNivelPiloto.getSelectedItem());
 		piloto.setEmail(txtEmail.getText());
 		piloto.setSenha(txtSenha.getText());
-		piloto.setUf((Estado) cbEstado.getSelectedItem());
+		piloto.setReSenha(txtReptSenha.getText());
+		piloto.setEstado(cbEstado.getSelectedItem().toString());
 
 		PilotoBo pBo = new PilotoBo();
 
