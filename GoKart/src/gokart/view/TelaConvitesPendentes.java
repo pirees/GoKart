@@ -134,9 +134,7 @@ public class TelaConvitesPendentes extends JFrame {
 	private void aceitarConvite(Piloto piloto){
 		
 		ConviteCampeonato cc = (ConviteCampeonato) table.getModel().getValueAt(table.getSelectedRow(), 0);		
-		cc.setAceito((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1));	
-		
-		
+		cc.setAceito((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1));			
 		ConviteCampeonatoBo ccBo = new ConviteCampeonatoBo();		
 		
 		try {
