@@ -58,7 +58,7 @@ public class TelaCadastroCampeonato extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
+
 	public TelaCadastroCampeonato(Piloto piloto) {
 		setResizable(false);
 		setTitle("GoKart - Cadastro Campeonato");
@@ -69,18 +69,13 @@ public class TelaCadastroCampeonato extends JFrame {
 		setContentPane(pnPrincipal);
 
 		JLabel lblCadastro = new JLabel("Cadastro de Campeonato");
-		lblCadastro.setBounds(167, 56, 187, 20);
+		lblCadastro.setBounds(47, 83, 187, 20);
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btnSalvar.setBounds(10, 645, 89, 23);
-
-		JButton btnVoltar = new JButton("Voltar");
-
-		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnVoltar.setBounds(109, 645, 89, 23);
 
 		txtNomeCampeonato = new JTextField();
 		txtNomeCampeonato.setBounds(10, 193, 252, 20);
@@ -99,38 +94,27 @@ public class TelaCadastroCampeonato extends JFrame {
 
 		JScrollPane pnPontuacao = new JScrollPane();
 		pnPontuacao.setBounds(10, 355, 355, 189);
-		
+
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 
 		tbPontuacao = new JTable();
 		tbPontuacao.setToolTipText("Cadastro de pontua\u00E7\u00E3o do campeonato!");
 		tbPontuacao.setModel(new DefaultTableModel(
-			new Object[][] {
-				{new Integer(1), new Long(25L)},
-				{new Integer(2), new Long(18L)},
-				{new Integer(3), new Long(15L)},
-				{new Integer(4), new Long(12L)},
-				{new Integer(5), new Long(10L)},
-				{new Integer(6), new Long(8L)},
-				{new Integer(7), new Long(6L)},
-				{new Integer(8), new Long(4L)},
-				{new Integer(9), new Long(2L)},
-				{new Integer(10), new Long(1L)},
-			},
-			new String[] {
-				"Posi\u00E7\u00E3o", "Pontua\u00E7\u00E3o"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, Long.class
-			};
+				new Object[][] { { new Integer(1), new Long(25L) }, { new Integer(2), new Long(18L) },
+						{ new Integer(3), new Long(15L) }, { new Integer(4), new Long(12L) },
+						{ new Integer(5), new Long(10L) }, { new Integer(6), new Long(8L) },
+						{ new Integer(7), new Long(6L) }, { new Integer(8), new Long(4L) },
+						{ new Integer(9), new Long(2L) }, { new Integer(10), new Long(1L) }, },
+				new String[] { "Posi\u00E7\u00E3o", "Pontua\u00E7\u00E3o" }) {
+			Class[] columnTypes = new Class[] { Integer.class, Long.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			boolean[] columnEditables = new boolean[] {
-				false, true
-			};
+
+			boolean[] columnEditables = new boolean[] { false, true };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -142,12 +126,11 @@ public class TelaCadastroCampeonato extends JFrame {
 		pnPrincipal.setLayout(null);
 		pnPrincipal.add(lblCadastro);
 		pnPrincipal.add(btnSalvar);
-		pnPrincipal.add(btnVoltar);
 		pnPrincipal.add(txtNomeCampeonato);
 		pnPrincipal.add(lblNomeCampeonato);
 		pnPrincipal.add(lblQuantidadeDeCorrida);
 		pnPrincipal.add(cbQtCorrida);
-		pnPrincipal.add(pnPontuacao);
+		pnPrincipal.add(pnPontuacao);		
 
 		JLabel lblPontuacao = new JLabel("Pontua\u00E7\u00E3o Classifica\u00E7\u00E3o:");
 		lblPontuacao.setBounds(10, 339, 172, 14);
@@ -176,8 +159,17 @@ public class TelaCadastroCampeonato extends JFrame {
 
 		JLabel lblImg = new JLabel("");
 		lblImg.setIcon(new ImageIcon(TelaCadastroCampeonato.class.getResource("/img/TrofeuCampeonatoPequeno.png")));
-		lblImg.setBounds(10, 11, 121, 113);
+		lblImg.setBounds(244, 31, 121, 113);
 		pnPrincipal.add(lblImg);
+		txtEmailPilotoAdm.setText(piloto.getEmail());
+		
+		JButton btVoltar = new JButton("");
+		
+		btVoltar.setIcon(new ImageIcon(TelaCadastroCampeonato.class.getResource("/img/voltar - 32.png")));
+		btVoltar.setToolTipText("Voltar ");
+		btVoltar.setBackground(Color.WHITE);
+		btVoltar.setBounds(20, 31, 30, 29);
+		pnPrincipal.add(btVoltar);
 
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -187,14 +179,21 @@ public class TelaCadastroCampeonato extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				try {
+					ValidaPontos();
+					SalvaDados();
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage(), "Erro Pontuação!", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
+
 				/* Chama metodo para salvar dados no banco */
-				SalvaDados();
 
 			}
 		});
-
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
 				TelaCampeonato tc = new TelaCampeonato(piloto);
 				dispose();
 			}
@@ -213,27 +212,22 @@ public class TelaCadastroCampeonato extends JFrame {
 		PilotoBo pBo = new PilotoBo();
 
 		try {
-			
-			
+
 			/* Procura o piloto pelo e-mail em tela */
-			cp.setPilotoAdm(pBo.ProcuraEmail(txtEmailPilotoAdm.getText()));			
+			cp.setPilotoAdm(pBo.ProcuraEmail(txtEmailPilotoAdm.getText()));
 
 			/* Salva o Campeonato no Banco de Dados */
 			CampeonatoBo cpBo = new CampeonatoBo();
-			
-			
+
 			cpBo.Salvar(cp);
-			
-			
-			
-			/*Grava Relacionamento Piloto x Campeonato*/			
+
+			/* Grava Relacionamento Piloto x Campeonato */
 			PilotoCampeonato piCamp = new PilotoCampeonato();
 			piCamp.setPil(cp.getPilotoAdm());
-			piCamp.setCamp(cp);			
-			
-			PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();			
-			pcpBo.Salvar(piCamp);			
-			
+			piCamp.setCamp(cp);
+
+			PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();
+			pcpBo.Salvar(piCamp);
 
 			/* Salva a Pontuação do Campeonato no Banco de Dados */
 			int i = 0;
@@ -243,17 +237,39 @@ public class TelaCadastroCampeonato extends JFrame {
 				pCp.setId_campeonato(cp);
 				pCp.setPontuacao(Integer.valueOf(tbPontuacao.getModel().getValueAt(i, 1).toString()));
 				pCp.setPosicao(i + 1);
-				
-				PontuacaoCampeonatoBo pCBo = new PontuacaoCampeonatoBo();				
+
+				PontuacaoCampeonatoBo pCBo = new PontuacaoCampeonatoBo();
 				pCBo.Salvar(pCp);
 			}
-			
+
 			JOptionPane.showMessageDialog(null, "Campeonato cadastrado com sucesso!");
-			
 
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
 			e2.printStackTrace();
+		}
+
+	}
+
+	public void ValidaPontos() throws Exception {
+
+		int i = 0;
+		int j = 0;
+
+		for (i = 0; i < tbPontuacao.getModel().getRowCount(); i++) {
+
+			int pos = (int) tbPontuacao.getModel().getValueAt(i, 0);
+			long pontos = (long) tbPontuacao.getModel().getValueAt(i, 1);
+
+			for (j = 0; j < tbPontuacao.getModel().getRowCount(); j++) {
+
+				if ((int) tbPontuacao.getModel().getValueAt(j, 0) > pos	&& (long) tbPontuacao.getModel().getValueAt(j, 1) > pontos) {
+					throw new Exception("Posição: " + (int) tbPontuacao.getModel().getValueAt(j, 0)
+							+ "º com pontuação MAIOR que Posição: " + pos + "º");
+				}
+
+			}
+
 		}
 
 	}

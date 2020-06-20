@@ -324,6 +324,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 			tbPontuacao.setModel(modelo);
 
 		}
-
 	}
+	
+	
 }
