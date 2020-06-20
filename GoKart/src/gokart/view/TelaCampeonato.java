@@ -77,35 +77,48 @@ public class TelaCampeonato extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		painel = new JPanel();
+		painel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		painel.setBackground(Color.BLACK);
 		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painel);
 		painel.setLayout(null);
 
 		JLabel lblCampeonato = new JLabel("Campeonato:");
+		lblCampeonato.setForeground(Color.ORANGE);
+		lblCampeonato.setBackground(Color.ORANGE);
 		lblCampeonato.setBounds(10, 138, 88, 14);
 		painel.add(lblCampeonato);
 
 		cbCampeonato = new JComboBox();
+		cbCampeonato.setForeground(Color.ORANGE);
+		cbCampeonato.setBackground(Color.BLACK);
 		cbCampeonato.setBounds(10, 163, 301, 22);
 		painel.add(cbCampeonato);
 
 		btNovoCampeonato = new JButton("+");
+		btNovoCampeonato.setForeground(Color.ORANGE);
+		btNovoCampeonato.setBackground(Color.BLACK);
 		btNovoCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btNovoCampeonato.setBounds(321, 163, 41, 23);
 		painel.add(btNovoCampeonato);
 
 		btClassificacao = new JButton("+ Classifica\u00E7\u00E3o");
+		btClassificacao.setForeground(Color.ORANGE);
+		btClassificacao.setBackground(Color.BLACK);
 
 		btClassificacao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btClassificacao.setBounds(10, 196, 127, 23);
 		painel.add(btClassificacao);
 
 		JLabel lblCvPiloto = new JLabel("Convidar Piloto:");
+		lblCvPiloto.setForeground(Color.ORANGE);
 		lblCvPiloto.setBounds(10, 246, 116, 14);
 		painel.add(lblCvPiloto);
 
 		txtEmailPiloto = new JTextField();
+		txtEmailPiloto.setForeground(Color.ORANGE);
+		txtEmailPiloto.setBackground(Color.BLACK);
 		txtEmailPiloto.setToolTipText("Ensira o e-mail do piloto para convida-lo ao campeonato.");
 		txtEmailPiloto.setText("Email Piloto");
 		txtEmailPiloto.setBounds(10, 271, 301, 20);
@@ -113,6 +126,8 @@ public class TelaCampeonato extends JFrame {
 		txtEmailPiloto.setColumns(10);
 
 		btEnviaConvite = new JButton("");
+		btEnviaConvite.setForeground(Color.ORANGE);
+		btEnviaConvite.setBackground(Color.ORANGE);
 		btEnviaConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btEnviaConvite.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/IconeEnviar.png")));
 
@@ -121,6 +136,7 @@ public class TelaCampeonato extends JFrame {
 		painel.add(btEnviaConvite);
 
 		JLabel lblBaterias = new JLabel("Baterias:");
+		lblBaterias.setForeground(Color.ORANGE);
 		lblBaterias.setBounds(10, 314, 61, 14);
 		painel.add(lblBaterias);
 
@@ -129,6 +145,8 @@ public class TelaCampeonato extends JFrame {
 		painel.add(pnBateria);
 
 		tbBateria = new JTable();
+		tbBateria.setForeground(Color.ORANGE);
+		tbBateria.setBackground(Color.BLACK);
 
 		tbBateria.setModel(new DefaultTableModel(new Object[][] { { null, "", null, null }, },
 				new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }) {
@@ -148,6 +166,8 @@ public class TelaCampeonato extends JFrame {
 		pnBateria.setViewportView(tbBateria);
 
 		btAddBateria = new JButton("Adicionar Bateria");
+		btAddBateria.setForeground(Color.ORANGE);
+		btAddBateria.setBackground(Color.BLACK);
 		btAddBateria.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btAddBateria.setBounds(10, 494, 140, 23);
 		painel.add(btAddBateria);
@@ -158,20 +178,25 @@ public class TelaCampeonato extends JFrame {
 		painel.add(imgCampeonato);
 
 		JLabel lbCamp = new JLabel("GoKart - Campeonato");
+		lbCamp.setForeground(Color.ORANGE);
+		lbCamp.setBackground(Color.ORANGE);
 		lbCamp.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbCamp.setBounds(99, 58, 140, 22);
 		painel.add(lbCamp);
 
 		btConsultaClass = new JButton("Classifica\u00E7\u00E3o");
+		btConsultaClass.setForeground(Color.ORANGE);
+		btConsultaClass.setBackground(Color.BLACK);
 
 		btConsultaClass.setBounds(147, 196, 116, 23);
 		painel.add(btConsultaClass);
 
 		btVoltar = new JButton("");
+		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		btVoltar.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/voltar - 32.png")));
 		btVoltar.setToolTipText("Voltar ");
-		btVoltar.setBackground(Color.WHITE);
+		btVoltar.setBackground(Color.ORANGE);
 		btVoltar.setBounds(20, 31, 30, 29);
 		painel.add(btVoltar);
 

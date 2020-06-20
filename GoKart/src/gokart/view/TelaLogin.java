@@ -70,6 +70,8 @@ public class TelaLogin extends JFrame {
 		contentPane.add(lblSenha);
 
 		txtSenha = new JPasswordField();
+		txtSenha.setForeground(Color.ORANGE);
+		txtSenha.setBackground(Color.BLACK);
 		txtSenha.setBounds(10, 408, 355, 20);
 		contentPane.add(txtSenha);
 

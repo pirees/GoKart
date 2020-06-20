@@ -69,6 +69,7 @@ public class TelaMenuPiloto extends JFrame {
 	
 	
 	public TelaMenuPiloto(Piloto piloto){
+		setTitle("GoKart - Menu Piloto");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
