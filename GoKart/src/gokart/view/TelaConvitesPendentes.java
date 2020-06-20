@@ -11,8 +11,11 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import gokart.bo.ConviteCampeonatoBo;
+import gokart.bo.PilotoCampeonatoBo;
 import gokart.classes.ConviteCampeonato;
 import gokart.classes.Piloto;
+import gokart.classes.PilotoCampeonato;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
@@ -140,6 +143,14 @@ public class TelaConvitesPendentes extends JFrame {
 		if((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1)) {
 			try {
 				ccBo.Salvar(cc);
+				PilotoCampeonato pc = new PilotoCampeonato();
+				
+				pc.setCamp(cc.getId_campeonato());
+				pc.setPil(piloto);
+				
+				PilotoCampeonatoBo pcBo = new PilotoCampeonatoBo();
+				pcBo.Salvar(pc);			
+				
 				JOptionPane.showMessageDialog(null, "Convite aceito com sucesso");		
 			} catch (Exception e) {			
 				e.printStackTrace();
