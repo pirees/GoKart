@@ -50,19 +50,19 @@ public class TelaConvitesPendentes extends JFrame {
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
+				{null, null, null},
 			},
 			new String[] {
-				"Campeonato", "Aceito"
+				"Campeonato", "Aceito", "N\u00E3o Aceito"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Object.class, Boolean.class
+				Object.class, Boolean.class, Boolean.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-		});		
+		});
 				
 		btnAceitar = new JButton("Aceitar");
 		btnAceitar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -89,7 +89,6 @@ public class TelaConvitesPendentes extends JFrame {
 		//CENTRALIZANDO OS ITENS DA TABELA
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
-		table.getColumnModel().getColumn(0).setCellRenderer(centralizado);
 		
 		listarBaterias(piloto);
 		
@@ -134,16 +133,25 @@ public class TelaConvitesPendentes extends JFrame {
 	private void aceitarConvite(Piloto piloto){
 		
 		ConviteCampeonato cc = (ConviteCampeonato) table.getModel().getValueAt(table.getSelectedRow(), 0);		
-		cc.setAceito((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1));	
-		
+		cc.setAceito((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1));			
 		
 		ConviteCampeonatoBo ccBo = new ConviteCampeonatoBo();		
 		
-		try {
-			ccBo.Salvar(cc);
-			JOptionPane.showMessageDialog(null, "Convite aceito com sucesso");		
-		} catch (Exception e) {			
-			e.printStackTrace();
+		if((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1)) {
+			try {
+				ccBo.Salvar(cc);
+				JOptionPane.showMessageDialog(null, "Convite aceito com sucesso");		
+			} catch (Exception e) {			
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				ccBo.deletar(cc);
+				JOptionPane.showMessageDialog(null, "Convite recusado");	
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 				
 	} 
