@@ -1,12 +1,7 @@
 package gokart.classes;
 
-
-
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -142,6 +137,5 @@ public class Bateria implements EntityBase{
 	@Override
 	public String toString() {
 		return this.getKartodromo().getNome();
-	}	
-	
+	}		
 }

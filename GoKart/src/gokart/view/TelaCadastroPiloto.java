@@ -198,6 +198,7 @@ public class TelaCadastroPiloto extends JFrame {
 		/* Salvar dados via BO */
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//validaCPF();
 				salvarPiloto();
 			}
 		});
@@ -243,7 +244,7 @@ public class TelaCadastroPiloto extends JFrame {
 		}
 	}
 	
-	public void salvarPiloto() {
+	public void salvarPiloto() {		
 		
 		Piloto piloto = new Piloto();
 
@@ -259,9 +260,8 @@ public class TelaCadastroPiloto extends JFrame {
 		piloto.setEstado(cbEstado.getSelectedItem().toString());
 
 		PilotoBo pBo = new PilotoBo();
-
+		
 		try {
-
 			JOptionPane.showMessageDialog(null, "Piloto " + pBo.Salvar(piloto));
 
 		} catch (Exception e1) {
