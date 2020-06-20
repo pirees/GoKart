@@ -43,17 +43,28 @@ public class ClassificacaoCampeonatoBo {
 		return ccDao.listarCC(bc, piloto);
 
 	}
-	
-	public List<ClassificacaoCampeonato> listar(Campeonato c){
-		
+
+	public List<ClassificacaoCampeonato> listar(Campeonato c) {
+
 		ClassificacaoCampeonatoDao ccDao = new ClassificacaoCampeonatoDao();
 		return ccDao.listar(c);
-		
+
+	}
+
+	public List<ClassificacaoCampeonato> listarCpBt(Campeonato c, BateriaCampeonato bc) {
+
+		ClassificacaoCampeonatoDao ccDao = new ClassificacaoCampeonatoDao();
+		return ccDao.listarCpBt(c, bc);
+
 	}
 
 	private void validarDadosGrupo(ClassificacaoCampeonato cvCp) throws Exception {
 		if (cvCp.getId() < 0) {
 			throw new Exception("ID do Campeonato não poder ser menor que ZERO.");
+		}
+
+		if (cvCp.getPosicao() == 0) {
+			throw new Exception("Posição para o piloto " + cvCp.getPil().getPil().getNome() + " não pode ser 0!");
 		}
 
 	}

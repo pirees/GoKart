@@ -32,12 +32,26 @@ public class ClassificacaoCampeonatoDao {
 
 	public List<ClassificacaoCampeonato> listar(Campeonato camp) {
 
-		Query q = null;
+		Query q;
 
-		q = em.createQuery("select cc from ClassificacaoCampeonato cc"
-						 + " where cc.camp = :campid");
+		q = em.createQuery("select cc from ClassificacaoCampeonato cc" + " where cc.camp = :campid");
 
 		q.setParameter("campid", camp);
+
+		return q.getResultList();
+
+	}
+
+	public List<ClassificacaoCampeonato> listarCpBt(Campeonato c, BateriaCampeonato bc) {
+
+		Query q;
+
+		q = em.createQuery("select cc from ClassificacaoCampeonato cc"
+						 + " where cc.camp = :campid"
+				         + " and cc.bat = :batid");
+
+		q.setParameter("campid", c);
+		q.setParameter("batid", bc);
 
 		return q.getResultList();
 

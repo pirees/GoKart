@@ -129,21 +129,27 @@ public class TelaCampeonato extends JFrame {
 
 		tbBateria = new JTable();
 
-		tbBateria.setModel(
-				new DefaultTableModel(new Object[][] { { null, null, null, null }, { null, null, null, null } },
-						new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }) {
-					Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
-
-					public Class getColumnClass(int columnIndex) {
-						return columnTypes[columnIndex];
-					}
-
-					boolean[] columnEditables = new boolean[] { false, false, false, false };
-
-					public boolean isCellEditable(int row, int column) {
-						return columnEditables[column];
-					}
-				});
+		tbBateria.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, "", null, null},
+			},
+			new String[] {
+				"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		tbBateria.getColumnModel().getColumn(3).setPreferredWidth(103);
 		pnBateria.setViewportView(tbBateria);
 
@@ -194,7 +200,6 @@ public class TelaCampeonato extends JFrame {
 				TelaAddBateriaCampeonato taddbt = new TelaAddBateriaCampeonato(piloto,
 						(Campeonato) cbCampeonato.getSelectedItem());
 				dispose();
-
 			}
 		});
 
@@ -238,7 +243,8 @@ public class TelaCampeonato extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				TelaConsultaClassificacaoCamp tccc = new TelaConsultaClassificacaoCamp(piloto, (Campeonato) cbCampeonato.getSelectedItem());
+				TelaConsultaClassificacaoCamp tccc = new TelaConsultaClassificacaoCamp(piloto,
+						(Campeonato) cbCampeonato.getSelectedItem());
 				dispose();
 			}
 		});

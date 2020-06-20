@@ -88,12 +88,25 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 		contentPane.add(pnScroll);
 
 		tbClass = new JTable();
-		tbClass.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
-				new String[] { "Posi\u00E7\u00E3o", "Piloto", "Pontua\u00E7\u00E3o" }) {
-			Class[] columnTypes = new Class[] { String.class, String.class, Long.class };
-
+		tbClass.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"Posi\u00E7\u00E3o", "Piloto", "Pontua\u00E7\u00E3o"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, Long.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		pnScroll.setViewportView(tbClass);

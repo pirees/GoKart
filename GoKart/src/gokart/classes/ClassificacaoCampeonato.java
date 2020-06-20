@@ -24,6 +24,8 @@ public class ClassificacaoCampeonato implements EntityBase {
 	
 	@ManyToOne
 	private BateriaCampeonato bat;
+	
+	private int posicao;
 
 	public int getId() {
 		return id;
@@ -63,6 +65,14 @@ public class ClassificacaoCampeonato implements EntityBase {
 
 	public void setBat(BateriaCampeonato bat) {
 		this.bat = bat;
+	}
+
+	public int getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(int posicao) {
+		this.posicao = posicao;
 	}
 
 	public ClassificacaoCampeonato() {
