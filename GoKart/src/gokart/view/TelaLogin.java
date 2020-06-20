@@ -45,20 +45,27 @@ public class TelaLogin extends JFrame {
 		setBounds(100, 100, 391, 718);
 
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		txtUsername = new JTextField();
+		txtUsername.setBackground(Color.BLACK);
+		txtUsername.setForeground(Color.ORANGE);
+		txtUsername.setText("exemplo@exemplo.com");
 		txtUsername.setBounds(10, 335, 355, 20);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 
 		lblUsername = new JLabel("Email:");
+		lblUsername.setBackground(Color.ORANGE);
+		lblUsername.setForeground(Color.ORANGE);
 		lblUsername.setBounds(10, 310, 46, 14);
 		contentPane.add(lblUsername);
 
 		lblSenha = new JLabel("Senha:");
+		lblSenha.setForeground(Color.ORANGE);
 		lblSenha.setBounds(10, 383, 46, 14);
 		contentPane.add(lblSenha);
 
@@ -67,13 +74,15 @@ public class TelaLogin extends JFrame {
 		contentPane.add(txtSenha);
 
 		btLogin = new JButton("Entrar");
+		btLogin.setBackground(Color.BLACK);
+		btLogin.setForeground(Color.ORANGE);
 		btLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btLogin.setBounds(276, 432, 89, 23);
 		contentPane.add(btLogin);
 
 		lblCadastrar = new JLabel("N\u00E3o tem conta? Efetue o cadastro...");
-		lblCadastrar.setForeground(Color.BLUE);
+		lblCadastrar.setForeground(Color.ORANGE);
 		lblCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblCadastrar.setBounds(10, 436, 185, 14);
 		contentPane.add(lblCadastrar);
@@ -84,20 +93,24 @@ public class TelaLogin extends JFrame {
 		contentPane.add(imgLogo);
 
 		lblCadastrarKartodromo = new JLabel("Gostaria de cadastrar um kart\u00F3dromo? Clique aqui");
-		lblCadastrarKartodromo.setForeground(Color.BLUE);
+		lblCadastrarKartodromo.setForeground(Color.ORANGE);
 		lblCadastrarKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblCadastrarKartodromo.setBounds(10, 490, 230, 14);
 		contentPane.add(lblCadastrarKartodromo);
 
 		rdbtnPiloto = new JRadioButton("Piloto");
+		rdbtnPiloto.setForeground(Color.ORANGE);
+		rdbtnPiloto.setBackground(Color.BLACK);
 		rdbtnPiloto.setSelected(true);
 		buttonGroup.add(rdbtnPiloto);
-		rdbtnPiloto.setBounds(67, 527, 109, 23);
+		rdbtnPiloto.setBounds(10, 529, 109, 23);
 		contentPane.add(rdbtnPiloto);
 
 		rdbtnKartodromo = new JRadioButton("Kartodromo");
+		rdbtnKartodromo.setBackground(Color.BLACK);
+		rdbtnKartodromo.setForeground(Color.ORANGE);
 		buttonGroup.add(rdbtnKartodromo);
-		rdbtnKartodromo.setBounds(67, 553, 109, 23);
+		rdbtnKartodromo.setBounds(10, 555, 109, 23);
 		contentPane.add(rdbtnKartodromo);
 
 		this.setVisible(true);
