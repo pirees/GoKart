@@ -41,8 +41,7 @@ public class PilotoDao {
 		q.setParameter("cpf", cpf);		
 
 		lista = q.getResultList();	
-
-		/*Caso exista um piloto, entra no bloco do FOR e retorna, caso contrario retorna null*/				
+			
 		for (Piloto pi : lista) {				
 			return pi;					
 		}

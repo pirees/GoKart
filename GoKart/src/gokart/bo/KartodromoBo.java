@@ -32,6 +32,13 @@ public class KartodromoBo {
 		if (kartodromo.getId() < 0) {
 			throw new Exception("Id da composicao não pode ser negativo!");
 		}
+		
+
+		KartodromoDao kDao = new KartodromoDao();
+				
+		if(kDao.ValidaCNPJ(kartodromo.getCnpj()) != null) {
+			throw new Exception("CNPJ já cadastrado no sistema");			
+		}
 	}
 	
 	public Kartodromo ValidaLogin(String email, String senha) throws Exception {

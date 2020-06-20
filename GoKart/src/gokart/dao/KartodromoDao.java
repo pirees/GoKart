@@ -30,5 +30,23 @@ private static EntityManager em = Fabrica.getEntityManager();
 				
 		return null;		
 	}
+	
+	public Kartodromo ValidaCNPJ(String cnpj)throws Exception{	
+
+		List<Kartodromo> lista;
+
+		Query q = em.createQuery("SELECT k from Kartodromo k"
+				+" where cnpj = :cnpj");
+
+		q.setParameter("cnpj", cnpj);		
+
+		lista = q.getResultList();	
+			
+		for (Kartodromo ki : lista) {				
+			return ki;					
+		}
+
+		return null;		
+	}
 
 }

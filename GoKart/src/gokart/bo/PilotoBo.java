@@ -49,10 +49,9 @@ public class PilotoBo {
 			throw new Exception("É necessário ser maior de 14 anos para realizar o cadastro");			
 		}		
 		
-
 		PilotoDao pDao = new PilotoDao();
 				
-		if(pDao.ValidaCPF(piloto.getCpf()) == null) {
+		if(pDao.ValidaCPF(piloto.getCpf()) != null) {
 			throw new Exception("CPF já cadastrado no sistema");			
 		}
 
@@ -98,22 +97,4 @@ public class PilotoBo {
 		
 		return rPiloto;		
 	}
-	
-	public Piloto validaCPF(String cpf) throws Exception{
-
-		if(cpf.isBlank()) {			
-			throw new Exception("É necessário cadastrar um CPF válido.");
-		}
-			
-		Piloto rPiloto;
-		PilotoDao pDao = new PilotoDao();
-		rPiloto = pDao.ValidaCPF(cpf);
-		
-		if(rPiloto.equals(cpf)) {
-			throw new Exception("CPF já cadastrado no sistema");	
-		}		
-
-		return  rPiloto;
-	}	
-
 }
