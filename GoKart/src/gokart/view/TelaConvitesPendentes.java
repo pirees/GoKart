@@ -134,10 +134,7 @@ public class TelaConvitesPendentes extends JFrame {
 		
 		ConviteCampeonato cc = (ConviteCampeonato) table.getModel().getValueAt(table.getSelectedRow(), 0);		
 		cc.setAceito((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1));			
-<<<<<<< HEAD
-=======
-		
->>>>>>> refs/remotes/origin/master
+
 		ConviteCampeonatoBo ccBo = new ConviteCampeonatoBo();		
 		
 		if((boolean) table.getModel().getValueAt(table.getSelectedRow(), 1)) {
