@@ -35,6 +35,8 @@ import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
@@ -77,36 +79,36 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		contentPane.setLayout(null);
 
 		lblBateria = new JLabel("Bateria:");
-		lblBateria.setBounds(10, 37, 72, 14);
+		lblBateria.setBounds(10, 77, 72, 14);
 		contentPane.add(lblBateria);
 
 		cbBateriaCampeonato = new JComboBox();
 
-		cbBateriaCampeonato.setBounds(10, 62, 355, 22);
+		cbBateriaCampeonato.setBounds(10, 102, 355, 22);
 		contentPane.add(cbBateriaCampeonato);
 
 		lblData = new JLabel("Data Corrida:");
-		lblData.setBounds(10, 95, 87, 14);
+		lblData.setBounds(10, 135, 87, 14);
 		contentPane.add(lblData);
 
 		txtData = new JTextField();
 		txtData.setEditable(false);
-		txtData.setBounds(10, 115, 101, 20);
+		txtData.setBounds(10, 155, 101, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 
 		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo:");
-		lblKartodromo.setBounds(144, 95, 79, 14);
+		lblKartodromo.setBounds(144, 135, 79, 14);
 		contentPane.add(lblKartodromo);
 
 		txtKartodromo = new JTextField();
 		txtKartodromo.setEditable(false);
-		txtKartodromo.setBounds(144, 115, 221, 20);
+		txtKartodromo.setBounds(144, 155, 221, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
 
 		JScrollPane pnScroll = new JScrollPane();
-		pnScroll.setBounds(10, 204, 355, 272);
+		pnScroll.setBounds(10, 244, 355, 272);
 		contentPane.add(pnScroll);
 
 		tbPontuacao = new JTable();
@@ -123,18 +125,13 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		pnScroll.setViewportView(tbPontuacao);
 
 		JLabel lblCadastroPt = new JLabel("Cadastrar Pontua\u00E7\u00E3o:");
-		lblCadastroPt.setBounds(10, 179, 178, 14);
+		lblCadastroPt.setBounds(10, 219, 178, 14);
 		contentPane.add(lblCadastroPt);
 
 		JButton btSalvar = new JButton("Salvar");
 		btSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btSalvar);
-
-		JButton btVoltar = new JButton("Voltar");
-		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btVoltar.setBounds(109, 645, 89, 23);
-		contentPane.add(btVoltar);
 
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
@@ -144,6 +141,14 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		}
 
 		cbBateriaCampeonato.setSelectedItem(null);
+
+		JButton btVoltar = new JButton("");
+
+		btVoltar.setIcon(new ImageIcon(TelaPontuacaoBateriaCampeonato.class.getResource("/img/voltar - 32.png")));
+		btVoltar.setToolTipText("Voltar ");
+		btVoltar.setBackground(Color.WHITE);
+		btVoltar.setBounds(10, 27, 30, 29);
+		contentPane.add(btVoltar);
 
 		cbBateriaCampeonato.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -172,13 +177,6 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 			}
 		});
 
-		btVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaCampeonato tc = new TelaCampeonato(piloto);
-				dispose();
-			}
-		});
-
 		btSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -190,6 +188,13 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 					SalvarPontuacao(cp);
 				}
 
+			}
+		});
+
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCampeonato tc = new TelaCampeonato(piloto);
+				dispose();
 			}
 		});
 
@@ -302,8 +307,6 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 		if (listaCl.isEmpty()) {
 
-			System.out.println("Lista vazia");
-
 			PilotoCampeonatoBo pcBo = new PilotoCampeonatoBo();
 
 			for (PilotoCampeonato pc : pcBo.ListarCampeonatoPiloto(cp)) {
@@ -314,7 +317,6 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 		} else {
 
-			System.out.println("Lista cheia");
 			for (ClassificacaoCampeonato cc : listaCl) {
 				modelo.addRow(new Object[] { cc.getPil(), cc.getPosicao(), "" });
 			}
@@ -324,5 +326,4 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		}
 
 	}
-
 }

@@ -34,6 +34,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
+import java.awt.Color;
 
 public class TelaCampeonato extends JFrame {
 
@@ -49,8 +50,8 @@ public class TelaCampeonato extends JFrame {
 	private JScrollPane pnBateria;
 
 	private List<String[]> listaResultado = new ArrayList<>();
+	private JButton btConsultaClass;
 	private JButton btVoltar;
-	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -81,33 +82,33 @@ public class TelaCampeonato extends JFrame {
 		painel.setLayout(null);
 
 		JLabel lblCampeonato = new JLabel("Campeonato:");
-		lblCampeonato.setBounds(10, 122, 88, 14);
+		lblCampeonato.setBounds(10, 138, 88, 14);
 		painel.add(lblCampeonato);
 
 		cbCampeonato = new JComboBox();
-		cbCampeonato.setBounds(10, 147, 301, 22);
+		cbCampeonato.setBounds(10, 163, 301, 22);
 		painel.add(cbCampeonato);
 
 		btNovoCampeonato = new JButton("+");
 		btNovoCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-		btNovoCampeonato.setBounds(321, 147, 41, 23);
+		btNovoCampeonato.setBounds(321, 163, 41, 23);
 		painel.add(btNovoCampeonato);
 
 		btClassificacao = new JButton("+ Classifica\u00E7\u00E3o");
 
 		btClassificacao.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btClassificacao.setBounds(10, 180, 127, 23);
+		btClassificacao.setBounds(10, 196, 127, 23);
 		painel.add(btClassificacao);
 
 		JLabel lblCvPiloto = new JLabel("Convidar Piloto:");
-		lblCvPiloto.setBounds(10, 230, 116, 14);
+		lblCvPiloto.setBounds(10, 246, 116, 14);
 		painel.add(lblCvPiloto);
 
 		txtEmailPiloto = new JTextField();
 		txtEmailPiloto.setToolTipText("Ensira o e-mail do piloto para convida-lo ao campeonato.");
 		txtEmailPiloto.setText("Email Piloto");
-		txtEmailPiloto.setBounds(10, 255, 301, 20);
+		txtEmailPiloto.setBounds(10, 271, 301, 20);
 		painel.add(txtEmailPiloto);
 		txtEmailPiloto.setColumns(10);
 
@@ -116,36 +117,29 @@ public class TelaCampeonato extends JFrame {
 		btEnviaConvite.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/IconeEnviar.png")));
 
 		btEnviaConvite.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btEnviaConvite.setBounds(321, 255, 41, 20);
+		btEnviaConvite.setBounds(321, 271, 41, 20);
 		painel.add(btEnviaConvite);
 
 		JLabel lblBaterias = new JLabel("Baterias:");
-		lblBaterias.setBounds(10, 298, 61, 14);
+		lblBaterias.setBounds(10, 314, 61, 14);
 		painel.add(lblBaterias);
 
 		pnBateria = new JScrollPane();
-		pnBateria.setBounds(10, 323, 355, 148);
+		pnBateria.setBounds(10, 339, 355, 148);
 		painel.add(pnBateria);
 
 		tbBateria = new JTable();
 
-		tbBateria.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, "", null, null},
-			},
-			new String[] {
-				"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
-			};
+		tbBateria.setModel(new DefaultTableModel(new Object[][] { { null, "", null, null }, },
+				new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }) {
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false
-			};
+
+			boolean[] columnEditables = new boolean[] { false, false, false, false };
+
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -155,7 +149,7 @@ public class TelaCampeonato extends JFrame {
 
 		btAddBateria = new JButton("Adicionar Bateria");
 		btAddBateria.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btAddBateria.setBounds(10, 478, 140, 23);
+		btAddBateria.setBounds(10, 494, 140, 23);
 		painel.add(btAddBateria);
 
 		JLabel imgCampeonato = new JLabel("");
@@ -165,19 +159,21 @@ public class TelaCampeonato extends JFrame {
 
 		JLabel lbCamp = new JLabel("GoKart - Campeonato");
 		lbCamp.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbCamp.setBounds(49, 48, 140, 22);
+		lbCamp.setBounds(99, 58, 140, 22);
 		painel.add(lbCamp);
 
-		btVoltar = new JButton("Voltar");
+		btConsultaClass = new JButton("Classifica\u00E7\u00E3o");
 
-		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btVoltar.setBounds(10, 645, 89, 23);
+		btConsultaClass.setBounds(147, 196, 116, 23);
+		painel.add(btConsultaClass);
+
+		btVoltar = new JButton("");
+		
+		btVoltar.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/voltar - 32.png")));
+		btVoltar.setToolTipText("Voltar ");
+		btVoltar.setBackground(Color.WHITE);
+		btVoltar.setBounds(20, 31, 30, 29);
 		painel.add(btVoltar);
-
-		btnNewButton = new JButton("Classifica\u00E7\u00E3o");
-
-		btnNewButton.setBounds(147, 180, 116, 23);
-		painel.add(btnNewButton);
 
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
@@ -240,7 +236,7 @@ public class TelaCampeonato extends JFrame {
 			}
 		});
 
-		btnNewButton.addActionListener(new ActionListener() {
+		btConsultaClass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				TelaConsultaClassificacaoCamp tccc = new TelaConsultaClassificacaoCamp(piloto,
@@ -248,10 +244,9 @@ public class TelaCampeonato extends JFrame {
 				dispose();
 			}
 		});
-
+		
 		btVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				TelaMenuPiloto tmp = new TelaMenuPiloto(piloto);
 				dispose();
 
