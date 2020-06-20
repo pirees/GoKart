@@ -4,8 +4,7 @@ import javax.persistence.ManyToOne;
 
 public class AcumulaPontosCamp {
 	
-	private int id;
-	private int posicao;
+	private int id;	
 	private long pontuacao;
 	private PilotoCampeonato Pil_campeonato;
 	
@@ -15,12 +14,7 @@ public class AcumulaPontosCamp {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPosicao() {
-		return posicao;
-	}
-	public void setPosicao(int posicao) {
-		this.posicao = posicao;
-	}
+	
 	public long getPontuacao() {
 		return pontuacao;
 	}

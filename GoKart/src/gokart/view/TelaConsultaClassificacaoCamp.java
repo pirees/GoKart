@@ -9,15 +9,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+import javax.swing.RowSorter;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import gokart.bo.ClassificacaoCampeonatoBo;
+import gokart.bo.SomaPontosCampBo;
 import gokart.classes.Campeonato;
 import gokart.classes.ClassificacaoCampeonato;
 import gokart.classes.Piloto;
+import gokart.classes.SomaPontosCamp;
 import gokart.classes.AcumulaPontosCamp;
 
 import javax.swing.JButton;
@@ -83,18 +88,12 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 		contentPane.add(pnScroll);
 
 		tbClass = new JTable();
-		tbClass.setModel(new DefaultTableModel(new Object[][] { { null, null }, },
-				new String[] { "Piloto", "Pontua\u00E7\u00E3o" }) {
-			Class[] columnTypes = new Class[] { String.class, Long.class };
+		tbClass.setModel(new DefaultTableModel(new Object[][] { { null, null, null }, },
+				new String[] { "Posi\u00E7\u00E3o", "Piloto", "Pontua\u00E7\u00E3o" }) {
+			Class[] columnTypes = new Class[] { String.class, String.class, Long.class };
 
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		pnScroll.setViewportView(tbClass);
@@ -164,10 +163,52 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 
 		DefaultTableModel modelo = (DefaultTableModel) this.tbClass.getModel();
 
+		RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(modelo);
+		tbClass.setRowSorter(sorter);
 		modelo.setRowCount(0);
+		
+		List<SomaPontosCamp> listPil = new ArrayList<SomaPontosCamp>();
+		
 
-		for (AcumulaPontosCamp pc : listResultado) {
-			modelo.addRow(new Object[] { pc.getPil_campeonato().getPil().getNome(), pc.getPontuacao() });
+		SomaPontosCampBo smBo = new SomaPontosCampBo();
+		SomaPontosCamp spc;
+		
+		for (AcumulaPontosCamp pc : listResultado) {	
+
+			try {	
+				
+				listPil.clear();				
+				listPil = smBo.listarPiloto(camp, pc.getPil_campeonato());				
+				
+				if(listPil.isEmpty()) {
+					spc = new SomaPontosCamp();					
+				}else {
+					spc = listPil.get(0);					
+				}			
+
+				spc.setPc(pc.getPil_campeonato());
+				spc.setCp(pc.getPil_campeonato().getCamp());
+				spc.setPontos(pc.getPontuacao());				
+				
+				smBo.Salvar(spc);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		List<SomaPontosCamp> listaFinal = new ArrayList<SomaPontosCamp>();
+
+		try {
+			listaFinal = smBo.listar(camp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		int j = 0;
+		for (SomaPontosCamp spc1 : listaFinal) {
+			j++;
+			modelo.addRow(new Object[] {j + "º", spc1.getPc().getPil().getNome(), spc1.getPontos()});
 		}
 
 		tbClass.setModel(modelo);
