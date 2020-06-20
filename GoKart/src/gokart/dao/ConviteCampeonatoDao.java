@@ -15,7 +15,8 @@ public class ConviteCampeonatoDao {
 	public List<ConviteCampeonato> ListarConvites(Piloto piloto) throws Exception {	
 
 		Query a = em.createQuery("select cc from ConviteCampeonato cc"
-				+" where id_piloto_Id like :Id_piloto");
+				+" where id_piloto_Id like :Id_piloto"
+				+" and aceito = 0");
 		
 		a.setParameter("Id_piloto", piloto.getId());
 

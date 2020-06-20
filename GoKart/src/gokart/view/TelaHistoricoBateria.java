@@ -74,7 +74,7 @@ public class TelaHistoricoBateria extends JFrame {
 		table.getColumnModel().getColumn(2).setCellRenderer(centralizado);
 		table.getColumnModel().getColumn(3).setCellRenderer(centralizado);
 		
-		carregarReserva();
+		carregarReserva(piloto);
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("Aqui voc\u00EA pode verificar suas reservas j\u00E1 realizadas");
@@ -93,7 +93,7 @@ public class TelaHistoricoBateria extends JFrame {
 		
 	}
 	
-	private void carregarReserva() {
+	private void carregarReserva(Piloto piloto) {
 		
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
@@ -104,7 +104,7 @@ public class TelaHistoricoBateria extends JFrame {
 		table.setModel(modelo); 
 
 		try {
-			List<PilotoBateria> lista = new PilotoBateriaBo().carregarReserva();
+			List<PilotoBateria> lista = new PilotoBateriaBo().carregarReserva(piloto);
 			for (PilotoBateria pb : lista) {
 				data = pb.getBat().getData().format(formatador);
 				modelo.addRow(new Object[] {

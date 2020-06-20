@@ -116,7 +116,7 @@ public class TelaMenuPiloto extends JFrame {
 				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "Kart\u00F3dromo", "Pilotos", "Tra\u00E7ado", "Data", "Hora"
+				"New column", "Kart\u00F3dromo", "Vagas", "Tra\u00E7ado", "Data", "Hora"
 			}
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(0);
@@ -153,7 +153,7 @@ public class TelaMenuPiloto extends JFrame {
 		btnCampeonato = new JButton("");
 		btnCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
-		btnCampeonato.setToolTipText("Novo Campeonato");
+		btnCampeonato.setToolTipText("Campeonatos");
 		btnCampeonato.setBackground(Color.WHITE);
 		btnCampeonato.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/campeonato-32.png")));
 		btnCampeonato.setBounds(325, 101, 40, 35);
@@ -174,9 +174,9 @@ public class TelaMenuPiloto extends JFrame {
 		btnConfirmar.setBounds(127, 639, 108, 29);
 		contentPane.add(btnConfirmar);
 		
-		lblNumeroDePilotos = new JLabel("N\u00FAmero de pilotos");
+		lblNumeroDePilotos = new JLabel("Vagas");
 		lblNumeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNumeroDePilotos.setBounds(10, 595, 130, 16);
+		lblNumeroDePilotos.setBounds(10, 595, 130, 20);
 		contentPane.add(lblNumeroDePilotos);
 		
 		lblBoasVindas = new JLabel("Fa\u00E7a agora a sua reserva");

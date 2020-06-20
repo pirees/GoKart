@@ -31,7 +31,7 @@ public class TelaConvitesPendentes extends JFrame {
 	private DefaultTableModel modelo;
 	private JLabel lblInfo;
 	private JScrollPane scrollPane;
-	private JButton btnAceitar;
+	private JButton btnConfirmar;
 	private JButton btnVoltar;
 	private JButton btnCancelar;
 
@@ -67,10 +67,10 @@ public class TelaConvitesPendentes extends JFrame {
 			}
 		});
 				
-		btnAceitar = new JButton("Aceitar");
-		btnAceitar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAceitar.setBounds(10, 422, 89, 23);
-		contentPane.add(btnAceitar);
+		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnConfirmar.setBounds(10, 422, 100, 23);
+		contentPane.add(btnConfirmar);
 		
 		btnVoltar = new JButton("");
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -98,7 +98,7 @@ public class TelaConvitesPendentes extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
-		btnAceitar.addActionListener(new ActionListener() {
+		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				aceitarConvite(piloto);										
 			}

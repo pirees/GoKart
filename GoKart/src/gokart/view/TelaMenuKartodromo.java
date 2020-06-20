@@ -110,19 +110,14 @@ public class TelaMenuKartodromo extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-			"Data", "Horário", "Pilotos", "Traçado"
+					"Piloto","Data", "Hor\u00E1rio", "Vagas", "Reserva", "Traçado"
 			}
 		));
 		scrollPane.setViewportView(table);
 		
 		//CENTRALIZANDO OS ITENS DA TABELA
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
-		centralizado.setHorizontalAlignment(SwingConstants.CENTER);	
-
-		table.getColumnModel().getColumn(0).setCellRenderer(centralizado);
-		table.getColumnModel().getColumn(1).setCellRenderer(centralizado);
-		table.getColumnModel().getColumn(2).setCellRenderer(centralizado);
-		table.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
 				
 		btnReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -162,9 +157,11 @@ public class TelaMenuKartodromo extends JFrame {
 			for (PilotoBateria pb : lista) {
 				data = pb.getBat().getData().format(formatador);
 				modelo.addRow(new Object[] {
+						pb.getPil().getNome(),
 						data,
 						pb.getBat().getHoraBateria(),
 						pb.getBat().getNrMaxPiloto(),
+						pb.getNrEscolhaPiloto(),						
 						pb.getBat().getTracado()
 				});
 
