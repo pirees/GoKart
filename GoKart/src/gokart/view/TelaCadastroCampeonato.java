@@ -65,29 +65,42 @@ public class TelaCadastroCampeonato extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		pnPrincipal = new JPanel();
+		pnPrincipal.setBackground(Color.BLACK);
 		pnPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnPrincipal);
 
 		JLabel lblCadastro = new JLabel("Cadastro de Campeonato");
+		lblCadastro.setForeground(Color.ORANGE);
+		lblCadastro.setBackground(Color.ORANGE);
 		lblCadastro.setBounds(47, 83, 187, 20);
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setForeground(Color.ORANGE);
+		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btnSalvar.setBounds(10, 645, 89, 23);
 
 		txtNomeCampeonato = new JTextField();
+		txtNomeCampeonato.setForeground(Color.ORANGE);
+		txtNomeCampeonato.setBackground(Color.BLACK);
 		txtNomeCampeonato.setBounds(10, 193, 252, 20);
 		txtNomeCampeonato.setColumns(10);
 
-		JLabel lblNomeCampeonato = new JLabel("Nome Campeonato:");
+		JLabel lblNomeCampeonato = new JLabel("Nome Campeonato");
+		lblNomeCampeonato.setForeground(Color.ORANGE);
+		lblNomeCampeonato.setBackground(Color.ORANGE);
 		lblNomeCampeonato.setBounds(10, 168, 159, 14);
 
-		JLabel lblQuantidadeDeCorrida = new JLabel("Quantidade de Corridas:");
+		JLabel lblQuantidadeDeCorrida = new JLabel("Quantidade de Corridas");
+		lblQuantidadeDeCorrida.setBackground(Color.ORANGE);
+		lblQuantidadeDeCorrida.setForeground(Color.ORANGE);
 		lblQuantidadeDeCorrida.setBounds(10, 224, 159, 14);
 
 		cbQtCorrida = new JComboBox();
+		cbQtCorrida.setForeground(Color.ORANGE);
+		cbQtCorrida.setBackground(Color.BLACK);
 		cbQtCorrida.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
 				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 		cbQtCorrida.setBounds(10, 249, 50, 23);
@@ -132,26 +145,36 @@ public class TelaCadastroCampeonato extends JFrame {
 		pnPrincipal.add(cbQtCorrida);
 		pnPrincipal.add(pnPontuacao);		
 
-		JLabel lblPontuacao = new JLabel("Pontua\u00E7\u00E3o Classifica\u00E7\u00E3o:");
+		JLabel lblPontuacao = new JLabel("Pontua\u00E7\u00E3o Classifica\u00E7\u00E3o");
+		lblPontuacao.setBackground(Color.ORANGE);
+		lblPontuacao.setForeground(Color.ORANGE);
 		lblPontuacao.setBounds(10, 339, 172, 14);
 		pnPrincipal.add(lblPontuacao);
 
-		JLabel lvlMelhorVolta = new JLabel("Pontua\u00E7\u00E3o Melhor Volta:");
+		JLabel lvlMelhorVolta = new JLabel("Pontua\u00E7\u00E3o Melhor Volta");
+		lvlMelhorVolta.setBackground(Color.ORANGE);
+		lvlMelhorVolta.setForeground(Color.ORANGE);
 		lvlMelhorVolta.setBounds(10, 568, 159, 14);
 		pnPrincipal.add(lvlMelhorVolta);
 
 		txtMelhorVolta = new JTextField();
+		txtMelhorVolta.setBackground(Color.BLACK);
+		txtMelhorVolta.setForeground(Color.ORANGE);
 		txtMelhorVolta.setToolTipText("Pontua\u00E7\u00E3o extra para a melhor volta.");
 		txtMelhorVolta.setText("40");
 		txtMelhorVolta.setBounds(157, 565, 37, 20);
 		pnPrincipal.add(txtMelhorVolta);
 		txtMelhorVolta.setColumns(10);
 
-		JLabel lblEmailPiloto = new JLabel("Email Piloto Administrador:");
+		JLabel lblEmailPiloto = new JLabel("Email Piloto Administrador");
+		lblEmailPiloto.setForeground(Color.ORANGE);
+		lblEmailPiloto.setBackground(Color.ORANGE);
 		lblEmailPiloto.setBounds(10, 283, 159, 14);
 		pnPrincipal.add(lblEmailPiloto);
 
 		txtEmailPilotoAdm = new JTextField();
+		txtEmailPilotoAdm.setForeground(Color.ORANGE);
+		txtEmailPilotoAdm.setBackground(Color.BLACK);
 		txtEmailPilotoAdm.setToolTipText("Email do piloto administrador do campeonato.");
 		txtEmailPilotoAdm.setBounds(10, 308, 252, 20);
 		pnPrincipal.add(txtEmailPilotoAdm);
@@ -167,7 +190,7 @@ public class TelaCadastroCampeonato extends JFrame {
 		
 		btVoltar.setIcon(new ImageIcon(TelaCadastroCampeonato.class.getResource("/img/voltar - 32.png")));
 		btVoltar.setToolTipText("Voltar ");
-		btVoltar.setBackground(Color.WHITE);
+		btVoltar.setBackground(Color.ORANGE);
 		btVoltar.setBounds(20, 31, 30, 29);
 		pnPrincipal.add(btVoltar);
 

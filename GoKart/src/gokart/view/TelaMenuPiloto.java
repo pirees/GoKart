@@ -75,27 +75,36 @@ public class TelaMenuPiloto extends JFrame {
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 	    lblNomePiloto = new JLabel("");
+	    lblNomePiloto.setBackground(Color.ORANGE);
+		lblNomePiloto.setForeground(Color.ORANGE);
 	    lblNomePiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNomePiloto.setBounds(56, 23, 160, 29);
 		contentPane.add(lblNomePiloto);
 		lblNomePiloto.setText(piloto.getNome());
 			
 		lblNivelPiloto = new JLabel("");
+		lblNivelPiloto.setBackground(Color.ORANGE);
+		lblNivelPiloto.setForeground(Color.ORANGE);
 		lblNivelPiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNivelPiloto.setBounds(116, 51, 107, 29);
 		contentPane.add(lblNivelPiloto);
 		lblNivelPiloto.setText(piloto.getNivel().toString());
 		
 		lblKartodromo = new JLabel("Kart\u00F3dromo");
+		lblKartodromo.setBackground(Color.ORANGE);
+		lblKartodromo.setForeground(Color.ORANGE);
 		lblKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblKartodromo.setBounds(10, 137, 82, 16);
 		contentPane.add(lblKartodromo);
 		
 		txtKartodromo = new JTextField();
+		txtKartodromo.setBackground(Color.BLACK);
+		txtKartodromo.setForeground(Color.ORANGE);
 		txtKartodromo.setBounds(102, 137, 168, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
@@ -136,51 +145,60 @@ public class TelaMenuPiloto extends JFrame {
 		table.getColumnModel().getColumn(5).setCellRenderer(centralizado);
 		
 		btnConvite = new JButton("");
+		btnConvite.setBackground(Color.ORANGE);
 		btnConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConvite.setToolTipText("Convites Pendentes");
-		btnConvite.setBackground(Color.WHITE);
 		btnConvite.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/convite-32.png")));
 		btnConvite.setBounds(325, 23, 40, 35);
 		contentPane.add(btnConvite);
 		
 		btnReserva = new JButton("");
+		btnReserva.setBackground(Color.ORANGE);
 		btnReserva.setToolTipText("Baterias");
 		btnReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnReserva.setBackground(Color.WHITE);
 		btnReserva.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/bateria-32.png")));
 		btnReserva.setBounds(325, 63, 40, 35);
 		contentPane.add(btnReserva);
 		
 		btnCampeonato = new JButton("");
 		btnCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		
+		btnCampeonato.setBackground(Color.ORANGE);
 		btnCampeonato.setToolTipText("Campeonatos");
-		btnCampeonato.setBackground(Color.WHITE);
 		btnCampeonato.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/campeonato-32.png")));
 		btnCampeonato.setBounds(325, 101, 40, 35);
 		contentPane.add(btnCampeonato);
 		
 		lblHey = new JLabel("Olá,");
+		lblHey.setBackground(Color.ORANGE);
+		lblHey.setForeground(Color.ORANGE);
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblHey.setBounds(22, 25, 40, 24);
 		contentPane.add(lblHey);
 		
 		lblSeuNvel = new JLabel("Seu n\u00EDvel \u00E9:");
+		lblSeuNvel.setBackground(Color.ORANGE);
+		lblSeuNvel.setForeground(Color.ORANGE);
 		lblSeuNvel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSeuNvel.setBounds(22, 58, 107, 14);
 		contentPane.add(lblSeuNvel);
 		
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setBackground(Color.BLACK);
+		btnConfirmar.setForeground(Color.ORANGE);
 		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConfirmar.setBounds(127, 639, 108, 29);
 		contentPane.add(btnConfirmar);
 		
 		lblNumeroDePilotos = new JLabel("Vagas");
+		lblNumeroDePilotos.setBackground(Color.ORANGE);
+		lblNumeroDePilotos.setForeground(Color.ORANGE);
 		lblNumeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNumeroDePilotos.setBounds(10, 595, 130, 20);
 		contentPane.add(lblNumeroDePilotos);
 		
 		lblBoasVindas = new JLabel("Fa\u00E7a agora a sua reserva");
+		lblBoasVindas.setBackground(Color.ORANGE);
+		lblBoasVindas.setForeground(Color.ORANGE);
 		lblBoasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblBoasVindas.setBounds(92, 106, 180, 30);
 		contentPane.add(lblBoasVindas);
@@ -188,52 +206,70 @@ public class TelaMenuPiloto extends JFrame {
 		btnBuscar = new JButton("");
 		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.setToolTipText("Pesquisar");
-		btnBuscar.setBackground(Color.WHITE);
+		btnBuscar.setBackground(Color.ORANGE);
 		btnBuscar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/pesquisar-32.png")));
 		btnBuscar.setBounds(280, 149, 40, 31);
 		contentPane.add(btnBuscar);
 		
 		txtNrPiloto = new JTextField();
+		txtNrPiloto.setBackground(Color.BLACK);
+		txtNrPiloto.setForeground(Color.ORANGE);
 		txtNrPiloto.setBounds(139, 595, 48, 20);
 		contentPane.add(txtNrPiloto);
 		txtNrPiloto.setColumns(10);
 		
 		lblHorario = new JLabel("Hor\u00E1rio");
+		lblHorario.setBackground(Color.ORANGE);
+		lblHorario.setForeground(Color.ORANGE);
 		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblHorario.setBounds(10, 557, 130, 16);
 		contentPane.add(lblHorario);
 		
 		lblData = new JLabel("Data");
+		lblData.setBackground(Color.ORANGE);
+		lblData.setForeground(Color.ORANGE);
 		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblData.setBounds(10, 518, 130, 16);
 		contentPane.add(lblData);
 		
 		lblKartdromo = new JLabel("Kart\u00F3dromo");
+		lblKartdromo.setBackground(Color.ORANGE);
+		lblKartdromo.setForeground(Color.ORANGE);
 		lblKartdromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblKartdromo.setBounds(10, 491, 130, 16);
 		contentPane.add(lblKartdromo);
 		
 		txtHorario = new JTextField();
+		txtHorario.setBackground(Color.BLACK);
+		txtHorario.setForeground(Color.ORANGE);
 		txtHorario.setColumns(10);
 		txtHorario.setBounds(139, 557, 77, 20);
 		txtHorario.setEditable(false);
 		contentPane.add(txtHorario);
 		
 		txtData = new JTextField();
+		txtData.setBackground(Color.BLACK);
+		txtData.setForeground(Color.ORANGE);
 		txtData.setColumns(10);
 		txtData.setBounds(139, 518, 77, 20);
 		txtData.setEditable(false);
 		contentPane.add(txtData);
 		
 		txtKartodromoSalvar = new JTextField();
+		txtKartodromoSalvar.setBackground(Color.BLACK);
+		txtKartodromoSalvar.setForeground(Color.ORANGE);
 		txtKartodromoSalvar.setColumns(10);
 		txtKartodromoSalvar.setBounds(139, 489, 131, 20);
 		txtKartodromoSalvar.setEditable(false);
 		contentPane.add(txtKartodromoSalvar);
 		
 		txtDataConsulta = new JTextField();
+		txtDataConsulta.setBackground(Color.BLACK);
+		txtDataConsulta.setForeground(Color.ORANGE);
 		try {
 			txtDataConsulta = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			txtDataConsulta.setBackground(Color.BLACK);
+			txtDataConsulta.setForeground(Color.ORANGE);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -243,6 +279,8 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(txtDataConsulta);
 		
 		lblDataConsulta = new JLabel("Data");
+		lblDataConsulta.setBackground(Color.ORANGE);
+		lblDataConsulta.setForeground(Color.ORANGE);
 		lblDataConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataConsulta.setBounds(10, 164, 82, 16);
 		contentPane.add(lblDataConsulta);
@@ -259,6 +297,8 @@ public class TelaMenuPiloto extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		txtNrPilotoBateria = new JTextField();
+		txtNrPilotoBateria.setBackground(Color.BLACK);
+		txtNrPilotoBateria.setForeground(Color.ORANGE);
 		txtNrPilotoBateria.setBounds(283, 576, 48, 20);
 		contentPane.add(txtNrPilotoBateria);
 		txtNrPilotoBateria.setVisible(false);

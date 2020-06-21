@@ -38,6 +38,7 @@ public class TelaMenuKartodromo extends JFrame {
 	private JButton btnReserva;
 	private JLabel lblDataConsulta;
 	private JTextField txtDataConsulta;
+	private JTextField txtDataConsulta_1;
 	private JButton btnBuscar;
 	private JTable table;
 	private LocalDate localDate;
@@ -48,22 +49,29 @@ public class TelaMenuKartodromo extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		lblHey = new JLabel("Olá,");
+		lblHey.setForeground(Color.ORANGE);
+		lblHey.setBackground(Color.ORANGE);
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblHey.setBounds(22, 25, 40, 24);
 		contentPane.add(lblHey);
 		
 		lblNomeKartodromo = new JLabel("");
+		lblNomeKartodromo.setForeground(Color.ORANGE);
+		lblNomeKartodromo.setBackground(Color.ORANGE);
 	    lblNomeKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNomeKartodromo.setBounds(56, 23, 160, 29);
 		contentPane.add(lblNomeKartodromo);
 		lblNomeKartodromo.setText(k.getNome());
 		
 		lblReservas = new JLabel("Verifique a situação de suas reservas");
+		lblReservas.setForeground(Color.ORANGE);
+		lblReservas.setBackground(Color.ORANGE);
 		lblReservas.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblReservas.setBounds(56, 105, 255, 30);
 		contentPane.add(lblReservas);
@@ -71,31 +79,35 @@ public class TelaMenuKartodromo extends JFrame {
 		btnReserva = new JButton("");
 		btnReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReserva.setToolTipText("Nova Reserva");
-		btnReserva.setBackground(Color.WHITE);
+		btnReserva.setBackground(Color.ORANGE);
 		btnReserva.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/bateria-32.png")));
 		btnReserva.setBounds(325, 25, 40, 35);
 		contentPane.add(btnReserva);
 		
 		lblDataConsulta = new JLabel("Data");
+		lblDataConsulta.setForeground(Color.ORANGE);
+		lblDataConsulta.setBackground(Color.ORANGE);
 		lblDataConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataConsulta.setBounds(47, 164, 40, 16);
 		contentPane.add(lblDataConsulta);
 		
 		txtDataConsulta = new JTextField();
 		try {
-			txtDataConsulta = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			txtDataConsulta_1 = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			txtDataConsulta_1.setForeground(Color.ORANGE);
+			txtDataConsulta_1.setBackground(Color.BLACK);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		txtDataConsulta.setColumns(10);
-		txtDataConsulta.setBounds(97, 160, 79, 29);
-		contentPane.add(txtDataConsulta);
+		txtDataConsulta_1.setColumns(10);
+		txtDataConsulta_1.setBounds(97, 160, 79, 29);
+		contentPane.add(txtDataConsulta_1);
 		
 		btnBuscar = new JButton("");
 		btnBuscar.setToolTipText("Pesquisar");
 		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnBuscar.setBackground(Color.WHITE);
+		btnBuscar.setBackground(Color.ORANGE);
 		btnBuscar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/pesquisar-32.png")));
 		btnBuscar.setBounds(198, 158, 40, 31);
 		contentPane.add(btnBuscar);
@@ -144,8 +156,8 @@ public class TelaMenuKartodromo extends JFrame {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
 
-		if(!txtDataConsulta.getText().isBlank()) {
-			localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
+		if(!txtDataConsulta_1.getText().isBlank()) {
+			localDate = LocalDate.parse(txtDataConsulta_1.getText(), formatador);
 		}
 
 		DefaultTableModel modelo = (DefaultTableModel)this.table.getModel();

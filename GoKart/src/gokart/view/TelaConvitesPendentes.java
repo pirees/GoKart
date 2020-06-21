@@ -37,11 +37,13 @@ public class TelaConvitesPendentes extends JFrame {
 
 
 	public TelaConvitesPendentes(Piloto piloto) {
+		setTitle("GoKart - Convites Pendentes");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -68,24 +70,30 @@ public class TelaConvitesPendentes extends JFrame {
 		});
 				
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setForeground(Color.ORANGE);
+		btnConfirmar.setBackground(Color.BLACK);
 		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConfirmar.setBounds(10, 422, 100, 23);
 		contentPane.add(btnConfirmar);
 		
 		btnVoltar = new JButton("");
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnVoltar.setBackground(Color.WHITE);
+		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");
 		btnVoltar.setBounds(20, 31, 30, 29);
 		btnVoltar.setIcon(new ImageIcon(TelaConvitesPendentes.class.getResource("/img/voltar - 32.png")));
 		contentPane.add(btnVoltar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBackground(Color.BLACK);
+		btnCancelar.setForeground(Color.ORANGE);
 		btnCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCancelar.setBounds(276, 422, 89, 23);
 		contentPane.add(btnCancelar);
 		
 		lblInfo = new JLabel("Aqui voc\u00EA pode ver seus convites pendentes");
+		lblInfo.setForeground(Color.ORANGE);
+		lblInfo.setBackground(Color.ORANGE);
 		lblInfo.setBounds(77, 73, 260, 14);
 		contentPane.add(lblInfo);
 		

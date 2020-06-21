@@ -41,13 +41,14 @@ public class TelaHistoricoBateria extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		btnVoltar = new JButton("");
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnVoltar.setBackground(Color.WHITE);
+		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");
 		btnVoltar.setBounds(20, 31, 30, 29);
 		btnVoltar.setIcon(new ImageIcon(TelaConvitesPendentes.class.getResource("/img/voltar - 32.png")));
@@ -78,6 +79,8 @@ public class TelaHistoricoBateria extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("Aqui voc\u00EA pode verificar suas reservas j\u00E1 realizadas");
+		lblNewLabel.setForeground(Color.ORANGE);
+		lblNewLabel.setBackground(Color.ORANGE);
 		lblNewLabel.setBounds(41, 79, 324, 14);
 		contentPane.add(lblNewLabel);
 		
