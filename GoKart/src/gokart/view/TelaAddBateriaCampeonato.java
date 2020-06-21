@@ -19,6 +19,7 @@ import gokart.classes.Piloto;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JScrollPane;
@@ -29,6 +30,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaAddBateriaCampeonato extends JFrame {
 
@@ -40,6 +42,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	private JTable tbResultado;
 	private LocalDate localDate;
 	private JButton btAddBat;
+	private JButton btnVoltar;
 	private JTable tbBateriaCamp;
 	private JButton btRemover;
 
@@ -65,38 +68,60 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaAddBateriaCampeonato(Piloto piloto, Campeonato camp) {
+		setTitle("GoKart - Nova Bateria - Campeonato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lblCampeonato = new JLabel("Campeonato:");
-		lblCampeonato.setBounds(10, 11, 94, 14);
+		lblCampeonato = new JLabel("Campeonato");
+		lblCampeonato.setForeground(Color.ORANGE);
+		lblCampeonato.setBackground(Color.ORANGE);
+		lblCampeonato.setBounds(10, 71, 94, 14);
 		contentPane.add(lblCampeonato);
 
 		txtCampeonato = new JTextField();
+		txtCampeonato.setForeground(Color.ORANGE);
+		txtCampeonato.setBackground(Color.BLACK);
 		txtCampeonato.setEditable(false);
-		txtCampeonato.setBounds(10, 36, 355, 20);
+		txtCampeonato.setBounds(10, 94, 355, 20);
 		contentPane.add(txtCampeonato);
 		txtCampeonato.setColumns(10);
+		
+		btnVoltar = new JButton("");
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBackground(Color.ORANGE);
+		btnVoltar.setToolTipText("Voltar ");
+		btnVoltar.setIcon(new ImageIcon(TelaKartodromoBateria.class.getResource("/img/voltar - 32.png")));
+		btnVoltar.setBounds(20, 31, 30, 29);
+		contentPane.add(btnVoltar);
 
-		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo:");
-		lblKartodromo.setBounds(10, 88, 94, 14);
+		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo");
+		lblKartodromo.setForeground(Color.ORANGE);
+		lblKartodromo.setBackground(Color.ORANGE);
+		lblKartodromo.setBounds(10, 125, 94, 14);
 		contentPane.add(lblKartodromo);
 
 		txtKartodromo = new JTextField();
-		txtKartodromo.setBounds(98, 85, 267, 20);
+		txtKartodromo.setForeground(Color.ORANGE);
+		txtKartodromo.setBackground(Color.BLACK);
+		txtKartodromo.setBounds(98, 122, 267, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
 
-		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(10, 116, 94, 14);
+		JLabel lblData = new JLabel("Data");
+		lblData.setForeground(Color.ORANGE);
+		lblData.setBackground(Color.ORANGE);
+		lblData.setBounds(10, 153, 94, 14);
 		contentPane.add(lblData);
 
 		txtData = new JFormattedTextField();
-		txtData.setBounds(98, 113, 144, 20);
+		txtData.setForeground(Color.ORANGE);
+		txtData.setBackground(Color.BLACK);
+		txtData.setBounds(98, 150, 144, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(20);
 
@@ -110,12 +135,14 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		}
 
 		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar.setForeground(Color.ORANGE);
+		btPesquisar.setBackground(Color.BLACK);
 
-		btPesquisar.setBounds(252, 112, 113, 23);
+		btPesquisar.setBounds(252, 149, 113, 23);
 		contentPane.add(btPesquisar);
 
 		JScrollPane pnScroll = new JScrollPane();
-		pnScroll.setBounds(10, 141, 355, 200);
+		pnScroll.setBounds(10, 183, 355, 200);
 		contentPane.add(pnScroll);
 
 		tbResultado = new JTable();
@@ -137,15 +164,17 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		pnScroll.setViewportView(tbResultado);
 
 		btAddBat = new JButton("Add");
+		btAddBat.setForeground(Color.ORANGE);
+		btAddBat.setBackground(Color.BLACK);
 		btAddBat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btAddBat.setBounds(10, 352, 89, 23);
+		btAddBat.setBounds(10, 394, 89, 23);
 		contentPane.add(btAddBat);
 
 		JScrollPane pnBateria = new JScrollPane();
-		pnBateria.setBounds(10, 386, 355, 127);
+		pnBateria.setBounds(10, 437, 355, 127);
 		contentPane.add(pnBateria);
 
 		tbBateriaCamp = new JTable();
@@ -173,16 +202,22 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		pnBateria.setViewportView(tbBateriaCamp);
 
 		JButton btSalvar = new JButton("Salvar");
+		btSalvar.setForeground(Color.ORANGE);
+		btSalvar.setBackground(Color.BLACK);
 		btSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btSalvar);
 
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.setForeground(Color.ORANGE);
+		btVoltar.setBackground(Color.BLACK);
 		btVoltar.setBounds(109, 645, 89, 23);
 		contentPane.add(btVoltar);
 
 		btRemover = new JButton("Remover");
+		btRemover.setForeground(Color.ORANGE);
+		btRemover.setBackground(Color.BLACK);
 
-		btRemover.setBounds(10, 524, 89, 23);
+		btRemover.setBounds(10, 575, 89, 23);
 		contentPane.add(btRemover);
 
 		btPesquisar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

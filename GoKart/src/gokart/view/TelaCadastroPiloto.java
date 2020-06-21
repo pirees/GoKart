@@ -1,8 +1,12 @@
 package gokart.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -59,77 +63,100 @@ public class TelaCadastroPiloto extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lblNome = new JLabel("Nome completo:");
-		lblNome.setBounds(10, 42, 125, 14);
+		lblNome = new JLabel("Nome completo");
+		lblNome.setForeground(Color.ORANGE);
+		lblNome.setBackground(Color.ORANGE);
+		lblNome.setBounds(10, 68, 125, 14);
 		contentPane.add(lblNome);
 
 		lblCadastro = new JLabel("Cadastro de Piloto");
+		lblCadastro.setForeground(Color.ORANGE);
+		lblCadastro.setBackground(Color.ORANGE);
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCadastro.setBounds(109, 11, 134, 20);
+		lblCadastro.setBounds(125, 37, 134, 20);
 		contentPane.add(lblCadastro);
 
 		txtNome = new JTextField();
-		txtNome.setBounds(10, 67, 271, 20);
+		txtNome.setBounds(10, 93, 271, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 
-		lblIdade = new JLabel("Idade:");
-		lblIdade.setBounds(10, 98, 36, 14);
+		lblIdade = new JLabel("Idade");
+		lblIdade.setBackground(Color.ORANGE);
+		lblIdade.setForeground(Color.ORANGE);
+		lblIdade.setBounds(10, 124, 36, 14);
 		contentPane.add(lblIdade);
 
 		txtIdade = new JTextField();
 		txtIdade.setColumns(10);
-		txtIdade.setBounds(10, 123, 56, 20);
+		txtIdade.setBounds(10, 149, 56, 20);
 		contentPane.add(txtIdade);
 
-		lblEndereo = new JLabel("Endere\u00E7o:");
-		lblEndereo.setBounds(10, 257, 89, 14);
+		lblEndereo = new JLabel("Endere\u00E7o");
+		lblEndereo.setBackground(Color.ORANGE);
+		lblEndereo.setForeground(Color.ORANGE);
+		lblEndereo.setBounds(10, 285, 89, 14);
 		contentPane.add(lblEndereo);
 
 		txtEndereco = new JTextField();
 		txtEndereco.setColumns(10);
-		txtEndereco.setBounds(10, 274, 271, 20);
+		txtEndereco.setBounds(10, 302, 271, 20);
 		contentPane.add(txtEndereco);
 
-		lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(10, 357, 56, 14);
+		lblEstado = new JLabel("Estado");
+		lblEstado.setBackground(Color.ORANGE);
+		lblEstado.setForeground(Color.ORANGE);
+		lblEstado.setBounds(10, 385, 56, 14);
 		contentPane.add(lblEstado);
 
-		lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(10, 456, 56, 14);
+		lblEmail = new JLabel("E-mail");
+		lblEmail.setBackground(Color.ORANGE);
+		lblEmail.setForeground(Color.ORANGE);
+		lblEmail.setBounds(10, 492, 56, 14);
 		contentPane.add(lblEmail);
 
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(10, 481, 271, 20);
+		txtEmail.setBounds(10, 509, 271, 20);
 		contentPane.add(txtEmail);
 
-		lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(10, 512, 56, 14);
+		lblSenha = new JLabel("Senha");
+		lblSenha.setBackground(Color.ORANGE);
+		lblSenha.setForeground(Color.ORANGE);
+		lblSenha.setBounds(10, 540, 56, 14);
 		contentPane.add(lblSenha);
 
 		txtSenha = new JPasswordField();
-		txtSenha.setBounds(10, 537, 271, 20);
+		txtSenha.setBounds(10, 555, 271, 20);
 		contentPane.add(txtSenha);
 
 		txtReptSenha = new JPasswordField();
-		txtReptSenha.setBounds(10, 592, 271, 20);
+		txtReptSenha.setBounds(10, 600, 271, 20);
 		contentPane.add(txtReptSenha);
 
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.setForeground(Color.ORANGE);
+		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btnSalvar);
 
-		btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(109, 645, 89, 23);
+		btnVoltar = new JButton("");
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBackground(Color.ORANGE);
+		btnVoltar.setToolTipText("Voltar ");
+		btnVoltar.setIcon(new ImageIcon(TelaKartodromoBateria.class.getResource("/img/voltar - 32.png")));
+		btnVoltar.setBounds(20, 31, 30, 29);
 		contentPane.add(btnVoltar);
 
-		lblCpf = new JLabel("CPF:");
-		lblCpf.setBounds(10, 154, 56, 14);
+		lblCpf = new JLabel("CPF");
+		lblCpf.setBackground(Color.ORANGE);
+		lblCpf.setForeground(Color.ORANGE);
+		lblCpf.setBounds(10, 180, 56, 14);
 		contentPane.add(lblCpf);
 
 		txtCPF = new JTextField();
@@ -140,23 +167,27 @@ public class TelaCadastroPiloto extends JFrame {
 			e1.printStackTrace();
 		}
 		txtCPF.setColumns(10);
-		txtCPF.setBounds(10, 170, 271, 20);
+		txtCPF.setBounds(10, 196, 271, 20);
 		contentPane.add(txtCPF);
 
-		lblNvel = new JLabel("N\u00EDvel:");
-		lblNvel.setBounds(10, 403, 56, 14);
+		lblNvel = new JLabel("N\u00EDvel");
+		lblNvel.setBackground(Color.ORANGE);
+		lblNvel.setForeground(Color.ORANGE);
+		lblNvel.setBounds(10, 434, 56, 14);
 		contentPane.add(lblNvel);
 
 		cbNivelPiloto = new JComboBox();
-		cbNivelPiloto.setBounds(10, 423, 125, 22);
+		cbNivelPiloto.setBounds(10, 459, 125, 22);
 		contentPane.add(cbNivelPiloto);
 
-		lblCidade = new JLabel("Cidade:");
-		lblCidade.setBounds(10, 305, 46, 14);
+		lblCidade = new JLabel("Cidade");
+		lblCidade.setBackground(Color.ORANGE);
+		lblCidade.setForeground(Color.ORANGE);
+		lblCidade.setBounds(10, 333, 46, 14);
 		contentPane.add(lblCidade);
 
 		txtCidade = new JTextField();
-		txtCidade.setBounds(10, 326, 271, 20);
+		txtCidade.setBounds(10, 354, 271, 20);
 		contentPane.add(txtCidade);
 		txtCidade.setColumns(10);
 		
@@ -167,24 +198,30 @@ public class TelaCadastroPiloto extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		txtCEP.setBounds(10, 226, 119, 20);
+		txtCEP.setBounds(10, 252, 119, 20);
 		contentPane.add(txtCEP);
 		txtCEP.setColumns(10);
 		
 		btnBuscarCep = new JButton("BUSCAR");
-		btnBuscarCep.setBounds(139, 225, 89, 23);
+		btnBuscarCep.setForeground(Color.ORANGE);
+		btnBuscarCep.setBackground(Color.BLACK);
+		btnBuscarCep.setBounds(139, 251, 89, 23);
 		contentPane.add(btnBuscarCep);
 		
-		lblCep = new JLabel("CEP:");
-		lblCep.setBounds(10, 201, 36, 14);
+		lblCep = new JLabel("CEP");
+		lblCep.setForeground(Color.ORANGE);
+		lblCep.setBackground(Color.ORANGE);
+		lblCep.setBounds(10, 227, 36, 14);
 		contentPane.add(lblCep);
 		
 		cbEstado = new JComboBox();
-		cbEstado.setBounds(10, 373, 57, 22);
+		cbEstado.setBounds(10, 401, 57, 22);
 		contentPane.add(cbEstado);
 		
-		lblRepetirSenha = new JLabel("Repetir Senha:");
-		lblRepetirSenha.setBounds(10, 568, 89, 14);
+		lblRepetirSenha = new JLabel("Repetir Senha");
+		lblRepetirSenha.setForeground(Color.ORANGE);
+		lblRepetirSenha.setBackground(Color.ORANGE);
+		lblRepetirSenha.setBounds(10, 586, 89, 14);
 		contentPane.add(lblRepetirSenha);
 
 		this.setLocationRelativeTo(null);

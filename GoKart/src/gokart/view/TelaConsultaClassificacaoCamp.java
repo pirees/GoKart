@@ -27,6 +27,8 @@ import gokart.classes.AcumulaPontosCamp;
 
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -38,7 +40,7 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 	private JLabel lblCamp;
 	private JScrollPane pnScroll;
 	private JTable tbClass;
-	private JButton btVoltar;
+	private JButton btnVoltar;
 	private List<AcumulaPontosCamp> listResultado;
 
 	/**
@@ -65,21 +67,28 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		txtCampeonato = new JTextField();
+		txtCampeonato.setForeground(Color.ORANGE);
+		txtCampeonato.setBackground(Color.BLACK);
 		txtCampeonato.setEditable(false);
 		txtCampeonato.setBounds(10, 154, 355, 20);
 		contentPane.add(txtCampeonato);
 		txtCampeonato.setColumns(10);
 
-		lblCamp = new JLabel("Campeonato:");
+		lblCamp = new JLabel("Campeonato");
+		lblCamp.setForeground(Color.ORANGE);
+		lblCamp.setBackground(Color.ORANGE);
 		lblCamp.setBounds(10, 131, 133, 14);
 		contentPane.add(lblCamp);
 
 		JLabel lblClass = new JLabel("CLASSIFICA\u00C7\u00C3O");
+		lblClass.setForeground(Color.ORANGE);
+		lblClass.setBackground(Color.ORANGE);
 		lblClass.setBounds(139, 208, 122, 14);
 		contentPane.add(lblClass);
 
@@ -111,13 +120,13 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 		});
 		pnScroll.setViewportView(tbClass);
 
-		btVoltar = new JButton("");
-
-		btVoltar.setIcon(new ImageIcon(TelaConsultaClassificacaoCamp.class.getResource("/img/voltar - 32.png")));
-		btVoltar.setToolTipText("Voltar ");
-		btVoltar.setBackground(Color.WHITE);
-		btVoltar.setBounds(10, 30, 30, 29);
-		contentPane.add(btVoltar);
+		btnVoltar = new JButton("");
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBackground(Color.ORANGE);
+		btnVoltar.setToolTipText("Voltar ");
+		btnVoltar.setIcon(new ImageIcon(TelaKartodromoBateria.class.getResource("/img/voltar - 32.png")));
+		btnVoltar.setBounds(20, 31, 30, 29);
+		contentPane.add(btnVoltar);
 
 		JLabel lblimg = new JLabel("");
 		lblimg.setIcon(
@@ -128,7 +137,7 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 
-		btVoltar.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCampeonato tc = new TelaCampeonato(pil);
 				dispose();

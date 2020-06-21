@@ -47,6 +47,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 	private JTextField txtKartodromo;
 	private JTextField txtData;
 	private JTable tbPontuacao;
+	private JButton btnVoltar;
 
 	private List<BateriaCampeonato> listaResultado;
 
@@ -74,34 +75,47 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lblBateria = new JLabel("Bateria:");
+		lblBateria = new JLabel("Bateria");
+		lblBateria.setForeground(Color.ORANGE);
+		lblBateria.setBackground(Color.ORANGE);
 		lblBateria.setBounds(10, 77, 72, 14);
 		contentPane.add(lblBateria);
 
 		cbBateriaCampeonato = new JComboBox();
+		cbBateriaCampeonato.setForeground(Color.ORANGE);
+		cbBateriaCampeonato.setBackground(Color.BLACK);
 
 		cbBateriaCampeonato.setBounds(10, 102, 355, 22);
 		contentPane.add(cbBateriaCampeonato);
 
-		lblData = new JLabel("Data Corrida:");
+		lblData = new JLabel("Data Corrida");
+		lblData.setBackground(Color.ORANGE);
+		lblData.setForeground(Color.ORANGE);
 		lblData.setBounds(10, 135, 87, 14);
 		contentPane.add(lblData);
 
 		txtData = new JTextField();
+		txtData.setForeground(Color.ORANGE);
+		txtData.setBackground(Color.BLACK);
 		txtData.setEditable(false);
 		txtData.setBounds(10, 155, 101, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 
-		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo:");
+		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo");
+		lblKartodromo.setBackground(Color.ORANGE);
+		lblKartodromo.setForeground(Color.ORANGE);
 		lblKartodromo.setBounds(144, 135, 79, 14);
 		contentPane.add(lblKartodromo);
 
 		txtKartodromo = new JTextField();
+		txtKartodromo.setForeground(Color.ORANGE);
+		txtKartodromo.setBackground(Color.BLACK);
 		txtKartodromo.setEditable(false);
 		txtKartodromo.setBounds(144, 155, 221, 20);
 		contentPane.add(txtKartodromo);
@@ -124,11 +138,15 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		tbPontuacao.getColumnModel().getColumn(2).setPreferredWidth(122);
 		pnScroll.setViewportView(tbPontuacao);
 
-		JLabel lblCadastroPt = new JLabel("Cadastrar Pontua\u00E7\u00E3o:");
+		JLabel lblCadastroPt = new JLabel("Cadastrar Pontua\u00E7\u00E3o");
+		lblCadastroPt.setForeground(Color.ORANGE);
+		lblCadastroPt.setBackground(Color.ORANGE);
 		lblCadastroPt.setBounds(10, 219, 178, 14);
 		contentPane.add(lblCadastroPt);
 
 		JButton btSalvar = new JButton("Salvar");
+		btSalvar.setForeground(Color.ORANGE);
+		btSalvar.setBackground(Color.BLACK);
 		btSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btSalvar);
@@ -142,13 +160,13 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 		cbBateriaCampeonato.setSelectedItem(null);
 
-		JButton btVoltar = new JButton("");
-
-		btVoltar.setIcon(new ImageIcon(TelaPontuacaoBateriaCampeonato.class.getResource("/img/voltar - 32.png")));
-		btVoltar.setToolTipText("Voltar ");
-		btVoltar.setBackground(Color.WHITE);
-		btVoltar.setBounds(10, 27, 30, 29);
-		contentPane.add(btVoltar);
+		btnVoltar = new JButton("");
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setBackground(Color.ORANGE);
+		btnVoltar.setToolTipText("Voltar ");
+		btnVoltar.setBounds(20, 31, 30, 29);
+		btnVoltar.setIcon(new ImageIcon(TelaConvitesPendentes.class.getResource("/img/voltar - 32.png")));
+		contentPane.add(btnVoltar);
 
 		cbBateriaCampeonato.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -191,7 +209,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 			}
 		});
 
-		btVoltar.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCampeonato tc = new TelaCampeonato(piloto);
 				dispose();
