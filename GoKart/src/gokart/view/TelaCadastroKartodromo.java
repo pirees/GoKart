@@ -248,6 +248,8 @@ public class TelaCadastroKartodromo extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				salvarKartodromo();
+				
+				
 			}
 		});
 	}
@@ -279,10 +281,14 @@ public class TelaCadastroKartodromo extends JFrame {
 		kartodromo.setEstado(cbEstado.getSelectedItem().toString());
 
 		KartodromoBo kartodromoBo = new KartodromoBo();
+		
+		
 
 		try {
-
 			JOptionPane.showMessageDialog(null, "Kartodromo " + kartodromoBo.Salvar(kartodromo));
+			TelaLogin tl = new TelaLogin();
+			dispose();
+			
 
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());

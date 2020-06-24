@@ -86,6 +86,7 @@ public class TelaLogin extends JFrame {
 		lblCadastrar = new JLabel("N\u00E3o tem conta? Efetue o cadastro...");
 		lblCadastrar.setForeground(Color.ORANGE);
 		lblCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCadastrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblCadastrar.setBounds(10, 436, 185, 14);
 		contentPane.add(lblCadastrar);
 
@@ -97,6 +98,7 @@ public class TelaLogin extends JFrame {
 		lblCadastrarKartodromo = new JLabel("Gostaria de cadastrar um kart\u00F3dromo? Clique aqui");
 		lblCadastrarKartodromo.setForeground(Color.ORANGE);
 		lblCadastrarKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCadastrarKartodromo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblCadastrarKartodromo.setBounds(10, 490, 230, 14);
 		contentPane.add(lblCadastrarKartodromo);
 
@@ -108,7 +110,7 @@ public class TelaLogin extends JFrame {
 		rdbtnPiloto.setBounds(10, 529, 109, 23);
 		contentPane.add(rdbtnPiloto);
 
-		rdbtnKartodromo = new JRadioButton("Kartodromo");
+		rdbtnKartodromo = new JRadioButton("Kartódromo");
 		rdbtnKartodromo.setBackground(Color.BLACK);
 		rdbtnKartodromo.setForeground(Color.ORANGE);
 		buttonGroup.add(rdbtnKartodromo);
