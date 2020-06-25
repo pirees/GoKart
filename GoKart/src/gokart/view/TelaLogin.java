@@ -91,8 +91,8 @@ public class TelaLogin extends JFrame {
 		contentPane.add(lblCadastrar);
 
 		imgLogo = new JLabel("");
-		imgLogo.setIcon(new ImageIcon(TelaLogin.class.getResource("/img/logo_pequena.png")));
-		imgLogo.setBounds(22, 11, 326, 278);
+		imgLogo.setIcon(new ImageIcon(TelaLogin.class.getResource("/img/NovaLogo.png")));
+		imgLogo.setBounds(50, 58, 287, 205);
 		contentPane.add(imgLogo);
 
 		lblCadastrarKartodromo = new JLabel("Gostaria de cadastrar um kart\u00F3dromo? Clique aqui");

@@ -83,7 +83,7 @@ public class TelaMenuPiloto extends JFrame {
 	    lblNomePiloto.setBackground(Color.ORANGE);
 		lblNomePiloto.setForeground(Color.ORANGE);
 	    lblNomePiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNomePiloto.setBounds(46, 51, 160, 29);
+		lblNomePiloto.setBounds(46, 38, 160, 29);
 		contentPane.add(lblNomePiloto);
 		lblNomePiloto.setText(piloto.getNome());
 			
@@ -91,7 +91,7 @@ public class TelaMenuPiloto extends JFrame {
 		lblNivelPiloto.setBackground(Color.ORANGE);
 		lblNivelPiloto.setForeground(Color.ORANGE);
 		lblNivelPiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNivelPiloto.setBounds(112, 79, 107, 29);
+		lblNivelPiloto.setBounds(112, 66, 107, 29);
 		contentPane.add(lblNivelPiloto);
 		lblNivelPiloto.setText(piloto.getNivel().toString());
 		
@@ -172,14 +172,14 @@ public class TelaMenuPiloto extends JFrame {
 		lblHey.setBackground(Color.ORANGE);
 		lblHey.setForeground(Color.ORANGE);
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblHey.setBounds(10, 53, 40, 24);
+		lblHey.setBounds(10, 40, 40, 24);
 		contentPane.add(lblHey);
 		
 		lblSeuNvel = new JLabel("Seu n\u00EDvel \u00E9:");
 		lblSeuNvel.setBackground(Color.ORANGE);
 		lblSeuNvel.setForeground(Color.ORANGE);
 		lblSeuNvel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSeuNvel.setBounds(10, 86, 107, 14);
+		lblSeuNvel.setBounds(10, 73, 107, 14);
 		contentPane.add(lblSeuNvel);
 		
 		btnConfirmar = new JButton("Confirmar");
@@ -305,6 +305,9 @@ public class TelaMenuPiloto extends JFrame {
 		txtNrPilotoBateria.setColumns(10);
 		
 		JButton btDesligar = new JButton("");
+		
+		btDesligar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btDesligar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/iconDesligar.png")));
 		btDesligar.setBackground(Color.ORANGE);
 		btDesligar.setBounds(10, 11, 31, 23);
 		contentPane.add(btDesligar);
@@ -346,8 +349,7 @@ public class TelaMenuPiloto extends JFrame {
 		});
 		
 		btnCampeonato.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {				
 				TelaCampeonato cp = new TelaCampeonato(piloto);				
 				dispose();
 			}
@@ -357,6 +359,13 @@ public class TelaMenuPiloto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaHistoricoBateria cp = new TelaHistoricoBateria(piloto);				
 				dispose();
+			}
+		});
+		
+		btDesligar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaLogin tl = new TelaLogin();
+				dispose();				
 			}
 		});
 		
