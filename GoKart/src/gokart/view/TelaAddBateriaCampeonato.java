@@ -12,10 +12,13 @@ import javax.swing.text.MaskFormatter;
 
 import gokart.bo.BateriaBo;
 import gokart.bo.BateriaCampeonatoBo;
+import gokart.bo.PilotoCampeonatoBo;
 import gokart.classes.Bateria;
 import gokart.classes.BateriaCampeonato;
 import gokart.classes.Campeonato;
 import gokart.classes.Piloto;
+import gokart.classes.PilotoCampeonato;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -28,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -90,7 +94,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		txtCampeonato.setBounds(10, 94, 355, 20);
 		contentPane.add(txtCampeonato);
 		txtCampeonato.setColumns(10);
-		
+
 		btnVoltar = new JButton("");
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
@@ -147,29 +151,19 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		tbResultado = new JTable();
 		tbResultado.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
-				new String[] { "Kart\u00F3dromo", "Nr Max Piloto", "Tra\u00E7ado", "Data", "Hora" }) {
+				new String[] { "Kart\u00F3dromo", "Vagas", "Tra\u00E7ado", "Data", "Hora" }) {
 			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class, String.class, String.class };
 
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-			
 		});
 		pnScroll.setViewportView(tbResultado);
 
 		btAddBat = new JButton("Add");
 		btAddBat.setForeground(Color.ORANGE);
 		btAddBat.setBackground(Color.BLACK);
-		btAddBat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 		btAddBat.setBounds(10, 394, 89, 23);
 		contentPane.add(btAddBat);
 
@@ -178,25 +172,17 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		contentPane.add(pnBateria);
 
 		tbBateriaCamp = new JTable();
-		tbBateriaCamp.setModel(new DefaultTableModel(
-				new Object[][] { { /* null, null, null, null, null }, { null, null, null, null, null */ }, },
-				new String[] { "Kart\u00F3dromo", "Nr Max Piloto", "Tra\u00E7ado", "Data", "Hora" }) {
+		tbBateriaCamp.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
+				new String[] { "Kart\u00F3dromo", "Vagas", "Tra\u00E7ado", "Data", "Hora" }) {
 			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class, String.class, String.class };
 
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-
 		});
 
 		modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
-		modeloCamp.setRowCount(0);		
+		modeloCamp.setRowCount(0);
 		tbBateriaCamp.setModel(modeloCamp);
 
 		pnBateria.setViewportView(tbBateriaCamp);
@@ -231,82 +217,31 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		txtCampeonato.setText(camp.getNomeCampeonato());
 
-		/* Eventos */
+		/* Eventos Botões */
 
 		btPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PesquisaBateria();
-
 			}
 		});
 
 		/* Adiciona bateria no campeonato */
 		btAddBat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				String data;
-
-				modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
-
-				/* Se existir campo selecionado, cria Bateria */
-				if (!(tbResultado.getSelectedRow() < 0)) {
-
-					Bateria b = (Bateria) tbResultado.getModel().getValueAt(tbResultado.getSelectedRow(), 0);
-
-					data = b.getData().format(formatador);
-					modeloCamp.addRow(new Object[] { b, b.getNrMaxPiloto(), b.getTracado(), data, b.getHoraBateria() });
-
-					tbBateriaCamp.setModel(modeloCamp);
-				}
-
+				AdicionaBateria(camp);
 			}
 		});
 
 		/* Remove bateria do Campeonato */
 		btRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
-
-				/* Se existir campo selecionado */
-				if (!(tbBateriaCamp.getSelectedRow() < 0)) {
-					modeloCamp.removeRow(tbBateriaCamp.getSelectedRow());
-				}
-
-				tbBateriaCamp.setModel(modeloCamp);
-
+				RemoverBateria();
 			}
 		});
 
 		btSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				int i = 0;
-				for (i = 0; i < tbBateriaCamp.getModel().getRowCount(); i++) {
-
-					BateriaCampeonato bCp = new BateriaCampeonato();
-
-					bCp.setId_bateria((Bateria) tbBateriaCamp.getModel().getValueAt(i, 0));
-					bCp.setId_campeonato(camp);
-
-					BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();
-
-					try {
-						bcpBo.Salvar(bCp);
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
-						e1.printStackTrace();
-					}
-
-				}
-
-				if (i != 0) {
-					JOptionPane.showMessageDialog(null, "Bateria(s) do Campeonato salva com sucesso!");
-					TelaCampeonato tc = new TelaCampeonato(piloto);
-					dispose();
-				}
-
+				SalvarDados(camp, piloto);
 			}
 		});
 
@@ -319,7 +254,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 	}
 
-	public void PesquisaBateria() {
+	private void PesquisaBateria() {
 
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
@@ -353,4 +288,89 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		}
 
 	}
+
+	private void AdicionaBateria(Campeonato cp) {
+
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String data;
+		List<PilotoCampeonato> listaQt = new ArrayList<PilotoCampeonato>();
+
+		modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
+
+		PilotoCampeonatoBo pcBo = new PilotoCampeonatoBo();
+
+		try {
+			listaQt = pcBo.ListarCampeonatoPiloto(cp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("Tamanho: " + listaQt.size());
+
+		/* Se existir campo selecionado, cria Bateria */
+		if (!(tbResultado.getSelectedRow() < 0)) {
+
+			Bateria b = (Bateria) tbResultado.getModel().getValueAt(tbResultado.getSelectedRow(), 0);
+
+			if (listaQt.size() > b.getNrMaxPiloto()) {
+
+				JOptionPane.showMessageDialog(null,
+						"Número de vagas da Bateria é MENOR que o Número de Pilotos no Campeonato!", "ERRO!",
+						JOptionPane.ERROR_MESSAGE);
+
+			} else {
+
+				data = b.getData().format(formatador);
+				modeloCamp.addRow(new Object[] { b, b.getNrMaxPiloto(), b.getTracado(), data, b.getHoraBateria() });
+
+				tbBateriaCamp.setModel(modeloCamp);
+
+			}
+
+		}
+
+	}
+
+	private void RemoverBateria() {
+
+		modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
+
+		/* Se existir campo selecionado */
+		if (!(tbBateriaCamp.getSelectedRow() < 0)) {
+			modeloCamp.removeRow(tbBateriaCamp.getSelectedRow());
+		}
+
+		tbBateriaCamp.setModel(modeloCamp);
+
+	}
+
+	private void SalvarDados(Campeonato camp, Piloto piloto) {
+
+		int i = 0;
+		for (i = 0; i < tbBateriaCamp.getModel().getRowCount(); i++) {
+
+			BateriaCampeonato bCp = new BateriaCampeonato();
+
+			bCp.setId_bateria((Bateria) tbBateriaCamp.getModel().getValueAt(i, 0));
+			bCp.setId_campeonato(camp);
+
+			BateriaCampeonatoBo bcpBo = new BateriaCampeonatoBo();
+
+			try {
+				bcpBo.Salvar(bCp);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+				e1.printStackTrace();
+			}
+
+		}
+
+		if (i != 0) {
+			JOptionPane.showMessageDialog(null, "Bateria(s) do Campeonato salva com sucesso!");
+			TelaCampeonato tc = new TelaCampeonato(piloto);
+			dispose();
+		}
+
+	}
+
 }

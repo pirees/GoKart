@@ -44,7 +44,7 @@ public class PilotoCampeonatoBo {
 		PilotoCampeonatoDao pcpDao = new PilotoCampeonatoDao();		
 		return pcpDao.ListaCampeonatoPiloto(cp);
 			
-	}
+	}	
 	
 	private void validarDadosGrupo(PilotoCampeonato pCmp) throws Exception {
 		if (pCmp.getId() < 0) {
