@@ -83,7 +83,7 @@ public class TelaMenuPiloto extends JFrame {
 	    lblNomePiloto.setBackground(Color.ORANGE);
 		lblNomePiloto.setForeground(Color.ORANGE);
 	    lblNomePiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNomePiloto.setBounds(56, 23, 160, 29);
+		lblNomePiloto.setBounds(46, 51, 160, 29);
 		contentPane.add(lblNomePiloto);
 		lblNomePiloto.setText(piloto.getNome());
 			
@@ -91,7 +91,7 @@ public class TelaMenuPiloto extends JFrame {
 		lblNivelPiloto.setBackground(Color.ORANGE);
 		lblNivelPiloto.setForeground(Color.ORANGE);
 		lblNivelPiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNivelPiloto.setBounds(116, 51, 107, 29);
+		lblNivelPiloto.setBounds(112, 79, 107, 29);
 		contentPane.add(lblNivelPiloto);
 		lblNivelPiloto.setText(piloto.getNivel().toString());
 		
@@ -149,7 +149,7 @@ public class TelaMenuPiloto extends JFrame {
 		btnConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConvite.setToolTipText("Convites Pendentes");
 		btnConvite.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/convite-32.png")));
-		btnConvite.setBounds(325, 23, 40, 35);
+		btnConvite.setBounds(325, 11, 40, 35);
 		contentPane.add(btnConvite);
 		
 		btnReserva = new JButton("");
@@ -157,7 +157,7 @@ public class TelaMenuPiloto extends JFrame {
 		btnReserva.setToolTipText("Baterias");
 		btnReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReserva.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/bateria-32.png")));
-		btnReserva.setBounds(325, 63, 40, 35);
+		btnReserva.setBounds(325, 51, 40, 35);
 		contentPane.add(btnReserva);
 		
 		btnCampeonato = new JButton("");
@@ -165,21 +165,21 @@ public class TelaMenuPiloto extends JFrame {
 		btnCampeonato.setBackground(Color.ORANGE);
 		btnCampeonato.setToolTipText("Campeonatos");
 		btnCampeonato.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/campeonato-32.png")));
-		btnCampeonato.setBounds(325, 101, 40, 35);
+		btnCampeonato.setBounds(325, 89, 40, 35);
 		contentPane.add(btnCampeonato);
 		
 		lblHey = new JLabel("Olá,");
 		lblHey.setBackground(Color.ORANGE);
 		lblHey.setForeground(Color.ORANGE);
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblHey.setBounds(22, 25, 40, 24);
+		lblHey.setBounds(10, 53, 40, 24);
 		contentPane.add(lblHey);
 		
 		lblSeuNvel = new JLabel("Seu n\u00EDvel \u00E9:");
 		lblSeuNvel.setBackground(Color.ORANGE);
 		lblSeuNvel.setForeground(Color.ORANGE);
 		lblSeuNvel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSeuNvel.setBounds(22, 58, 107, 14);
+		lblSeuNvel.setBounds(10, 86, 107, 14);
 		contentPane.add(lblSeuNvel);
 		
 		btnConfirmar = new JButton("Confirmar");
@@ -303,6 +303,11 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(txtNrPilotoBateria);
 		txtNrPilotoBateria.setVisible(false);
 		txtNrPilotoBateria.setColumns(10);
+		
+		JButton btDesligar = new JButton("");
+		btDesligar.setBackground(Color.ORANGE);
+		btDesligar.setBounds(10, 11, 31, 23);
+		contentPane.add(btDesligar);
 		
 		btnConvite.addMouseListener(new MouseAdapter() {
 			@Override
