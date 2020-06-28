@@ -193,7 +193,7 @@ public class TelaCampeonato extends JFrame {
 
 		btVoltar = new JButton("");
 		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		
+
 		btVoltar.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/voltar - 32.png")));
 		btVoltar.setToolTipText("Voltar ");
 		btVoltar.setBackground(Color.ORANGE);
@@ -226,28 +226,8 @@ public class TelaCampeonato extends JFrame {
 
 		/* Convida Pilotos para Campeonato */
 		btEnviaConvite.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				try {
-
-					PilotoBo pBo = new PilotoBo();
-
-					ConviteCampeonato cvCp = new ConviteCampeonato();
-
-					cvCp.setId_campeonato((Campeonato) cbCampeonato.getSelectedItem());
-					/* Procura Piloto com Email Cadastrado e Envia Convite */
-					cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));
-
-					ConviteCampeonatoBo cvCpBo = new ConviteCampeonatoBo();
-					cvCpBo.Salvar(cvCp);
-
-					JOptionPane.showMessageDialog(null, "Convite enviado com sucessso!");
-
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				}
-
+			public void actionPerformed(ActionEvent e) {				
+				EnviarConvite();
 			}
 		});
 
@@ -269,7 +249,7 @@ public class TelaCampeonato extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		btVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaMenuPiloto tmp = new TelaMenuPiloto(piloto);
@@ -323,4 +303,29 @@ public class TelaCampeonato extends JFrame {
 		}
 
 	}
+
+	private void EnviarConvite() {
+
+		try {
+
+			PilotoBo pBo = new PilotoBo();
+
+			ConviteCampeonato cvCp = new ConviteCampeonato();
+
+			cvCp.setId_campeonato((Campeonato) cbCampeonato.getSelectedItem());
+			/* Procura Piloto com Email Cadastrado e Envia Convite */
+			cvCp.setId_piloto(pBo.ProcuraEmail(txtEmailPiloto.getText()));
+
+			ConviteCampeonatoBo cvCpBo = new ConviteCampeonatoBo();
+			cvCpBo.Salvar(cvCp);
+
+			JOptionPane.showMessageDialog(null, "Convite enviado com sucessso!");
+
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+			e1.printStackTrace();
+		}
+
+	}
+
 }
