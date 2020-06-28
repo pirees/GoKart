@@ -61,6 +61,7 @@ public class TelaMenuPiloto extends JFrame {
 	private JLabel lblBoasVindas;
 	private JLabel lblNumeroDePilotos;
 	private JButton btnConvite;
+	private JButton btDesligar;
 	private JLabel lblKartodromo;
 	private JScrollPane scrollPane;
 	private DefaultTableModel modelo;
@@ -145,6 +146,16 @@ public class TelaMenuPiloto extends JFrame {
 		table.getColumnModel().getColumn(5).setCellRenderer(centralizado);
 		
 		btnConvite = new JButton("");
+		btnConvite.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnConvite.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnConvite.setBackground(Color.ORANGE);
+			}
+		});
 		btnConvite.setBackground(Color.ORANGE);
 		btnConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConvite.setToolTipText("Convites Pendentes");
@@ -153,6 +164,16 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(btnConvite);
 		
 		btnReserva = new JButton("");
+		btnReserva.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnReserva.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnReserva.setBackground(Color.ORANGE);
+			}
+		});
 		btnReserva.setBackground(Color.ORANGE);
 		btnReserva.setToolTipText("Baterias");
 		btnReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -161,6 +182,16 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(btnReserva);
 		
 		btnCampeonato = new JButton("");
+		btnCampeonato.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCampeonato.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCampeonato.setBackground(Color.ORANGE);
+			}
+		});
 		btnCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCampeonato.setBackground(Color.ORANGE);
 		btnCampeonato.setToolTipText("Campeonatos");
@@ -183,6 +214,16 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(lblSeuNvel);
 		
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnConfirmar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnConfirmar.setBackground(Color.BLACK);
+			}
+		});
 		btnConfirmar.setBackground(Color.BLACK);
 		btnConfirmar.setForeground(Color.ORANGE);
 		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -204,6 +245,16 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(lblBoasVindas);
 		
 		btnBuscar = new JButton("");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnBuscar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnBuscar.setBackground(Color.ORANGE);
+			}
+		});
 		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.setToolTipText("Pesquisar");
 		btnBuscar.setBackground(Color.ORANGE);
@@ -304,8 +355,17 @@ public class TelaMenuPiloto extends JFrame {
 		txtNrPilotoBateria.setVisible(false);
 		txtNrPilotoBateria.setColumns(10);
 		
-		JButton btDesligar = new JButton("");
-		
+		btDesligar = new JButton("");
+		btDesligar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btDesligar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btDesligar.setBackground(Color.ORANGE);
+			}
+		});		
 		btDesligar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btDesligar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/iconDesligar.png")));
 		btDesligar.setBackground(Color.ORANGE);

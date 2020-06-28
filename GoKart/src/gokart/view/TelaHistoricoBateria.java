@@ -6,6 +6,8 @@ import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -34,6 +36,7 @@ public class TelaHistoricoBateria extends JFrame {
 	private JTable table;
 	private DefaultTableCellRenderer centralizado;
 	private JScrollPane scrollPane;
+	private JLabel lblNewLabel;
 
 
 	public TelaHistoricoBateria(Piloto piloto) {
@@ -47,6 +50,16 @@ public class TelaHistoricoBateria extends JFrame {
 		contentPane.setLayout(null);
 		
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");
@@ -78,7 +91,7 @@ public class TelaHistoricoBateria extends JFrame {
 		carregarReserva(piloto);
 		scrollPane.setViewportView(table);
 		
-		JLabel lblNewLabel = new JLabel("Aqui voc\u00EA pode verificar suas reservas j\u00E1 realizadas");
+		lblNewLabel = new JLabel("Aqui voc\u00EA pode verificar suas reservas j\u00E1 realizadas");
 		lblNewLabel.setForeground(Color.ORANGE);
 		lblNewLabel.setBackground(Color.ORANGE);
 		lblNewLabel.setBounds(41, 79, 324, 14);

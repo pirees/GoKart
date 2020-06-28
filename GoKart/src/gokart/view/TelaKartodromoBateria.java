@@ -15,6 +15,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -81,12 +83,33 @@ public class TelaKartodromoBateria extends JFrame {
 		contentPane.add(lblNmeroDePilotos);
 		
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSalvar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSalvar.setBackground(Color.BLACK);
+			}
+		});	
 		btnSalvar.setForeground(Color.ORANGE);
+		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setBounds(132, 327, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});	
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");

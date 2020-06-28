@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 
 import javax.swing.JTextField;
@@ -168,6 +170,16 @@ public class TelaCadastroKartodromo extends JFrame {
 		contentPane.add(txtReptSenha);
 		
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSalvar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSalvar.setBackground(Color.BLACK);
+			}
+		});
 		btnSalvar.setForeground(Color.ORANGE);
 		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -175,6 +187,16 @@ public class TelaCadastroKartodromo extends JFrame {
 		contentPane.add(btnSalvar);
 		
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");
@@ -223,6 +245,16 @@ public class TelaCadastroKartodromo extends JFrame {
 		
 		
 		btnBuscar = new JButton("BUSCAR");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnBuscar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnBuscar.setBackground(Color.BLACK);
+			}
+		});
 		btnBuscar.setForeground(Color.ORANGE);
 		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.setBackground(Color.BLACK);

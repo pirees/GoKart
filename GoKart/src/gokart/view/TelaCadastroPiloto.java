@@ -25,6 +25,8 @@ import gokart.dao.NivelDao;
 import gokart.viacep.WebServiceCep;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
@@ -140,12 +142,33 @@ public class TelaCadastroPiloto extends JFrame {
 		contentPane.add(txtReptSenha);
 
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSalvar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSalvar.setBackground(Color.BLACK);
+			}
+		});
 		btnSalvar.setForeground(Color.ORANGE);
+		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btnSalvar);
 
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");
@@ -203,8 +226,19 @@ public class TelaCadastroPiloto extends JFrame {
 		txtCEP.setColumns(10);
 		
 		btnBuscarCep = new JButton("BUSCAR");
+		btnBuscarCep.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnBuscarCep.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnBuscarCep.setBackground(Color.BLACK);
+			}
+		});
 		btnBuscarCep.setForeground(Color.ORANGE);
 		btnBuscarCep.setBackground(Color.BLACK);
+		btnBuscarCep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscarCep.setBounds(139, 251, 89, 23);
 		contentPane.add(btnBuscarCep);
 		

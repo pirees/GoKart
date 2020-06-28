@@ -5,6 +5,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -42,6 +44,7 @@ public class TelaMenuKartodromo extends JFrame {
 	private JButton btnBuscar;
 	private JTable table;
 	private LocalDate localDate;
+	private JScrollPane scrollPane;
 
 	public TelaMenuKartodromo(Kartodromo k) {
 		
@@ -77,6 +80,16 @@ public class TelaMenuKartodromo extends JFrame {
 		contentPane.add(lblReservas);
 		
 		btnReserva = new JButton("");
+		btnReserva.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnReserva.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnReserva.setBackground(Color.ORANGE);
+			}
+		});	
 		btnReserva.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnReserva.setToolTipText("Nova Reserva");
 		btnReserva.setBackground(Color.ORANGE);
@@ -105,6 +118,16 @@ public class TelaMenuKartodromo extends JFrame {
 		contentPane.add(txtDataConsulta_1);
 		
 		btnBuscar = new JButton("");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnBuscar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnBuscar.setBackground(Color.ORANGE);
+			}
+		});	
 		btnBuscar.setToolTipText("Pesquisar");
 		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.setBackground(Color.ORANGE);
@@ -112,7 +135,7 @@ public class TelaMenuKartodromo extends JFrame {
 		btnBuscar.setBounds(198, 158, 40, 31);
 		contentPane.add(btnBuscar);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 214, 355, 271);
 		contentPane.add(scrollPane);
 

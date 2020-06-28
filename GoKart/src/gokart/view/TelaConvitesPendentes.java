@@ -20,6 +20,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -70,6 +73,16 @@ public class TelaConvitesPendentes extends JFrame {
 		});
 				
 		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnConfirmar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnConfirmar.setBackground(Color.BLACK);
+			}
+		});
 		btnConfirmar.setForeground(Color.ORANGE);
 		btnConfirmar.setBackground(Color.BLACK);
 		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -77,6 +90,16 @@ public class TelaConvitesPendentes extends JFrame {
 		contentPane.add(btnConfirmar);
 		
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");
@@ -85,6 +108,16 @@ public class TelaConvitesPendentes extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCancelar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCancelar.setBackground(Color.BLACK);
+			}
+		});
 		btnCancelar.setBackground(Color.BLACK);
 		btnCancelar.setForeground(Color.ORANGE);
 		btnCancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

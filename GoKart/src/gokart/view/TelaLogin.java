@@ -18,6 +18,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
@@ -30,8 +31,6 @@ public class TelaLogin extends JFrame {
 	private JTextField txtUsername;
 	private JPasswordField txtSenha;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JLabel lblUsername;
-	private JLabel lblSenha;
 	private JButton btLogin;
 	private JLabel lblCadastrar;
 	private JLabel imgLogo;
@@ -40,7 +39,7 @@ public class TelaLogin extends JFrame {
 	private JRadioButton rdbtnKartodromo;
 
 	public TelaLogin() {
-		setTitle("Login - GOKART");
+		setTitle("GoKart - Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 
@@ -53,41 +52,41 @@ public class TelaLogin extends JFrame {
 		txtUsername = new JTextField();
 		txtUsername.setBackground(Color.BLACK);
 		txtUsername.setForeground(Color.ORANGE);
-		txtUsername.setText("exemplo@exemplo.com");
+		txtUsername.setText("Email");
 		txtUsername.setBounds(10, 335, 355, 20);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 
-		lblUsername = new JLabel("Email:");
-		lblUsername.setBackground(Color.ORANGE);
-		lblUsername.setForeground(Color.ORANGE);
-		lblUsername.setBounds(10, 310, 46, 14);
-		contentPane.add(lblUsername);
-
-		lblSenha = new JLabel("Senha:");
-		lblSenha.setForeground(Color.ORANGE);
-		lblSenha.setBounds(10, 383, 46, 14);
-		contentPane.add(lblSenha);
-
 		txtSenha = new JPasswordField();
 		txtSenha.setForeground(Color.ORANGE);
 		txtSenha.setBackground(Color.BLACK);
-		txtSenha.setBounds(10, 408, 355, 20);
+		txtSenha.setText("Senha");
+		txtSenha.setBounds(10, 357, 355, 20);
 		contentPane.add(txtSenha);
 
-		btLogin = new JButton("Entrar");
+		btLogin = new JButton("Entrar");		
+		btLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				  btLogin.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				  btLogin.setBackground(Color.BLACK);
+			}
+		});
 		btLogin.setBackground(Color.BLACK);
 		btLogin.setForeground(Color.ORANGE);
 		btLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-		btLogin.setBounds(276, 432, 89, 23);
+		btLogin.setBounds(276, 388, 89, 23);
 		contentPane.add(btLogin);
 
 		lblCadastrar = new JLabel("N\u00E3o tem conta? Efetue o cadastro...");
 		lblCadastrar.setForeground(Color.ORANGE);
 		lblCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblCadastrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblCadastrar.setBounds(10, 436, 185, 14);
+		lblCadastrar.setBounds(10, 435, 185, 14);
 		contentPane.add(lblCadastrar);
 
 		imgLogo = new JLabel("");
@@ -99,7 +98,7 @@ public class TelaLogin extends JFrame {
 		lblCadastrarKartodromo.setForeground(Color.ORANGE);
 		lblCadastrarKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblCadastrarKartodromo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblCadastrarKartodromo.setBounds(10, 490, 230, 14);
+		lblCadastrarKartodromo.setBounds(10, 460, 230, 14);
 		contentPane.add(lblCadastrarKartodromo);
 
 		rdbtnPiloto = new JRadioButton("Piloto");
@@ -139,12 +138,44 @@ public class TelaLogin extends JFrame {
 				dispose();
 			}
 		});
+		
+		txtUsername.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+            	txtUsername.setText("");
+            }
+        });
+		
+		txtSenha.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+            	txtSenha.setText("");
+            }
+        });
 
 		btLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				login();
 			}
 		});
+		
+//		btLogin.addMouseListener(new MouseListener() {
+//			   public void mouseExited(MouseEvent e) {
+//			   btLogin.setBackground(Color.BLACK);
+//			     }
+//			   public void mouseClicked(MouseEvent e) {
+//				   btLogin.setBackground(Color.WHITE);
+//			     }
+//		 	   public void mousePressed(MouseEvent e) {
+//		 		  btLogin.setBackground(Color.WHITE);
+//			    }
+//			   public void mouseReleased(MouseEvent e) {
+//				   btLogin.setBackground(Color.BLACK);
+//			   }
+//			   public void mouseEntered(MouseEvent e) {
+//				   btLogin.setBackground(Color.ORANGE);
+//			   }
+//	    });
 	}
 	
 	public void login() {
