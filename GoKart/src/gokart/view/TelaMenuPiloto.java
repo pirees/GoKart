@@ -480,14 +480,21 @@ public class TelaMenuPiloto extends JFrame {
 		pilotobateria.setPil(piloto);
 		pilotobateria.setNrEscolhaPiloto(Integer.parseInt(txtNrPiloto.getText()));
 		
-		PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();		
+		PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();	
+		
+		try {
+			pilotobateriaBo.Salvar(pilotobateria);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		try {
 			
 			if(pilotobateria.getNrEscolhaPiloto() > b.getNrMaxPiloto()) {
 				JOptionPane.showMessageDialog(null, "Número de vagas indisponíveis");
 			}else {
-				JOptionPane.showMessageDialog(null, "Bateria " + pilotobateriaBo.Salvar(pilotobateria));	
+				JOptionPane.showMessageDialog(null, "Bateria salva com sucesso" );	
 			}
 			
 		} catch (Exception e1) {

@@ -171,6 +171,8 @@ public class TelaKartodromoBateria extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				salvarBateria(k);
+				TelaMenuKartodromo tmk = new TelaMenuKartodromo(k);
+				dispose();
 			}
 		});
 	}
@@ -188,12 +190,17 @@ public class TelaKartodromoBateria extends JFrame {
 		bateria.setNrMaxPiloto(Integer.parseInt(txtNrMaxPilotos.getText()));
 		bateria.setTracado(txtTracado.getText());
 		bateria.setKartodromo(k);
-	
+		
+		BateriaBo bateriaBo = new BateriaBo();
 		try {
-			
-			BateriaBo bateriaBo = new BateriaBo();
-
-			JOptionPane.showMessageDialog(null, "Reservas configuradas com sucesso " + bateriaBo.Salvar(bateria));
+			bateriaBo.Salvar(bateria);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			JOptionPane.showMessageDialog(null, "Reserva salva com sucesso");
 
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());

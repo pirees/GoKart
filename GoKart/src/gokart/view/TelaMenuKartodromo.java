@@ -45,6 +45,7 @@ public class TelaMenuKartodromo extends JFrame {
 	private JTable table;
 	private LocalDate localDate;
 	private JScrollPane scrollPane;
+	private JButton btDesligar;
 
 	public TelaMenuKartodromo(Kartodromo k) {
 		
@@ -61,14 +62,14 @@ public class TelaMenuKartodromo extends JFrame {
 		lblHey.setForeground(Color.ORANGE);
 		lblHey.setBackground(Color.ORANGE);
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblHey.setBounds(22, 25, 40, 24);
+		lblHey.setBounds(22, 33, 40, 24);
 		contentPane.add(lblHey);
 		
 		lblNomeKartodromo = new JLabel("");
 		lblNomeKartodromo.setForeground(Color.ORANGE);
 		lblNomeKartodromo.setBackground(Color.ORANGE);
 	    lblNomeKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNomeKartodromo.setBounds(56, 23, 160, 29);
+		lblNomeKartodromo.setBounds(56, 31, 160, 29);
 		contentPane.add(lblNomeKartodromo);
 		lblNomeKartodromo.setText(k.getNome());
 		
@@ -139,6 +140,22 @@ public class TelaMenuKartodromo extends JFrame {
 		scrollPane.setBounds(10, 214, 355, 271);
 		contentPane.add(scrollPane);
 
+		btDesligar = new JButton("");
+		btDesligar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btDesligar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btDesligar.setBackground(Color.ORANGE);
+			}
+		});		
+		btDesligar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btDesligar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/iconDesligar.png")));
+		btDesligar.setBackground(Color.ORANGE);
+		btDesligar.setBounds(10, 11, 31, 23);
+		contentPane.add(btDesligar);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -168,6 +185,13 @@ public class TelaMenuKartodromo extends JFrame {
 				
 				carregarReservas();
 				
+			}
+		});
+		
+		btDesligar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaLogin tl = new TelaLogin();
+				dispose();				
 			}
 		});
 		
