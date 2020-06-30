@@ -226,7 +226,7 @@ public class TelaCadastroCampeonato extends JFrame {
 
 				try {
 					ValidaPontos();
-					SalvaDados();
+					SalvaDados(piloto);
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage(), "Erro Pontuação!", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
@@ -246,12 +246,12 @@ public class TelaCadastroCampeonato extends JFrame {
 
 	}
 
-	public void SalvaDados() {
+	public void SalvaDados(Piloto pil) {
 
 		/* Cria o Objeto do Campeonato */
 		Campeonato cp = new Campeonato();
 		cp.setNomeCampeonato(txtNomeCampeonato.getText());
-		cp.setNrBatCampeonato(Integer.valueOf(cbQtCorrida.getSelectedIndex()));
+		cp.setNrBatCampeonato(Integer.valueOf((String) cbQtCorrida.getSelectedItem()));
 		cp.setPtMelhorVolta(Integer.valueOf(txtMelhorVolta.getText()));
 
 		PilotoBo pBo = new PilotoBo();
@@ -288,6 +288,9 @@ public class TelaCadastroCampeonato extends JFrame {
 			}
 
 			JOptionPane.showMessageDialog(null, "Campeonato cadastrado com sucesso!");
+			
+			TelaCampeonato tc = new TelaCampeonato(pil);
+			dispose();
 
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, e2.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);

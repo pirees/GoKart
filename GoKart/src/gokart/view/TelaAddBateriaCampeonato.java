@@ -397,6 +397,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	private void SalvarDados(Campeonato camp, Piloto piloto) {
 		
 		BateriaBo bBo = new BateriaBo();
+		boolean deuErro = false;
 
 		int i = 0;
 		for (i = 0; i < tbBateriaCamp.getModel().getRowCount(); i++) {
@@ -414,12 +415,13 @@ public class TelaAddBateriaCampeonato extends JFrame {
 								
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
+				deuErro = true;
 				e1.printStackTrace();
 			}
 
 		}
 
-		if (i != 0) {
+		if (i != 0 && deuErro == false) {
 			JOptionPane.showMessageDialog(null, "Bateria(s) do Campeonato salva com sucesso!");
 			TelaCampeonato tc = new TelaCampeonato(piloto);
 			dispose();

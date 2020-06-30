@@ -39,6 +39,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
 import java.awt.Color;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class TelaCampeonato extends JFrame {
 
@@ -56,8 +58,9 @@ public class TelaCampeonato extends JFrame {
 	private JButton btConsultaClass;
 	private JButton btVoltar;
 	private DefaultTableCellRenderer centralizado;
-
+	private DefaultTableModel modeloCamp;
 	
+
 	public TelaCampeonato(Piloto piloto) {
 		setTitle("GoKart - Campeonato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +79,14 @@ public class TelaCampeonato extends JFrame {
 		painel.add(lblCampeonato);
 
 		cbCampeonato = new JComboBox();
+		cbCampeonato.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == 1) {
+					AtualizaBat();
+
+				}
+			}
+		});
 		cbCampeonato.setForeground(Color.ORANGE);
 		cbCampeonato.setBackground(Color.BLACK);
 		cbCampeonato.setBounds(10, 163, 301, 22);
@@ -87,11 +98,12 @@ public class TelaCampeonato extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btNovoCampeonato.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btNovoCampeonato.setBackground(Color.BLACK);
 			}
-		});	
+		});
 		btNovoCampeonato.setForeground(Color.ORANGE);
 		btNovoCampeonato.setBackground(Color.BLACK);
 		btNovoCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -105,11 +117,12 @@ public class TelaCampeonato extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btClassificacao.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btClassificacao.setBackground(Color.BLACK);
 			}
-		});	
+		});
 		btClassificacao.setForeground(Color.ORANGE);
 		btClassificacao.setBackground(Color.BLACK);
 
@@ -125,7 +138,7 @@ public class TelaCampeonato extends JFrame {
 		txtEmailPiloto = new JTextField();
 		txtEmailPiloto.setForeground(Color.ORANGE);
 		txtEmailPiloto.setBackground(Color.BLACK);
-		txtEmailPiloto.setToolTipText("Ensira o e-mail do piloto para convida-lo ao campeonato.");
+		txtEmailPiloto.setToolTipText("Insira o e-mail do piloto para convida-lo ao campeonato.");
 		txtEmailPiloto.setText("Email Piloto");
 		txtEmailPiloto.setBounds(10, 271, 301, 20);
 		painel.add(txtEmailPiloto);
@@ -137,11 +150,12 @@ public class TelaCampeonato extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btEnviaConvite.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btEnviaConvite.setBackground(Color.ORANGE);
 			}
-		});	
+		});
 		btEnviaConvite.setForeground(Color.ORANGE);
 		btEnviaConvite.setBackground(Color.ORANGE);
 		btEnviaConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -164,25 +178,17 @@ public class TelaCampeonato extends JFrame {
 		tbBateria.setForeground(Color.ORANGE);
 		tbBateria.setBackground(Color.BLACK);
 
-		tbBateria.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, "", null, null},
-			},
-			new String[] {
-				"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Tra\u00E7ado"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class
-			};
+		tbBateria.setModel(new DefaultTableModel(new Object[][] { { null, "", null, null }, },
+				new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Tra\u00E7ado" }) {
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
+
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
 		tbBateria.getColumnModel().getColumn(3).setPreferredWidth(103);
 		pnBateria.setViewportView(tbBateria);
-		
-		
+
 		// CENTRALIZANDO OS ITENS DA TABELA
 		centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
@@ -196,11 +202,12 @@ public class TelaCampeonato extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btAddBateria.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btAddBateria.setBackground(Color.BLACK);
 			}
-		});	
+		});
 		btAddBateria.setForeground(Color.ORANGE);
 		btAddBateria.setBackground(Color.BLACK);
 		btAddBateria.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -225,11 +232,12 @@ public class TelaCampeonato extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btConsultaClass.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btConsultaClass.setBackground(Color.BLACK);
 			}
-		});	
+		});
 		btConsultaClass.setForeground(Color.ORANGE);
 		btConsultaClass.setBackground(Color.BLACK);
 
@@ -242,11 +250,12 @@ public class TelaCampeonato extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				btVoltar.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btVoltar.setBackground(Color.ORANGE);
 			}
-		});	
+		});
 		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btVoltar.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/voltar - 32.png")));
 		btVoltar.setToolTipText("Voltar ");
@@ -280,7 +289,7 @@ public class TelaCampeonato extends JFrame {
 
 		/* Convida Pilotos para Campeonato */
 		btEnviaConvite.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) {
 				EnviarConvite();
 			}
 		});
@@ -311,13 +320,13 @@ public class TelaCampeonato extends JFrame {
 
 			}
 		});
-		
-		txtEmailPiloto.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-            	txtEmailPiloto.setText("");
-            }
-        });
+
+		txtEmailPiloto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtEmailPiloto.setText("");
+			}
+		});
 
 		CarregaDadosTela(piloto);
 
@@ -326,10 +335,10 @@ public class TelaCampeonato extends JFrame {
 	private void CarregaDadosTela(Piloto piloto) {
 
 		try {
-			
+
 			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			String data;
-			
+
 			PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();
 
 			for (PilotoCampeonato pc : pcpBo.ListarPilotoCampeonato(piloto)) {
@@ -344,23 +353,20 @@ public class TelaCampeonato extends JFrame {
 			listaResultado.clear();
 
 			if (!(obj == null)) {
-				
-				
 
 				for (BateriaCampeonato b : bcBo.listaBateriaCampeonato((Campeonato) cbCampeonato.getSelectedItem())) {
-					
+
 					data = b.getId_bateria().getData().format(formatador);
 
-					listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(),
-							data,
+					listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(), data,
 							String.valueOf(b.getId_bateria().getHoraBateria()), b.getId_bateria().getTracado() });
 
 				}
 
 				if (!listaResultado.isEmpty()) {
-					tbBateria.setModel(new DefaultTableModel(
-							listaResultado.toArray(new String[listaResultado.size()][]), new String[] {
-									"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Traçado" }));
+					tbBateria
+							.setModel(new DefaultTableModel(listaResultado.toArray(new String[listaResultado.size()][]),
+									new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Traçado" }));
 
 				}
 			}
@@ -368,6 +374,46 @@ public class TelaCampeonato extends JFrame {
 		} catch (Exception e) {
 			System.out.println("Erro" + e.getMessage());
 			e.printStackTrace();
+		}
+
+	}
+
+	private void AtualizaBat() {
+
+		BateriaCampeonatoBo bcBo = new BateriaCampeonatoBo();		
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String data;
+		
+		modeloCamp = (DefaultTableModel) tbBateria.getModel();
+		modeloCamp.setRowCount(0);
+		
+		tbBateria.setModel(modeloCamp);
+		
+		Object obj = cbCampeonato.getSelectedItem();
+		listaResultado.clear();
+
+		if (!(obj == null)) {
+
+			try {
+				for (BateriaCampeonato b : bcBo.listaBateriaCampeonato((Campeonato) cbCampeonato.getSelectedItem())) {
+
+					data = b.getId_bateria().getData().format(formatador);
+
+					listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(), data,
+							String.valueOf(b.getId_bateria().getHoraBateria()), b.getId_bateria().getTracado() });
+
+				}
+
+				if (!listaResultado.isEmpty()) {
+					tbBateria.setModel(new DefaultTableModel(listaResultado.toArray(new String[listaResultado.size()][]),
+									new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Traçado" }));
+				}
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 	}

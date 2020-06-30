@@ -1,5 +1,6 @@
 package gokart.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gokart.classes.BateriaCampeonato;
@@ -8,6 +9,8 @@ import gokart.dao.BateriaCampeonatoDao;
 import gokart.dao.GenericDao;
 
 public class BateriaCampeonatoBo {
+	
+	private List<BateriaCampeonato> qtBat = new ArrayList<BateriaCampeonato>();
 
 	public String Salvar(BateriaCampeonato cp) throws Exception {
 
@@ -49,6 +52,16 @@ public class BateriaCampeonatoBo {
 		if (btCampeonato.getId() < 0) {
 			throw new Exception("ID da Bateria x Campeonato não poder ser menor que ZERO.");
 		}
+		
+		BateriaCampeonatoBo bcBo = new BateriaCampeonatoBo();		
+		qtBat = bcBo.listaBateriaCampeonato(btCampeonato.getId_campeonato());			
+		
+		if(qtBat.size() == btCampeonato.getId_campeonato().getNrBatCampeonato()) {			
+			throw new Exception("Campeonato atingiu número máximo de baterias cadastradas!" + " Nr Max:" + btCampeonato.getId_campeonato().getNrBatCampeonato());			
+		}
+		
+	
+		
 
 	}
 
