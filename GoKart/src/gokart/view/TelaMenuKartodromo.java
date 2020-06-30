@@ -62,14 +62,14 @@ public class TelaMenuKartodromo extends JFrame {
 		lblHey.setForeground(Color.ORANGE);
 		lblHey.setBackground(Color.ORANGE);
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblHey.setBounds(22, 33, 40, 24);
+		lblHey.setBounds(20, 53, 40, 24);
 		contentPane.add(lblHey);
 		
 		lblNomeKartodromo = new JLabel("");
 		lblNomeKartodromo.setForeground(Color.ORANGE);
 		lblNomeKartodromo.setBackground(Color.ORANGE);
 	    lblNomeKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNomeKartodromo.setBounds(56, 31, 160, 29);
+		lblNomeKartodromo.setBounds(56, 51, 160, 29);
 		contentPane.add(lblNomeKartodromo);
 		lblNomeKartodromo.setText(k.getNome());
 		
@@ -158,11 +158,14 @@ public class TelaMenuKartodromo extends JFrame {
 		contentPane.add(btDesligar);
 		
 		table = new JTable();
+		table.setForeground(Color.ORANGE);
+		table.setBackground(Color.BLACK);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null, null, null},
 			},
 			new String[] {
-					"Piloto","Data", "Hor\u00E1rio", "Vagas", "Reserva", "Traçado"
+				"Piloto", "Data", "Hor\u00E1rio", "Vagas", "Reserva", "Tra\u00E7ado"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -170,6 +173,11 @@ public class TelaMenuKartodromo extends JFrame {
 		//CENTRALIZANDO OS ITENS DA TABELA
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+		table.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+		table.getColumnModel().getColumn(5).setCellRenderer(centralizado);
 				
 		btnReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

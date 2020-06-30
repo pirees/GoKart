@@ -31,6 +31,8 @@ import java.awt.Cursor;
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class TelaConsultaClassificacaoCamp extends JFrame {
@@ -121,6 +123,16 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 		pnScroll.setViewportView(tbClass);
 
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});	
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");

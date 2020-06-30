@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import gokart.bo.BateriaCampeonatoBo;
@@ -29,6 +30,9 @@ import gokart.classes.Piloto;
 import gokart.classes.PilotoCampeonato;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -48,10 +52,10 @@ public class TelaCampeonato extends JFrame {
 	private JButton btAddBateria;
 	private JButton btEnviaConvite;
 	private JScrollPane pnBateria;
-
 	private List<String[]> listaResultado = new ArrayList<>();
 	private JButton btConsultaClass;
 	private JButton btVoltar;
+	private DefaultTableCellRenderer centralizado;
 
 	
 	public TelaCampeonato(Piloto piloto) {
@@ -65,7 +69,7 @@ public class TelaCampeonato extends JFrame {
 		setContentPane(painel);
 		painel.setLayout(null);
 
-		JLabel lblCampeonato = new JLabel("Campeonato:");
+		JLabel lblCampeonato = new JLabel("Campeonato");
 		lblCampeonato.setForeground(Color.ORANGE);
 		lblCampeonato.setBackground(Color.ORANGE);
 		lblCampeonato.setBounds(10, 138, 88, 14);
@@ -78,6 +82,16 @@ public class TelaCampeonato extends JFrame {
 		painel.add(cbCampeonato);
 
 		btNovoCampeonato = new JButton("+");
+		btNovoCampeonato.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btNovoCampeonato.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btNovoCampeonato.setBackground(Color.BLACK);
+			}
+		});	
 		btNovoCampeonato.setForeground(Color.ORANGE);
 		btNovoCampeonato.setBackground(Color.BLACK);
 		btNovoCampeonato.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -86,6 +100,16 @@ public class TelaCampeonato extends JFrame {
 		painel.add(btNovoCampeonato);
 
 		btClassificacao = new JButton("+ Classifica\u00E7\u00E3o");
+		btClassificacao.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btClassificacao.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btClassificacao.setBackground(Color.BLACK);
+			}
+		});	
 		btClassificacao.setForeground(Color.ORANGE);
 		btClassificacao.setBackground(Color.BLACK);
 
@@ -93,7 +117,7 @@ public class TelaCampeonato extends JFrame {
 		btClassificacao.setBounds(10, 196, 127, 23);
 		painel.add(btClassificacao);
 
-		JLabel lblCvPiloto = new JLabel("Convidar Piloto:");
+		JLabel lblCvPiloto = new JLabel("Convidar Piloto");
 		lblCvPiloto.setForeground(Color.ORANGE);
 		lblCvPiloto.setBounds(10, 246, 116, 14);
 		painel.add(lblCvPiloto);
@@ -108,6 +132,16 @@ public class TelaCampeonato extends JFrame {
 		txtEmailPiloto.setColumns(10);
 
 		btEnviaConvite = new JButton("");
+		btEnviaConvite.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btEnviaConvite.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btEnviaConvite.setBackground(Color.ORANGE);
+			}
+		});	
 		btEnviaConvite.setForeground(Color.ORANGE);
 		btEnviaConvite.setBackground(Color.ORANGE);
 		btEnviaConvite.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -117,7 +151,7 @@ public class TelaCampeonato extends JFrame {
 		btEnviaConvite.setBounds(321, 271, 41, 20);
 		painel.add(btEnviaConvite);
 
-		JLabel lblBaterias = new JLabel("Baterias:");
+		JLabel lblBaterias = new JLabel("Baterias");
 		lblBaterias.setForeground(Color.ORANGE);
 		lblBaterias.setBounds(10, 314, 61, 14);
 		painel.add(lblBaterias);
@@ -147,8 +181,26 @@ public class TelaCampeonato extends JFrame {
 		});
 		tbBateria.getColumnModel().getColumn(3).setPreferredWidth(103);
 		pnBateria.setViewportView(tbBateria);
+		
+		
+		// CENTRALIZANDO OS ITENS DA TABELA
+		centralizado = new DefaultTableCellRenderer();
+		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+		tbBateria.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+		tbBateria.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+		tbBateria.getColumnModel().getColumn(3).setCellRenderer(centralizado);
 
 		btAddBateria = new JButton("Adicionar Bateria");
+		btAddBateria.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btAddBateria.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btAddBateria.setBackground(Color.BLACK);
+			}
+		});	
 		btAddBateria.setForeground(Color.ORANGE);
 		btAddBateria.setBackground(Color.BLACK);
 		btAddBateria.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -168,6 +220,16 @@ public class TelaCampeonato extends JFrame {
 		painel.add(lbCamp);
 
 		btConsultaClass = new JButton("Classifica\u00E7\u00E3o");
+		btConsultaClass.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btConsultaClass.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btConsultaClass.setBackground(Color.BLACK);
+			}
+		});	
 		btConsultaClass.setForeground(Color.ORANGE);
 		btConsultaClass.setBackground(Color.BLACK);
 
@@ -175,8 +237,17 @@ public class TelaCampeonato extends JFrame {
 		painel.add(btConsultaClass);
 
 		btVoltar = new JButton("");
+		btVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btVoltar.setBackground(Color.ORANGE);
+			}
+		});	
 		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
 		btVoltar.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/voltar - 32.png")));
 		btVoltar.setToolTipText("Voltar ");
 		btVoltar.setBackground(Color.ORANGE);
@@ -240,6 +311,13 @@ public class TelaCampeonato extends JFrame {
 
 			}
 		});
+		
+		txtEmailPiloto.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+            	txtEmailPiloto.setText("");
+            }
+        });
 
 		CarregaDadosTela(piloto);
 
@@ -248,7 +326,10 @@ public class TelaCampeonato extends JFrame {
 	private void CarregaDadosTela(Piloto piloto) {
 
 		try {
-
+			
+			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String data;
+			
 			PilotoCampeonatoBo pcpBo = new PilotoCampeonatoBo();
 
 			for (PilotoCampeonato pc : pcpBo.ListarPilotoCampeonato(piloto)) {
@@ -263,11 +344,15 @@ public class TelaCampeonato extends JFrame {
 			listaResultado.clear();
 
 			if (!(obj == null)) {
+				
+				
 
 				for (BateriaCampeonato b : bcBo.listaBateriaCampeonato((Campeonato) cbCampeonato.getSelectedItem())) {
+					
+					data = b.getId_bateria().getData().format(formatador);
 
 					listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(),
-							String.valueOf(b.getId_bateria().getData()),
+							data,
 							String.valueOf(b.getId_bateria().getHoraBateria()), b.getId_bateria().getTracado() });
 
 				}

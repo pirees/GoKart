@@ -127,7 +127,7 @@ public class TelaHistoricoBateria extends JFrame {
 						pb.getBat().getKartodromo().getNome(),
 						data,
 						pb.getBat().getHoraBateria(),
-						pb.getBat().getNrMaxPiloto(),
+						pb.getNrEscolhaPiloto()
 				});
 
 			}

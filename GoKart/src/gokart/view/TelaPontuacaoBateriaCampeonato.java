@@ -31,6 +31,8 @@ import gokart.classes.PontuacaoCampeonato;
 import javax.swing.JButton;
 import java.awt.Cursor;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -145,6 +147,16 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		contentPane.add(lblCadastroPt);
 
 		JButton btSalvar = new JButton("Salvar");
+		btSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btSalvar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btSalvar.setBackground(Color.BLACK);
+			}
+		});	
 		btSalvar.setForeground(Color.ORANGE);
 		btSalvar.setBackground(Color.BLACK);
 		btSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -161,6 +173,16 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		cbBateriaCampeonato.setSelectedItem(null);
 
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});	
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");

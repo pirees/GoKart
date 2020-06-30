@@ -28,6 +28,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -78,6 +80,16 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		txtCampeonato.setColumns(10);
 
 		btnVoltar = new JButton("");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVoltar.setBackground(Color.ORANGE);
+			}
+		});	
 		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnVoltar.setBackground(Color.ORANGE);
 		btnVoltar.setToolTipText("Voltar ");
@@ -121,6 +133,16 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		}
 
 		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btPesquisar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btPesquisar.setBackground(Color.BLACK);
+			}
+		});	
 		btPesquisar.setForeground(Color.ORANGE);
 		btPesquisar.setBackground(Color.BLACK);
 
@@ -143,6 +165,16 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		pnScroll.setViewportView(tbResultado);
 
 		btAddBat = new JButton("Add");
+		btAddBat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btAddBat.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btAddBat.setBackground(Color.BLACK);
+			}
+		});	
 		btAddBat.setForeground(Color.ORANGE);
 		btAddBat.setBackground(Color.BLACK);
 
@@ -170,18 +202,33 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		pnBateria.setViewportView(tbBateriaCamp);
 
 		JButton btSalvar = new JButton("Salvar");
+		btSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btSalvar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btSalvar.setBackground(Color.BLACK);
+			}
+		});	
 		btSalvar.setForeground(Color.ORANGE);
 		btSalvar.setBackground(Color.BLACK);
 		btSalvar.setBounds(10, 645, 89, 23);
 		contentPane.add(btSalvar);
 
-		JButton btVoltar = new JButton("Voltar");
-		btVoltar.setForeground(Color.ORANGE);
-		btVoltar.setBackground(Color.BLACK);
-		btVoltar.setBounds(109, 645, 89, 23);
-		contentPane.add(btVoltar);
 
 		btRemover = new JButton("Remover");
+		btRemover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btRemover.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btRemover.setBackground(Color.BLACK);
+			}
+		});	
 		btRemover.setForeground(Color.ORANGE);
 		btRemover.setBackground(Color.BLACK);
 
@@ -190,7 +237,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		btPesquisar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btAddBat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btRemover.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
@@ -227,7 +274,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			}
 		});
 
-		btVoltar.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCampeonato tc = new TelaCampeonato(piloto);
 				dispose();

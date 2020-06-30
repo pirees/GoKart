@@ -108,6 +108,8 @@ public class TelaMenuPiloto extends JFrame {
 		txtKartodromo.setColumns(10);
 
 		table = new JTable();
+		table.setForeground(Color.ORANGE);
+		table.setBackground(Color.BLACK);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

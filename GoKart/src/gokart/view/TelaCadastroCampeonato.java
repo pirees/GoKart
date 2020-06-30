@@ -41,6 +41,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Cursor;
@@ -76,6 +78,16 @@ public class TelaCadastroCampeonato extends JFrame {
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSalvar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSalvar.setBackground(Color.BLACK);
+			}
+		});	
 		btnSalvar.setForeground(Color.ORANGE);
 		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -187,9 +199,19 @@ public class TelaCadastroCampeonato extends JFrame {
 		txtEmailPilotoAdm.setText(piloto.getEmail());
 		
 		JButton btVoltar = new JButton("");
-		
+		btVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btVoltar.setBackground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btVoltar.setBackground(Color.ORANGE);
+			}
+		});	
 		btVoltar.setIcon(new ImageIcon(TelaCadastroCampeonato.class.getResource("/img/voltar - 32.png")));
 		btVoltar.setToolTipText("Voltar ");
+		btVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btVoltar.setBackground(Color.ORANGE);
 		btVoltar.setBounds(20, 31, 30, 29);
 		pnPrincipal.add(btVoltar);

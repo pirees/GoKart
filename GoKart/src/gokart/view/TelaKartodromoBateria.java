@@ -200,7 +200,7 @@ public class TelaKartodromoBateria extends JFrame {
 		}
 		
 		try {
-			JOptionPane.showMessageDialog(null, "Reserva salva com sucesso");
+			JOptionPane.showMessageDialog(null, "Bateria cadastrada com sucesso");
 
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
