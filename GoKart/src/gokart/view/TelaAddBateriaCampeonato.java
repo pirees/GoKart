@@ -54,6 +54,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	private List<PilotoCampeonato> listaQt = new ArrayList<PilotoCampeonato>();
 
 	private DefaultTableModel modeloCamp;
+	private JTextField txtNrPiloto;
 
 	public TelaAddBateriaCampeonato(Piloto piloto, Campeonato camp) {
 		setTitle("GoKart - Nova Bateria - Campeonato");
@@ -245,12 +246,26 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		this.setLocationRelativeTo(null);
 
 		txtCampeonato.setText(camp.getNomeCampeonato());
+		
+		txtNrPiloto = new JTextField();
+		txtNrPiloto.setForeground(Color.ORANGE);
+		txtNrPiloto.setBackground(Color.BLACK);
+		txtNrPiloto.setEditable(false);
+		txtNrPiloto.setBounds(335, 395, 30, 20);
+		contentPane.add(txtNrPiloto);
+		txtNrPiloto.setColumns(10);
+		
+		JLabel lblNrPiloto = new JLabel("Nr Pilotos:");
+		lblNrPiloto.setForeground(Color.ORANGE);
+		lblNrPiloto.setBackground(Color.ORANGE);
+		lblNrPiloto.setBounds(260, 398, 65, 14);
+		contentPane.add(lblNrPiloto);
 
 		/* Eventos Botões */
 
 		btPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PesquisaBateria();
+				PesquisaBateria(camp);
 			}
 		});
 
@@ -283,7 +298,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 	}
 
-	private void PesquisaBateria() {
+	private void PesquisaBateria(Campeonato cp) {
 
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
@@ -298,7 +313,9 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		try {
 
 			BateriaBo bBo = new BateriaBo();
-
+			PilotoCampeonatoBo pcBo = new PilotoCampeonatoBo();
+			
+			listaQt = pcBo.ListarCampeonatoPiloto(cp);
 			List<Bateria> lista = bBo.listarBateriasNome(txtKartodromo.getText(), localDate);
 
 			modelo.setRowCount(0);
@@ -310,6 +327,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			}
 
 			tbResultado.setModel(modelo);
+			txtNrPiloto.setText(String.valueOf(listaQt.size()));
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
@@ -408,5 +426,4 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		}
 
 	}
-
 }

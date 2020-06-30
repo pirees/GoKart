@@ -173,7 +173,7 @@ public class TelaCadastroCampeonato extends JFrame {
 		txtMelhorVolta.setBackground(Color.BLACK);
 		txtMelhorVolta.setForeground(Color.ORANGE);
 		txtMelhorVolta.setToolTipText("Pontua\u00E7\u00E3o extra para a melhor volta.");
-		txtMelhorVolta.setText("40");
+		txtMelhorVolta.setText("10");
 		txtMelhorVolta.setBounds(157, 565, 37, 20);
 		pnPrincipal.add(txtMelhorVolta);
 		txtMelhorVolta.setColumns(10);
