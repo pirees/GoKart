@@ -4,15 +4,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.FlushModeType;
 import javax.persistence.Query;
 
 import gokart.classes.Bateria;;
 
 public class BateriaDao {
 
-	private static EntityManager em = Fabrica.getEntityManager();
+	private static EntityManager em = Fabrica.getEntityManager();	
 
-	public List<Bateria> ProcurarBateria(String nome, LocalDate data)throws Exception{	
+	public List<Bateria> ProcurarBateria(String nome, LocalDate data)throws Exception{		
 
 		Query a = null;
 		
@@ -21,6 +22,7 @@ public class BateriaDao {
 		            +" where b.data <= :data");	
 		
 		  a.setParameter("data", data);
+		  
 
 		}else {
 			a = em.createQuery("select b from Bateria b"
@@ -29,10 +31,11 @@ public class BateriaDao {
 		            +" and b.data <= :data");
 			
 			a.setParameter("nome", "%"+nome.toUpperCase()+"%" );
-			a.setParameter("data", data);
-			
+			a.setParameter("data", data);	
 			
 		}
+		
+			
 		return a.getResultList();		
 	}
 	

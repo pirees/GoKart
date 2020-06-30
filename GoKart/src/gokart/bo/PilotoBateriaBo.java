@@ -14,7 +14,7 @@ public class PilotoBateriaBo {
 	
 	public String Salvar(PilotoBateria pilotobateria) throws Exception {
 		
-		//validarBateria(pilotobateria);
+		validarBateria(pilotobateria);
 		GenericDao<PilotoBateria> tcDao = new GenericDao<PilotoBateria>();
 			
 		try {
@@ -34,13 +34,15 @@ public class PilotoBateriaBo {
 	}
 
 	
-//	public void validarBateria(PilotoBateria pilotobateria) throws Exception {
-//	
-//		if(pilotobateria.getPil().getId() == pilotobateria.getPil().getId()) {
-//			throw new Exception("Piloto já reservou sua vaga");
-//		}
-//		
-//	}
+	public void validarBateria(PilotoBateria pilotobateria) throws Exception {
+		
+		if(pilotobateria.getNrEscolhaPiloto() > pilotobateria.getBat().getNrMaxPiloto()) {
+			throw new Exception("Número de vagas da Bateria(" + pilotobateria.getBat().getNrMaxPiloto() + ") é menor que o digitado!(" + pilotobateria.getNrEscolhaPiloto() + ")");
+		}
+	
+	
+		
+	}
 		
 	
 }

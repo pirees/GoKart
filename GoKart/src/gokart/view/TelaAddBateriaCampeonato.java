@@ -49,28 +49,10 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	private JButton btnVoltar;
 	private JTable tbBateriaCamp;
 	private JButton btRemover;
+	private List<PilotoCampeonato> listaQt = new ArrayList<PilotoCampeonato>();
 
 	private DefaultTableModel modeloCamp;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaAddBateriaCampeonato frame = new TelaAddBateriaCampeonato(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaAddBateriaCampeonato(Piloto piloto, Campeonato camp) {
 		setTitle("GoKart - Nova Bateria - Campeonato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -292,8 +274,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	private void AdicionaBateria(Campeonato cp) {
 
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String data;
-		List<PilotoCampeonato> listaQt = new ArrayList<PilotoCampeonato>();
+		String data;		
 
 		modeloCamp = (DefaultTableModel) tbBateriaCamp.getModel();
 
@@ -305,8 +286,6 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			e.printStackTrace();
 		}
 
-		System.out.println("Tamanho: " + listaQt.size());
-
 		/* Se existir campo selecionado, cria Bateria */
 		if (!(tbResultado.getSelectedRow() < 0)) {
 
@@ -316,10 +295,12 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 				JOptionPane.showMessageDialog(null,
 						"Número de vagas da Bateria é MENOR que o Número de Pilotos no Campeonato!", "ERRO!",
-						JOptionPane.ERROR_MESSAGE);
-
+						JOptionPane.ERROR_MESSAGE);				
 			} else {
-
+				
+				
+				b.setNrMaxPiloto(b.getNrMaxPiloto() - listaQt.size());
+				
 				data = b.getData().format(formatador);
 				modeloCamp.addRow(new Object[] { b, b.getNrMaxPiloto(), b.getTracado(), data, b.getHoraBateria() });
 
@@ -337,6 +318,10 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		/* Se existir campo selecionado */
 		if (!(tbBateriaCamp.getSelectedRow() < 0)) {
+			
+			Bateria b = (Bateria) tbBateriaCamp.getModel().getValueAt(tbResultado.getSelectedRow(), 0);	
+			b.setNrMaxPiloto(b.getNrMaxPiloto() + listaQt.size());			
+						
 			modeloCamp.removeRow(tbBateriaCamp.getSelectedRow());
 		}
 
@@ -345,6 +330,8 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	}
 
 	private void SalvarDados(Campeonato camp, Piloto piloto) {
+		
+		BateriaBo bBo = new BateriaBo();
 
 		int i = 0;
 		for (i = 0; i < tbBateriaCamp.getModel().getRowCount(); i++) {
@@ -358,6 +345,8 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 			try {
 				bcpBo.Salvar(bCp);
+				bBo.Salvar((Bateria) tbBateriaCamp.getModel().getValueAt(i, 0));						
+								
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
 				e1.printStackTrace();

@@ -12,18 +12,17 @@ public class GenericDao <T extends EntityBase> {
 	private static EntityManager em = Fabrica.getEntityManager();
 
 	public String saveOrUpdate(T obj) throws Exception{
-		try{
+		try{			
 			em.getTransaction().begin();
+			em.flush();	
+			
 			if(obj.getId() == 0){
 				em.persist(obj);
 			}		
 			else {
 				em.merge(obj);
-			}
-			em.getTransaction().commit();	
-			
-			
-			
+			}					
+			em.getTransaction().commit();						
 		}
 		catch(Exception e){
 			throw new Exception("Erro Gravando \n"+e.getMessage());

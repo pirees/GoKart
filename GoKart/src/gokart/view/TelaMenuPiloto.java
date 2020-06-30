@@ -1,6 +1,5 @@
 package gokart.view;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -33,7 +32,6 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import java.awt.Cursor;
 
-
 public class TelaMenuPiloto extends JFrame {
 
 	private JPanel contentPane;
@@ -52,7 +50,7 @@ public class TelaMenuPiloto extends JFrame {
 	private JTextField txtDataConsulta;
 	private JTextField txtIdBateria;
 	private JLabel lblSeuNvel;
-	private JButton btnConfirmar; 
+	private JButton btnConfirmar;
 	private JLabel lblDataConsulta;
 	private JLabel lblKartdromo;
 	private JLabel lblData;
@@ -67,11 +65,10 @@ public class TelaMenuPiloto extends JFrame {
 	private DefaultTableModel modelo;
 	private JTextField txtNrPilotoBateria;
 	private DefaultTableCellRenderer centralizado;
-	
-	
-	public TelaMenuPiloto(Piloto piloto){
+
+	public TelaMenuPiloto(Piloto piloto) {
 		setTitle("GoKart - Menu Piloto");
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
@@ -79,15 +76,15 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-	    lblNomePiloto = new JLabel("");
-	    lblNomePiloto.setBackground(Color.ORANGE);
+
+		lblNomePiloto = new JLabel("");
+		lblNomePiloto.setBackground(Color.ORANGE);
 		lblNomePiloto.setForeground(Color.ORANGE);
-	    lblNomePiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNomePiloto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNomePiloto.setBounds(46, 38, 160, 29);
 		contentPane.add(lblNomePiloto);
 		lblNomePiloto.setText(piloto.getNome());
-			
+
 		lblNivelPiloto = new JLabel("");
 		lblNivelPiloto.setBackground(Color.ORANGE);
 		lblNivelPiloto.setForeground(Color.ORANGE);
@@ -95,48 +92,42 @@ public class TelaMenuPiloto extends JFrame {
 		lblNivelPiloto.setBounds(112, 66, 107, 29);
 		contentPane.add(lblNivelPiloto);
 		lblNivelPiloto.setText(piloto.getNivel().toString());
-		
+
 		lblKartodromo = new JLabel("Kart\u00F3dromo");
 		lblKartodromo.setBackground(Color.ORANGE);
 		lblKartodromo.setForeground(Color.ORANGE);
 		lblKartodromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblKartodromo.setBounds(10, 137, 82, 16);
 		contentPane.add(lblKartodromo);
-		
+
 		txtKartodromo = new JTextField();
 		txtKartodromo.setBackground(Color.BLACK);
 		txtKartodromo.setForeground(Color.ORANGE);
 		txtKartodromo.setBounds(102, 137, 168, 20);
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
-		
+
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				txtIdBateria.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+				/*txtIdBateria.setText(table.getValueAt(table.getSelectedRow(), 0).toString());*/
 				txtKartodromoSalvar.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
 				txtNrPilotoBateria.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
 				txtData.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
 				txtHorario.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
 			}
 		});
-		
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"New column", "Kart\u00F3dromo", "Vagas", "Tra\u00E7ado", "Data", "Hora"
-			}
-		));
+
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null, null }, },
+				new String[] { "New column", "Kart\u00F3dromo", "Vagas", "Tra\u00E7ado", "Data", "Hora" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(0);
 		table.getColumnModel().getColumn(0).setMinWidth(0);
 		table.getColumnModel().getColumn(0).setMaxWidth(0);
 		table.setBounds(32, 266, 333, 236);
-		//contentPane.add(table);
-		
-		//CENTRALIZANDO OS ITENS DA TABELA
+		// contentPane.add(table);
+
+		// CENTRALIZANDO OS ITENS DA TABELA
 		centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
 		table.getColumnModel().getColumn(1).setCellRenderer(centralizado);
@@ -144,13 +135,14 @@ public class TelaMenuPiloto extends JFrame {
 		table.getColumnModel().getColumn(3).setCellRenderer(centralizado);
 		table.getColumnModel().getColumn(4).setCellRenderer(centralizado);
 		table.getColumnModel().getColumn(5).setCellRenderer(centralizado);
-		
+
 		btnConvite = new JButton("");
 		btnConvite.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnConvite.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnConvite.setBackground(Color.ORANGE);
@@ -162,13 +154,14 @@ public class TelaMenuPiloto extends JFrame {
 		btnConvite.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/convite-32.png")));
 		btnConvite.setBounds(325, 11, 40, 35);
 		contentPane.add(btnConvite);
-		
+
 		btnReserva = new JButton("");
 		btnReserva.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnReserva.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnReserva.setBackground(Color.ORANGE);
@@ -180,13 +173,14 @@ public class TelaMenuPiloto extends JFrame {
 		btnReserva.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/bateria-32.png")));
 		btnReserva.setBounds(325, 51, 40, 35);
 		contentPane.add(btnReserva);
-		
+
 		btnCampeonato = new JButton("");
 		btnCampeonato.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnCampeonato.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnCampeonato.setBackground(Color.ORANGE);
@@ -198,27 +192,28 @@ public class TelaMenuPiloto extends JFrame {
 		btnCampeonato.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/campeonato-32.png")));
 		btnCampeonato.setBounds(325, 89, 40, 35);
 		contentPane.add(btnCampeonato);
-		
+
 		lblHey = new JLabel("Olá,");
 		lblHey.setBackground(Color.ORANGE);
 		lblHey.setForeground(Color.ORANGE);
 		lblHey.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblHey.setBounds(10, 40, 40, 24);
 		contentPane.add(lblHey);
-		
+
 		lblSeuNvel = new JLabel("Seu n\u00EDvel \u00E9:");
 		lblSeuNvel.setBackground(Color.ORANGE);
 		lblSeuNvel.setForeground(Color.ORANGE);
 		lblSeuNvel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSeuNvel.setBounds(10, 73, 107, 14);
 		contentPane.add(lblSeuNvel);
-		
+
 		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnConfirmar.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnConfirmar.setBackground(Color.BLACK);
@@ -229,27 +224,28 @@ public class TelaMenuPiloto extends JFrame {
 		btnConfirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConfirmar.setBounds(127, 639, 108, 29);
 		contentPane.add(btnConfirmar);
-		
+
 		lblNumeroDePilotos = new JLabel("Vagas");
 		lblNumeroDePilotos.setBackground(Color.ORANGE);
 		lblNumeroDePilotos.setForeground(Color.ORANGE);
 		lblNumeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNumeroDePilotos.setBounds(10, 595, 130, 20);
 		contentPane.add(lblNumeroDePilotos);
-		
+
 		lblBoasVindas = new JLabel("Fa\u00E7a agora a sua reserva");
 		lblBoasVindas.setBackground(Color.ORANGE);
 		lblBoasVindas.setForeground(Color.ORANGE);
 		lblBoasVindas.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblBoasVindas.setBounds(92, 106, 180, 30);
 		contentPane.add(lblBoasVindas);
-		
+
 		btnBuscar = new JButton("");
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnBuscar.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnBuscar.setBackground(Color.ORANGE);
@@ -261,35 +257,35 @@ public class TelaMenuPiloto extends JFrame {
 		btnBuscar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/pesquisar-32.png")));
 		btnBuscar.setBounds(280, 149, 40, 31);
 		contentPane.add(btnBuscar);
-		
+
 		txtNrPiloto = new JTextField();
 		txtNrPiloto.setBackground(Color.BLACK);
 		txtNrPiloto.setForeground(Color.ORANGE);
 		txtNrPiloto.setBounds(139, 595, 48, 20);
 		contentPane.add(txtNrPiloto);
 		txtNrPiloto.setColumns(10);
-		
+
 		lblHorario = new JLabel("Hor\u00E1rio");
 		lblHorario.setBackground(Color.ORANGE);
 		lblHorario.setForeground(Color.ORANGE);
 		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblHorario.setBounds(10, 557, 130, 16);
 		contentPane.add(lblHorario);
-		
+
 		lblData = new JLabel("Data");
 		lblData.setBackground(Color.ORANGE);
 		lblData.setForeground(Color.ORANGE);
 		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblData.setBounds(10, 518, 130, 16);
 		contentPane.add(lblData);
-		
+
 		lblKartdromo = new JLabel("Kart\u00F3dromo");
 		lblKartdromo.setBackground(Color.ORANGE);
 		lblKartdromo.setForeground(Color.ORANGE);
 		lblKartdromo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblKartdromo.setBounds(10, 491, 130, 16);
 		contentPane.add(lblKartdromo);
-		
+
 		txtHorario = new JTextField();
 		txtHorario.setBackground(Color.BLACK);
 		txtHorario.setForeground(Color.ORANGE);
@@ -297,7 +293,7 @@ public class TelaMenuPiloto extends JFrame {
 		txtHorario.setBounds(139, 557, 77, 20);
 		txtHorario.setEditable(false);
 		contentPane.add(txtHorario);
-		
+
 		txtData = new JTextField();
 		txtData.setBackground(Color.BLACK);
 		txtData.setForeground(Color.ORANGE);
@@ -305,7 +301,7 @@ public class TelaMenuPiloto extends JFrame {
 		txtData.setBounds(139, 518, 77, 20);
 		txtData.setEditable(false);
 		contentPane.add(txtData);
-		
+
 		txtKartodromoSalvar = new JTextField();
 		txtKartodromoSalvar.setBackground(Color.BLACK);
 		txtKartodromoSalvar.setForeground(Color.ORANGE);
@@ -313,7 +309,7 @@ public class TelaMenuPiloto extends JFrame {
 		txtKartodromoSalvar.setBounds(139, 489, 131, 20);
 		txtKartodromoSalvar.setEditable(false);
 		contentPane.add(txtKartodromoSalvar);
-		
+
 		txtDataConsulta = new JTextField();
 		txtDataConsulta.setBackground(Color.BLACK);
 		txtDataConsulta.setForeground(Color.ORANGE);
@@ -328,25 +324,25 @@ public class TelaMenuPiloto extends JFrame {
 		txtDataConsulta.setColumns(10);
 		txtDataConsulta.setBounds(102, 168, 168, 20);
 		contentPane.add(txtDataConsulta);
-		
+
 		lblDataConsulta = new JLabel("Data");
 		lblDataConsulta.setBackground(Color.ORANGE);
 		lblDataConsulta.setForeground(Color.ORANGE);
 		lblDataConsulta.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataConsulta.setBounds(10, 164, 82, 16);
 		contentPane.add(lblDataConsulta);
-		
+
 		txtIdBateria = new JTextField();
 		txtIdBateria.setColumns(10);
 		txtIdBateria.setBounds(283, 534, 48, 20);
 		txtIdBateria.setVisible(false);
 		contentPane.add(txtIdBateria);
-		
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 199, 355, 281);
 		contentPane.add(scrollPane);
 		scrollPane.setViewportView(table);
-		
+
 		txtNrPilotoBateria = new JTextField();
 		txtNrPilotoBateria.setBackground(Color.BLACK);
 		txtNrPilotoBateria.setForeground(Color.ORANGE);
@@ -354,24 +350,25 @@ public class TelaMenuPiloto extends JFrame {
 		contentPane.add(txtNrPilotoBateria);
 		txtNrPilotoBateria.setVisible(false);
 		txtNrPilotoBateria.setColumns(10);
-		
+
 		btDesligar = new JButton("");
 		btDesligar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btDesligar.setBackground(Color.WHITE);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btDesligar.setBackground(Color.ORANGE);
 			}
-		});		
+		});
 		btDesligar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btDesligar.setIcon(new ImageIcon(TelaMenuPiloto.class.getResource("/img/iconDesligar.png")));
 		btDesligar.setBackground(Color.ORANGE);
 		btDesligar.setBounds(10, 11, 31, 23);
 		contentPane.add(btDesligar);
-		
+
 		btnConvite.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -379,7 +376,6 @@ public class TelaMenuPiloto extends JFrame {
 				dispose();
 			}
 		});
-
 
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -394,113 +390,109 @@ public class TelaMenuPiloto extends JFrame {
 		});
 
 		btnConfirmar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {								
-				try {
-					salvarBateria(piloto);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				if (!(table.getSelectedRow() < 0)) {
-                    modelo.removeRow(table.getSelectedRow());
-                }
+			public void actionPerformed(ActionEvent e) {
+				salvarBateria(piloto);			
 			}
 
 		});
-		
+
 		btnCampeonato.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				TelaCampeonato cp = new TelaCampeonato(piloto);				
+			public void actionPerformed(ActionEvent e) {
+				TelaCampeonato cp = new TelaCampeonato(piloto);
 				dispose();
 			}
 		});
-		
+
 		btnReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaHistoricoBateria cp = new TelaHistoricoBateria(piloto);				
+				TelaHistoricoBateria cp = new TelaHistoricoBateria(piloto);
 				dispose();
 			}
 		});
-		
+
 		btDesligar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaLogin tl = new TelaLogin();
-				dispose();				
+				dispose();
 			}
 		});
-		
-		
+
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
-	
-	private void pesquisarBateriaNome() {	
+
+	private void pesquisarBateriaNome() {
 
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data;
 
-		if(!txtDataConsulta.getText().isBlank()) {
+		if (!txtDataConsulta.getText().isBlank()) {
 			localDate = LocalDate.parse(txtDataConsulta.getText(), formatador);
 		}
-		
-		modelo = (DefaultTableModel)this.table.getModel();
+
+		modelo = (DefaultTableModel) this.table.getModel();
 		modelo.setRowCount(0);
-		table.setModel(modelo); 
+		table.setModel(modelo);
 
 		try {
-			List<Bateria> lista = new BateriaBo().listarBateriasNome(txtKartodromo.getText(), localDate);
-			for (Bateria b : lista) {
-				data = b.getData().format(formatador);
-				modelo.addRow(new Object[] {
-						b.getId(),
-						b.getKartodromo(),
-						b.getNrMaxPiloto(),
-						b.getTracado(),
-						data,
-						b.getHoraBateria()
-				});
+			
+			BateriaBo bBo = new BateriaBo();			
+			
+			List<Bateria> lista = bBo.listarBateriasNome(txtKartodromo.getText(), localDate);
+			
+			modelo.setRowCount(0);
+			for (Bateria b : lista) {				
 				
+				data = b.getData().format(formatador);
+				modelo.addRow(new Object[] { b, b.getKartodromo(), b.getNrMaxPiloto(), b.getTracado(), data,
+						b.getHoraBateria() });
+
 				table.getColumnModel().getColumn(0).setMinWidth(0);
 				table.getColumnModel().getColumn(0).setMaxWidth(0);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this,  e.getMessage());
-		}	
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
 	}
-	
+
 	private void salvarBateria(Piloto piloto) {
-		PilotoBateria pilotobateria = new PilotoBateria();
-		Bateria b = new Bateria();
-		
-		b.setId(Integer.parseInt(txtIdBateria.getText()));		
-		b.setNrMaxPiloto(Integer.parseInt(txtNrPilotoBateria.getText()));
 
+		try {			
+			
+			if(txtNrPiloto.getText().isBlank()) {
+				throw new Exception("Por favor, informar número de vagas para reserva!");				
+			}		
 
-		pilotobateria.setBat(b);
-		pilotobateria.setPil(piloto);
-		pilotobateria.setNrEscolhaPiloto(Integer.parseInt(txtNrPiloto.getText()));
-		
-		PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();	
-		
-		try {
+			PilotoBateria pilotobateria = new PilotoBateria();
+			Bateria b = new Bateria();
+			BateriaBo bBo = new BateriaBo();
+			
+			b = (Bateria) table.getModel().getValueAt(table.getSelectedRow(), 0);
+			
+			/*b.setId(Integer.parseInt(txtIdBateria.getText()));*/						
+
+			pilotobateria.setBat(b);
+			pilotobateria.setPil(piloto);				
+			
+			pilotobateria.setNrEscolhaPiloto(Integer.parseInt(txtNrPiloto.getText()));			
+
+			PilotoBateriaBo pilotobateriaBo = new PilotoBateriaBo();		
+			
 			pilotobateriaBo.Salvar(pilotobateria);
+			
+			b.setNrMaxPiloto(b.getNrMaxPiloto() - Integer.valueOf(txtNrPiloto.getText()));			
+			bBo.Salvar(b);
+			
+			JOptionPane.showMessageDialog(null, "Reserva efetuada com sucesso!");
+			
+			if (!(table.getSelectedRow() < 0)) {
+				modelo.removeRow(table.getSelectedRow());
+			}			
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO Bateria", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
-		
-		try {
-			
-			if(pilotobateria.getNrEscolhaPiloto() > b.getNrMaxPiloto()) {
-				JOptionPane.showMessageDialog(null, "Número de vagas indisponíveis");
-			}else {
-				JOptionPane.showMessageDialog(null, "Bateria salva com sucesso" );	
-			}
-			
-		} catch (Exception e1) {
-			
-			JOptionPane.showMessageDialog(null, "ERRO:" + e1.getMessage());
-			e1.printStackTrace();
-		}
+
 	}
 }

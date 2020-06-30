@@ -53,25 +53,7 @@ public class TelaCampeonato extends JFrame {
 	private JButton btConsultaClass;
 	private JButton btVoltar;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCampeonato frame = new TelaCampeonato(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public TelaCampeonato(Piloto piloto) {
 		setTitle("GoKart - Campeonato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -148,18 +130,19 @@ public class TelaCampeonato extends JFrame {
 		tbBateria.setForeground(Color.ORANGE);
 		tbBateria.setBackground(Color.BLACK);
 
-		tbBateria.setModel(new DefaultTableModel(new Object[][] { { null, "", null, null }, },
-				new String[] { "Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }) {
-			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class };
-
+		tbBateria.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, "", null, null},
+			},
+			new String[] {
+				"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Tra\u00E7ado"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class
+			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		tbBateria.getColumnModel().getColumn(3).setPreferredWidth(103);
@@ -285,14 +268,14 @@ public class TelaCampeonato extends JFrame {
 
 					listaResultado.add(new String[] { b.getId_bateria().getKartodromo().getNome(),
 							String.valueOf(b.getId_bateria().getData()),
-							String.valueOf(b.getId_bateria().getHoraBateria()), "?" });
+							String.valueOf(b.getId_bateria().getHoraBateria()), b.getId_bateria().getTracado() });
 
 				}
 
 				if (!listaResultado.isEmpty()) {
 					tbBateria.setModel(new DefaultTableModel(
 							listaResultado.toArray(new String[listaResultado.size()][]), new String[] {
-									"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Vagas Dispon\u00EDveis" }));
+									"Kart\u00F3dromo", "Data Bateria", "Hora Bateria", "Traçado" }));
 
 				}
 			}
