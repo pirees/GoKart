@@ -48,7 +48,7 @@ public class TelaKartodromoBateria extends JFrame {
 	 */
 	public TelaKartodromoBateria(Kartodromo k) {
 		
-		setTitle("GoKart");
+		setTitle("GoKart - Cadastro Reserva");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		contentPane = new JPanel();
@@ -60,23 +60,26 @@ public class TelaKartodromoBateria extends JFrame {
 	    C = new JLabel("Cadastro de Baterias");
 	    C.setForeground(Color.ORANGE);
 	    C.setBackground(Color.ORANGE);
-		C.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		C.setBounds(73, 48, 154, 20);
+		C.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		C.setBounds(102, 75, 186, 20);
 		contentPane.add(C);
 		
 		lblData = new JLabel("Data");
+		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblData.setForeground(Color.ORANGE);
 		lblData.setBackground(Color.ORANGE);
 		lblData.setBounds(31, 145, 37, 14);
 		contentPane.add(lblData);
 		
 		lblHorario = new JLabel("Hor\u00E1rio");
+		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblHorario.setForeground(Color.ORANGE);
 		lblHorario.setBackground(Color.ORANGE);
 		lblHorario.setBounds(29, 179, 64, 14);
 		contentPane.add(lblHorario);
 		
 		lblNmeroDePilotos = new JLabel("N\u00FAmero de Pilotos");
+		lblNmeroDePilotos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNmeroDePilotos.setForeground(Color.ORANGE);
 		lblNmeroDePilotos.setBackground(Color.ORANGE);
 		lblNmeroDePilotos.setBounds(29, 214, 120, 14);
@@ -96,7 +99,7 @@ public class TelaKartodromoBateria extends JFrame {
 		btnSalvar.setForeground(Color.ORANGE);
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSalvar.setBackground(Color.BLACK);
-		btnSalvar.setBounds(132, 327, 89, 23);
+		btnSalvar.setBounds(132, 337, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		btnVoltar = new JButton("");
@@ -121,28 +124,29 @@ public class TelaKartodromoBateria extends JFrame {
 		txtNrMaxPilotos.setForeground(Color.ORANGE);
 		txtNrMaxPilotos.setBackground(Color.BLACK);
 		txtNrMaxPilotos.setColumns(10);
-		txtNrMaxPilotos.setBounds(152, 211, 120, 20);
+		txtNrMaxPilotos.setBounds(187, 213, 120, 20);
 		contentPane.add(txtNrMaxPilotos);
 		
 		txtHorario = new JTextField();
 		txtHorario.setForeground(Color.ORANGE);
 		txtHorario.setBackground(Color.BLACK);
 		txtHorario.setColumns(10);
-		txtHorario.setBounds(152, 176, 120, 20);
+		txtHorario.setBounds(187, 178, 120, 20);
 		contentPane.add(txtHorario);
 
 
 		lblTracado = new JLabel("Tra\u00E7ado");
+		lblTracado.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblTracado.setForeground(Color.ORANGE);
 		lblTracado.setBackground(Color.ORANGE);
-		lblTracado.setBounds(29, 259, 64, 14);
+		lblTracado.setBounds(29, 253, 64, 23);
 		contentPane.add(lblTracado);
 		
 		txtTracado = new JTextField();
 		txtTracado.setForeground(Color.ORANGE);
 		txtTracado.setBackground(Color.BLACK);
 		txtTracado.setColumns(10);
-		txtTracado.setBounds(152, 256, 120, 20);
+		txtTracado.setBounds(187, 256, 120, 20);
 		contentPane.add(txtTracado);
 		
 		txtData = new JTextField();
@@ -155,7 +159,7 @@ public class TelaKartodromoBateria extends JFrame {
 			e1.printStackTrace();
 		}
 		txtData_1.setColumns(10);
-		txtData_1.setBounds(152, 142, 120, 20);
+		txtData_1.setBounds(187, 144, 120, 20);
 		contentPane.add(txtData_1);
 		
 		this.setVisible(true);

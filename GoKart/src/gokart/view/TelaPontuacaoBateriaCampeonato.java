@@ -226,6 +226,8 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 
 				if (resposta == 0) {
 					SalvarPontuacao(cp);
+					TelaCampeonato tc = new TelaCampeonato(piloto);
+					dispose();
 				}
 
 			}
