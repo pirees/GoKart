@@ -161,6 +161,8 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		contentPane.add(pnScroll);
 
 		tbResultado = new JTable();
+		tbResultado.setForeground(Color.ORANGE);
+		tbResultado.setBackground(Color.BLACK);
 		tbResultado.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
 				new String[] { "Kart\u00F3dromo", "Vagas", "Tra\u00E7ado", "Data", "Hora" }) {
 			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class, String.class, String.class };
@@ -193,6 +195,8 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		contentPane.add(pnBateria);
 
 		tbBateriaCamp = new JTable();
+		tbBateriaCamp.setForeground(Color.ORANGE);
+		tbBateriaCamp.setBackground(Color.BLACK);
 		tbBateriaCamp.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null }, },
 				new String[] { "Kart\u00F3dromo", "Vagas", "Tra\u00E7ado", "Data", "Hora" }) {
 			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class, String.class, String.class };
