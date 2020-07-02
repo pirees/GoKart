@@ -37,6 +37,7 @@ public class TelaConvitesPendentes extends JFrame {
 	private JButton btnConfirmar;
 	private JButton btnVoltar;
 	private JButton btnCancelar;
+	private DefaultTableCellRenderer centralizado;
 
 
 	public TelaConvitesPendentes(Piloto piloto) {
@@ -131,7 +132,7 @@ public class TelaConvitesPendentes extends JFrame {
 		contentPane.add(lblInfo);
 		
 		//CENTRALIZANDO OS ITENS DA TABELA
-		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+		centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		listarBaterias(piloto);

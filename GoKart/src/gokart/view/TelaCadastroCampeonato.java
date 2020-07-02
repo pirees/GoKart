@@ -56,10 +56,18 @@ public class TelaCadastroCampeonato extends JFrame {
 	private JTextField txtMelhorVolta;
 	private JTextField txtEmailPilotoAdm;
 	private JComboBox cbQtCorrida;
+	private JLabel lblCadastro;
+	private JButton btnSalvar;
+	private JLabel lblNomeCampeonato;
+	private JLabel lblQuantidadeDeCorrida;
+	private JScrollPane pnPontuacao;
+	private JLabel lblPontuacao;
+	private JLabel lvlMelhorVolta;
+	private JLabel lblEmailPiloto;
+	private JLabel lblImg;
+	private JButton btVoltar;
 
-	/**
-	 * Launch the application.
-	 */
+
 
 	public TelaCadastroCampeonato(Piloto piloto) {
 		setResizable(false);
@@ -71,13 +79,13 @@ public class TelaCadastroCampeonato extends JFrame {
 		pnPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnPrincipal);
 
-		JLabel lblCadastro = new JLabel("Cadastro de Campeonato");
+		lblCadastro = new JLabel("Cadastro de Campeonato");
 		lblCadastro.setForeground(Color.ORANGE);
 		lblCadastro.setBackground(Color.ORANGE);
 		lblCadastro.setBounds(47, 83, 187, 20);
 		lblCadastro.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -100,12 +108,12 @@ public class TelaCadastroCampeonato extends JFrame {
 		txtNomeCampeonato.setBounds(10, 193, 252, 20);
 		txtNomeCampeonato.setColumns(10);
 
-		JLabel lblNomeCampeonato = new JLabel("Nome Campeonato");
+		lblNomeCampeonato = new JLabel("Nome Campeonato");
 		lblNomeCampeonato.setForeground(Color.ORANGE);
 		lblNomeCampeonato.setBackground(Color.ORANGE);
 		lblNomeCampeonato.setBounds(10, 168, 159, 14);
 
-		JLabel lblQuantidadeDeCorrida = new JLabel("Quantidade de Corridas");
+		lblQuantidadeDeCorrida = new JLabel("Quantidade de Corridas");
 		lblQuantidadeDeCorrida.setBackground(Color.ORANGE);
 		lblQuantidadeDeCorrida.setForeground(Color.ORANGE);
 		lblQuantidadeDeCorrida.setBounds(10, 224, 159, 14);
@@ -117,7 +125,7 @@ public class TelaCadastroCampeonato extends JFrame {
 				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 		cbQtCorrida.setBounds(10, 249, 50, 23);
 
-		JScrollPane pnPontuacao = new JScrollPane();
+		pnPontuacao = new JScrollPane();
 		pnPontuacao.setBounds(10, 355, 355, 189);
 
 		this.setVisible(true);
@@ -157,13 +165,13 @@ public class TelaCadastroCampeonato extends JFrame {
 		pnPrincipal.add(cbQtCorrida);
 		pnPrincipal.add(pnPontuacao);		
 
-		JLabel lblPontuacao = new JLabel("Pontua\u00E7\u00E3o Classifica\u00E7\u00E3o");
+		lblPontuacao = new JLabel("Pontua\u00E7\u00E3o Classifica\u00E7\u00E3o");
 		lblPontuacao.setBackground(Color.ORANGE);
 		lblPontuacao.setForeground(Color.ORANGE);
 		lblPontuacao.setBounds(10, 339, 172, 14);
 		pnPrincipal.add(lblPontuacao);
 
-		JLabel lvlMelhorVolta = new JLabel("Pontua\u00E7\u00E3o Melhor Volta");
+		lvlMelhorVolta = new JLabel("Pontua\u00E7\u00E3o Melhor Volta");
 		lvlMelhorVolta.setBackground(Color.ORANGE);
 		lvlMelhorVolta.setForeground(Color.ORANGE);
 		lvlMelhorVolta.setBounds(10, 568, 159, 14);
@@ -178,7 +186,7 @@ public class TelaCadastroCampeonato extends JFrame {
 		pnPrincipal.add(txtMelhorVolta);
 		txtMelhorVolta.setColumns(10);
 
-		JLabel lblEmailPiloto = new JLabel("Email Piloto Administrador");
+		lblEmailPiloto = new JLabel("Email Piloto Administrador");
 		lblEmailPiloto.setForeground(Color.ORANGE);
 		lblEmailPiloto.setBackground(Color.ORANGE);
 		lblEmailPiloto.setBounds(10, 283, 159, 14);
@@ -192,13 +200,13 @@ public class TelaCadastroCampeonato extends JFrame {
 		pnPrincipal.add(txtEmailPilotoAdm);
 		txtEmailPilotoAdm.setColumns(10);
 
-		JLabel lblImg = new JLabel("");
+	    lblImg = new JLabel("");
 		lblImg.setIcon(new ImageIcon(TelaCadastroCampeonato.class.getResource("/img/TrofeuCampeonatoPequeno.png")));
 		lblImg.setBounds(244, 31, 121, 113);
 		pnPrincipal.add(lblImg);
 		txtEmailPilotoAdm.setText(piloto.getEmail());
 		
-		JButton btVoltar = new JButton("");
+		btVoltar = new JButton("");
 		btVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

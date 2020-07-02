@@ -7,7 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.Query;
 
-import gokart.classes.Bateria;;
+import gokart.classes.Bateria;
+import gokart.classes.Kartodromo;;
 
 public class BateriaDao {
 
@@ -42,6 +43,16 @@ public class BateriaDao {
 	public List<Bateria> ListaBateria() throws Exception {	
 
 		Query a = em.createQuery("select b from Bateria b");
+
+		return a.getResultList();
+	}
+	
+	public List<Bateria> ListaBateriaKartodromo(Kartodromo kart) throws Exception {	
+
+		Query a = em.createQuery("select b from Bateria b"
+				+" where b.kartodromo = :kart");
+		
+		a.setParameter("kart", kart);
 
 		return a.getResultList();
 	}

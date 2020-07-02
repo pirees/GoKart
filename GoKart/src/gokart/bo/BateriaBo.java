@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import gokart.classes.Bateria;
+import gokart.classes.Kartodromo;
 import gokart.dao.BateriaDao;
 import gokart.dao.GenericDao;
 
@@ -35,6 +36,10 @@ public class BateriaBo {
 	public List<Bateria> listarBateriasNome(String nome, LocalDate date) throws Exception {		
 			return new BateriaDao().ProcurarBateria(nome, date);		
 	}
+	
+	public List<Bateria> listarBateriasKartodromo(Kartodromo k) throws Exception {		
+		return new BateriaDao().ListaBateriaKartodromo(k);	
+}
 
 		
 	private void validarDadosGrupo(Bateria bateria) throws Exception {

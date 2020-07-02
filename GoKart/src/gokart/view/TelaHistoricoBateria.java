@@ -72,6 +72,8 @@ public class TelaHistoricoBateria extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setForeground(Color.ORANGE);
+		table.setBackground(Color.BLACK);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},

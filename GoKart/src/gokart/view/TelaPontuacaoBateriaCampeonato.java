@@ -50,28 +50,12 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 	private JTextField txtData;
 	private JTable tbPontuacao;
 	private JButton btnVoltar;
-
+    private JLabel lblCadastroPt;
 	private List<BateriaCampeonato> listaResultado;
+	private JLabel lblKartodromo;
+	private JScrollPane pnScroll;
+	private JButton btSalvar;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaPontuacaoBateriaCampeonato frame = new TelaPontuacaoBateriaCampeonato(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaPontuacaoBateriaCampeonato(Campeonato cp, Piloto piloto) {
 		setTitle("GoKart - Cadastro Pontua\u00E7\u00E3o Campeonato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,7 +93,7 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 
-		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo");
+		lblKartodromo = new JLabel("Kart\u00F3dromo");
 		lblKartodromo.setBackground(Color.ORANGE);
 		lblKartodromo.setForeground(Color.ORANGE);
 		lblKartodromo.setBounds(144, 135, 79, 14);
@@ -123,13 +107,15 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
 
-		JScrollPane pnScroll = new JScrollPane();
+		pnScroll = new JScrollPane();
 		pnScroll.setBounds(10, 244, 355, 272);
 		contentPane.add(pnScroll);
 
 		tbPontuacao = new JTable();
+		tbPontuacao.setForeground(Color.ORANGE);
+		tbPontuacao.setBackground(Color.BLACK);
 		tbPontuacao.setModel(new DefaultTableModel(
-				new Object[][] { { "Gerson", null, "10:20:20" }, { null, null, null }, { null, null, null }, },
+				new Object[][] { { null, null, null }, { null, null, null }, { null, null, null }, },
 				new String[] { "Piloto", "Posi\u00E7\u00E3o", "Tempo Melhor Volta" }) {
 			Class[] columnTypes = new Class[] { Object.class, Integer.class, String.class };
 
@@ -140,13 +126,13 @@ public class TelaPontuacaoBateriaCampeonato extends JFrame {
 		tbPontuacao.getColumnModel().getColumn(2).setPreferredWidth(122);
 		pnScroll.setViewportView(tbPontuacao);
 
-		JLabel lblCadastroPt = new JLabel("Cadastrar Pontua\u00E7\u00E3o");
+		lblCadastroPt = new JLabel("Cadastrar Pontua\u00E7\u00E3o");
 		lblCadastroPt.setForeground(Color.ORANGE);
 		lblCadastroPt.setBackground(Color.ORANGE);
 		lblCadastroPt.setBounds(10, 219, 178, 14);
 		contentPane.add(lblCadastroPt);
 
-		JButton btSalvar = new JButton("Salvar");
+		btSalvar = new JButton("Salvar");
 		btSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

@@ -52,9 +52,15 @@ public class TelaAddBateriaCampeonato extends JFrame {
 	private JTable tbBateriaCamp;
 	private JButton btRemover;
 	private List<PilotoCampeonato> listaQt = new ArrayList<PilotoCampeonato>();
-
+    private JLabel lblNrPiloto;
 	private DefaultTableModel modeloCamp;
 	private JTextField txtNrPiloto;
+	private JButton btSalvar;
+	private JScrollPane pnScroll;
+	private JScrollPane pnBateria;
+	private JButton btPesquisar;
+	private JLabel lblData;
+	private JLabel lblKartodromo;
 
 	public TelaAddBateriaCampeonato(Piloto piloto, Campeonato camp) {
 		setTitle("GoKart - Nova Bateria - Campeonato");
@@ -98,7 +104,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		btnVoltar.setBounds(20, 31, 30, 29);
 		contentPane.add(btnVoltar);
 
-		JLabel lblKartodromo = new JLabel("Kart\u00F3dromo");
+		lblKartodromo = new JLabel("Kart\u00F3dromo");
 		lblKartodromo.setForeground(Color.ORANGE);
 		lblKartodromo.setBackground(Color.ORANGE);
 		lblKartodromo.setBounds(10, 125, 94, 14);
@@ -111,7 +117,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		contentPane.add(txtKartodromo);
 		txtKartodromo.setColumns(10);
 
-		JLabel lblData = new JLabel("Data");
+		lblData = new JLabel("Data");
 		lblData.setForeground(Color.ORANGE);
 		lblData.setBackground(Color.ORANGE);
 		lblData.setBounds(10, 153, 94, 14);
@@ -133,7 +139,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 			e1.printStackTrace();
 		}
 
-		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar = new JButton("Pesquisar");
 		btPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -150,7 +156,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		btPesquisar.setBounds(252, 149, 113, 23);
 		contentPane.add(btPesquisar);
 
-		JScrollPane pnScroll = new JScrollPane();
+		pnScroll = new JScrollPane();
 		pnScroll.setBounds(10, 183, 355, 200);
 		contentPane.add(pnScroll);
 
@@ -182,7 +188,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		btAddBat.setBounds(10, 394, 89, 23);
 		contentPane.add(btAddBat);
 
-		JScrollPane pnBateria = new JScrollPane();
+		pnBateria = new JScrollPane();
 		pnBateria.setBounds(10, 437, 355, 127);
 		contentPane.add(pnBateria);
 
@@ -202,7 +208,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 
 		pnBateria.setViewportView(tbBateriaCamp);
 
-		JButton btSalvar = new JButton("Salvar");
+		btSalvar = new JButton("Salvar");
 		btSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -255,7 +261,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		contentPane.add(txtNrPiloto);
 		txtNrPiloto.setColumns(10);
 		
-		JLabel lblNrPiloto = new JLabel("Nr Pilotos:");
+		lblNrPiloto = new JLabel("Nr Pilotos:");
 		lblNrPiloto.setForeground(Color.ORANGE);
 		lblNrPiloto.setBackground(Color.ORANGE);
 		lblNrPiloto.setBounds(260, 398, 65, 14);

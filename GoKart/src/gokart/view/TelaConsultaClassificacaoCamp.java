@@ -99,6 +99,8 @@ public class TelaConsultaClassificacaoCamp extends JFrame {
 		contentPane.add(pnScroll);
 
 		tbClass = new JTable();
+		tbClass.setForeground(Color.ORANGE);
+		tbClass.setBackground(Color.BLACK);
 		tbClass.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},

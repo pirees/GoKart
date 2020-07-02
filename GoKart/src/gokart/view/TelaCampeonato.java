@@ -59,7 +59,11 @@ public class TelaCampeonato extends JFrame {
 	private JButton btVoltar;
 	private DefaultTableCellRenderer centralizado;
 	private DefaultTableModel modeloCamp;
-	
+	private JLabel lblCampeonato;
+	private JLabel lblCvPiloto;
+	private JLabel lblBaterias;
+	private JLabel imgCampeonato;
+	private JLabel lbCamp;
 
 	public TelaCampeonato(Piloto piloto) {
 		setTitle("GoKart - Campeonato");
@@ -72,7 +76,7 @@ public class TelaCampeonato extends JFrame {
 		setContentPane(painel);
 		painel.setLayout(null);
 
-		JLabel lblCampeonato = new JLabel("Campeonato");
+		lblCampeonato = new JLabel("Campeonato");
 		lblCampeonato.setForeground(Color.ORANGE);
 		lblCampeonato.setBackground(Color.ORANGE);
 		lblCampeonato.setBounds(10, 138, 88, 14);
@@ -130,7 +134,7 @@ public class TelaCampeonato extends JFrame {
 		btClassificacao.setBounds(10, 196, 127, 23);
 		painel.add(btClassificacao);
 
-		JLabel lblCvPiloto = new JLabel("Convidar Piloto");
+		lblCvPiloto = new JLabel("Convidar Piloto");
 		lblCvPiloto.setForeground(Color.ORANGE);
 		lblCvPiloto.setBounds(10, 246, 116, 14);
 		painel.add(lblCvPiloto);
@@ -165,7 +169,7 @@ public class TelaCampeonato extends JFrame {
 		btEnviaConvite.setBounds(321, 271, 41, 20);
 		painel.add(btEnviaConvite);
 
-		JLabel lblBaterias = new JLabel("Baterias");
+		lblBaterias = new JLabel("Baterias");
 		lblBaterias.setForeground(Color.ORANGE);
 		lblBaterias.setBounds(10, 314, 61, 14);
 		painel.add(lblBaterias);
@@ -214,12 +218,12 @@ public class TelaCampeonato extends JFrame {
 		btAddBateria.setBounds(10, 494, 140, 23);
 		painel.add(btAddBateria);
 
-		JLabel imgCampeonato = new JLabel("");
+		imgCampeonato = new JLabel("");
 		imgCampeonato.setIcon(new ImageIcon(TelaCampeonato.class.getResource("/img/TrofeuCampeonatoPequeno.png")));
 		imgCampeonato.setBounds(249, 11, 116, 105);
 		painel.add(imgCampeonato);
 
-		JLabel lbCamp = new JLabel("GoKart - Campeonato");
+		lbCamp = new JLabel("GoKart - Campeonato");
 		lbCamp.setForeground(Color.ORANGE);
 		lbCamp.setBackground(Color.ORANGE);
 		lbCamp.setFont(new Font("Tahoma", Font.PLAIN, 14));
