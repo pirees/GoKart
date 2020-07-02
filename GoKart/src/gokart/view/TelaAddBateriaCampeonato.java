@@ -394,7 +394,7 @@ public class TelaAddBateriaCampeonato extends JFrame {
 		/* Se existir campo selecionado */
 		if (!(tbBateriaCamp.getSelectedRow() < 0)) {
 			
-			Bateria b = (Bateria) tbBateriaCamp.getModel().getValueAt(tbResultado.getSelectedRow(), 0);	
+			Bateria b = (Bateria) tbBateriaCamp.getModel().getValueAt(tbBateriaCamp.getSelectedRow(), 0);	
 			b.setNrMaxPiloto(b.getNrMaxPiloto() + listaQt.size());			
 						
 			modeloCamp.removeRow(tbBateriaCamp.getSelectedRow());

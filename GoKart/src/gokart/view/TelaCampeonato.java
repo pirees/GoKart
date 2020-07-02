@@ -70,7 +70,7 @@ public class TelaCampeonato extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 391, 718);
 		painel = new JPanel();
-		painel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		painel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		painel.setBackground(Color.BLACK);
 		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painel);
