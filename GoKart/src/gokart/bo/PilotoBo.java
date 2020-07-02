@@ -54,6 +54,10 @@ public class PilotoBo {
 		if(pDao.ValidaCPF(piloto.getCpf()) != null) {
 			throw new Exception("CPF já cadastrado no sistema");			
 		}
+		
+		if(pDao.ValidaEmail(piloto.getEmail()) != null) {
+			throw new Exception("E-mail já cadastrado no sistema");			
+		}
 
 	}
 

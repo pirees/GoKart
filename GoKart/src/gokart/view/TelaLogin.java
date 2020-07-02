@@ -52,7 +52,7 @@ public class TelaLogin extends JFrame {
 		txtUsername = new JTextField();
 		txtUsername.setBackground(Color.BLACK);
 		txtUsername.setForeground(Color.ORANGE);
-		txtUsername.setText("Email");
+		txtUsername.setText("E-mail");
 		txtUsername.setBounds(10, 335, 355, 20);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
